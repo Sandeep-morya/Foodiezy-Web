@@ -2,7 +2,7 @@
 
 const WithNavbar = ({ children }: { children: JSX.Element }) => {
 	return (
-		<div>
+		<div className="w-screen">
 			<Navbar />
 			{children}
 		</div>

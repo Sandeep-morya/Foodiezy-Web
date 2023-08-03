@@ -10,7 +10,7 @@ const Button = (props: Props) => {
 		<button
 			{...props}
 			className={twMerge(
-				`text-sm flex items-center py-3 px-5 gap-3 shadow-md bg-white text-black hover:opacity-75 transition font-medium md:text-base`,
+				`text-sm flex items-center py-3 px-5 gap-3 shadow-md text-black hover:opacity-75 transition font-medium md:text-base`,
 				props.className,
 			)}>
 			{props.children}

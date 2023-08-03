@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+﻿import { useState, useCallback, useRef } from "react";
 import Card from "./Card";
 import {
 	PiCaretCircleLeft,
@@ -84,27 +84,49 @@ const data = [
 
 const Dishes = () => {
 	const [showAll, setShowAll] = useState(false);
+	const dishesRef = useRef<HTMLDivElement>(null);
+	console.log({ showAll });
+	const handleScroll = useCallback(
+		(direction: "left" | "right") => {
+			setShowAll(true);
+			const element = dishesRef.current;
+			if (element) {
+				const left = direction === "left" ? 0 : element.scrollWidth;
+				element.scrollTo({ left, behavior: "smooth" });
+			}
+		},
+		[dishesRef],
+	);
+
 	return (
-		<div className="flex flex-col gap-4 p-4 bg-gray-200">
+		<div className="w-full flex flex-col gap-6 mt-4">
 			<div className="flex justify-between">
-				<h1 className="text-xl font-semibold">Eat what makes you happy</h1>
-				<div className="hidden">
-					<div className="text-3xl">
+				<h1 className="text-xl font-semibold md:text-2xl xl:text-3xl">
+					Eat what makes you happy
+				</h1>
+				<div className="hidden gap-3 md:flex">
+					<div
+						onClick={() => handleScroll("left")}
+						className="text-3xl xl:text-4xl">
 						<PiCaretCircleLeft />
 					</div>
-					<div className="text-3xl">
+					<div
+						onClick={() => handleScroll("right")}
+						className="text-3xl xl:text-4xl">
 						<PiCaretCircleRight />
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-wrap w-full overflow-auto gap-x-5 transition-all duration-500">
+			<div
+				ref={dishesRef}
+				className="flex flex-wrap dishes hide scrollbar-thin overflow-x-hidden gap-x-4 md:overflow-x-scroll md:flex-nowrap md:gap-x-7 lg:gap-x-12 xl:gap-x-14 2xl:gap-x-16">
 				{data.slice(0, showAll ? data.length : 8).map((dish) => (
 					<Card key={dish.id} {...dish} />
 				))}
 				<Button
 					onClick={() => setShowAll((e) => !e)}
 					icon={showAll ? <PiCaretUpBold /> : <PiCaretDownBold />}
-					className="w-full justify-center text-black/50 border border-black/20 rounded-md">
+					className="w-full justify-center text-black/50 border border-black/20 rounded-md md:hidden">
 					{showAll ? "Show less" : "Show more"}
 				</Button>
 			</div>
