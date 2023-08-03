@@ -1,31 +1,38 @@
 <div align="center" id="top">
-  <img width="100" height="100" src="./public/logo.svg" alt="Foodiezy-Web" />
+  <img width="100" height="100" src="./public/logo.svg" alt="Foodiezy-Web-Web" />
 
-<a href="https://foodiezy.netlify.app/">Live URL</a>
+<a href="https://foodiezy-Web.netlify.app/">Live URL</a>
 
 </div>
 
-<h1 align="center">Foodiezy</h1>
+<h1 align="center">Foodiezy-Web</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/Sandeep-morya/Foodiezy?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/Sandeep-morya/Foodiezy-Web?color=56BEB8">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/Sandeep-morya/Foodiezy?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/Sandeep-morya/Foodiezy-Web?color=56BEB8">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Sandeep-morya/Foodiezy?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Sandeep-morya/Foodiezy-Web?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/Sandeep-morya/Foodiezy?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/Sandeep-morya/Foodiezy-Web?color=56BEB8">
 
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/Sandeep-morya/Foodiezy?color=56BEB8" /> -->
+  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/Sandeep-morya/Foodiezy-Web?color=56BEB8" /> -->
 
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/Sandeep-morya/Foodiezy?color=56BEB8" /> -->
+  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/Sandeep-morya/Foodiezy-Web?color=56BEB8" /> -->
 
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/Sandeep-morya/Foodiezy?color=56BEB8" /> -->
+  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/Sandeep-morya/Foodiezy-Web?color=56BEB8" /> -->
 </p>
 
 <h4 align="center">
-	🚧  Foodiezy 🚀 Under construction...  🚧
+	🚧  Foodiezy-Web 🚀 Under construction...  🚧
 </h4>
+
+`Current Progress`
+
+- HeroPage
+- AdminLogin Ui
+- Error Page
+- Homepage Dishes Section
 
 <hr>
 
@@ -69,10 +76,10 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ```bash
 # Clone this project
-$ git clone https://github.com/Sandeep-morya/Foodiezy
+$ git clone https://github.com/Sandeep-morya/Foodiezy-Web
 
 # Access
-$ cd Foodiezy
+$ cd Foodiezy-Web
 
 # Install dependencies
 $ yarn
