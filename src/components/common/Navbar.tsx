@@ -20,23 +20,23 @@ const Navbar = () => {
 					<FaAngleDown />
 				</div>
 				{/* <div></div> */}
-				<div className="flex flex-1 px-4 items-center gap-4">
+				<div className="flex items-center flex-1 gap-4 px-4">
 					<input
-						className="flex-1 text-md placeholder:text-gray-300 focus:border-none outline-none"
+						className="flex-1 outline-none text-md placeholder:text-gray-300 focus:border-none"
 						type="text"
 						placeholder="I am looking for..."
 					/>
 					<PiMagnifyingGlass size={18} />
 				</div>
 			</div>
-			<nav className="flex gap-5 items-center">
+			<nav className="flex items-center gap-5">
 				<IconButton href="#" element={<PiUserCircle />} />
 				<IconButton href="#" count={3} element={<PiHeart />} />
 
 				<div className="flex items-center gap-5">
 					<IconButton href="#" count={4} element={<PiShoppingCart />} />
 
-					<div className="h-full hidden md:grid items-start">
+					<div className="items-start hidden h-full md:grid">
 						<p className="text-xs text-black/50">Your Cart</p>
 						<h2 className="font-medium">₹ 789</h2>
 					</div>

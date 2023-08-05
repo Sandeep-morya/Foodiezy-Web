@@ -14,7 +14,7 @@ const HeroPage = () => {
 	useLayoutEffect(() => {
 		if (geo_location) {
 			const city = geo_location.address.city;
-			const district = geo_location.address.state_district;
+			const district = geo_location.address.state;
 			navigate(`/${city || district}`, {
 				replace: true,
 			});

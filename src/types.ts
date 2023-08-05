@@ -5,8 +5,8 @@ export interface Coordinates {
 	lng: string | number;
 }
 export interface GeoLocation {
-	coordinates: Coordinates | null;
-	display_name: string | null;
+	coordinates: Coordinates;
+	display_name: string;
 	address: Address;
 }
 export interface Device {
@@ -50,4 +50,58 @@ export interface Address {
 	postcode: string;
 	country: string;
 	country_code: string;
+}
+export interface CardAction {
+	clickActionDeeplink: string;
+	clickUrl: string;
+}
+
+export interface RestorantLocality {
+	name: string;
+	address: string;
+}
+export interface RestorantRating {
+	text: string;
+	votes: string;
+	color: string;
+	subtite: string;
+}
+
+export interface RestorantInfo {
+	resId: number;
+	costText: { text: string };
+	image: { url: string };
+	locality: RestorantLocality;
+	name: string;
+	rating: RestorantRating;
+}
+
+export interface RestorantOrder {
+	deliveryTime: string;
+	isServiceable: true;
+	hasOnlineOrdering: true;
+	actionInfo: {
+		text: string;
+		clickUrl: string;
+	};
+}
+
+export interface Restorant {
+	cardAction: CardAction;
+	distance: string;
+	info: RestorantInfo;
+	order: RestorantOrder;
+}
+
+export interface Collection {
+	altText: string;
+	collectionId: string;
+	createdAt: string;
+	imageId: string;
+	serviceAreaId: string;
+	text: string;
+	type: string;
+	updatedAt: string;
+	__typename: string;
+	_id: string;
 }

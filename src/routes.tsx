@@ -7,7 +7,7 @@ export default function AllRoutes() {
 		<Routes>
 			<Route path="/" element={<HeroPage />} />
 			<Route
-				path="/:city"
+				path="/:serviceAreaName"
 				element={
 					<WhenGeoLocation>
 						<HomePage />

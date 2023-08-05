@@ -85,7 +85,7 @@ const data = [
 const Dishes = () => {
 	const [showAll, setShowAll] = useState(false);
 	const dishesRef = useRef<HTMLDivElement>(null);
-	console.log({ showAll });
+	// console.log({ showAll });
 	const handleScroll = useCallback(
 		(direction: "left" | "right") => {
 			setShowAll(true);
@@ -99,7 +99,7 @@ const Dishes = () => {
 	);
 
 	return (
-		<div className="w-full flex flex-col gap-6 mt-4">
+		<div className="flex flex-col w-full gap-6 p-2 mt-4">
 			<div className="flex justify-between">
 				<h1 className="text-xl font-semibold md:text-2xl xl:text-3xl">
 					Eat what makes you happy
@@ -119,14 +119,14 @@ const Dishes = () => {
 			</div>
 			<div
 				ref={dishesRef}
-				className="flex flex-wrap dishes hide scrollbar-thin overflow-x-hidden gap-x-4 md:overflow-x-scroll md:flex-nowrap md:gap-x-7 lg:gap-x-12 xl:gap-x-14 2xl:gap-x-16">
+				className="flex flex-wrap justify-center overflow-x-hidden dishes snap-x snap-mandatory hide scrollbar-thin gap-x-4 md:justify-start md:overflow-x-scroll md:flex-nowrap md:gap-x-7 lg:gap-x-12 xl:gap-x-14 2xl:gap-x-16">
 				{data.slice(0, showAll ? data.length : 8).map((dish) => (
 					<Card key={dish.id} {...dish} />
 				))}
 				<Button
 					onClick={() => setShowAll((e) => !e)}
 					icon={showAll ? <PiCaretUpBold /> : <PiCaretDownBold />}
-					className="w-full justify-center text-black/50 border border-black/20 rounded-md md:hidden">
+					className="justify-center w-full border rounded-md text-black/50 border-black/20 md:hidden">
 					{showAll ? "Show less" : "Show more"}
 				</Button>
 			</div>

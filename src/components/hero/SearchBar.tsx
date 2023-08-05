@@ -73,12 +73,12 @@ const SearchBar = () => {
 			getAddress(debouncedQuery);
 		}
 	}, [debouncedQuery, getAddress]);
-	console.log({ isLoading, isError });
+	// console.log({ isLoading, isError });
 
 	return (
 		<div className="w-full h-[50px] flex mt-10 my-8 md:h-[60px]">
-			<div className="flex-1 flex gap-4 border border-gray-300 items-center relative">
-				<div className="w-full h-full relative flex items-center">
+			<div className="relative flex items-center flex-1 gap-4 border border-gray-300">
+				<div className="relative flex items-center w-full h-full">
 					<div className="absolute text-lg p-3 text-[#7ed957] md:text-xl">
 						<PiMagnifyingGlass />
 					</div>
