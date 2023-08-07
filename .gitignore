@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+foodiezydb.7z
 
 
 # Editor directories and files

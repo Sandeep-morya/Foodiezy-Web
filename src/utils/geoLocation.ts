@@ -1,6 +1,6 @@
 ﻿import axios from "axios";
 import type { AxiosResponse } from "axios";
-import { Coordinates, CoordinatesResult, MapLocations } from "../types";
+import type { Coordinates, CoordinatesResult, MapLocations } from "../types";
 const API = axios.create({ baseURL: "https://geocode.maps.co" });
 
 export function geolocationError(error: GeolocationPositionError) {

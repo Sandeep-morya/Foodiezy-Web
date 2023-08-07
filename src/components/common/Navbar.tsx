@@ -7,17 +7,18 @@
 import IconButton from "./IconButton";
 // import { useAppSelector } from "../../hook/reduxHooks";
 import Logo from "./Logo";
-import { FaAngleDown } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import { MdLocationOn } from "react-icons/md";
 
 const Navbar = () => {
-	// const { geo_location } = useAppSelector((store) => store.device);
+	const { serviceAreaName } = useParams();
 	return (
 		<header className="w-screen bg-[#f9f9f9] h-[60px] flex justify-between py-2 px-4 items-center shadow-md md:px-8 lg:h-[70px] lg:px-16 2xl:px-24">
 			<Logo />
 			<div className="hidden h-[45px] w-[500px] border rounded-md overflow-hidden bg-white shadow-sm lg:flex xl:w-[600px]">
-				<div className="h-full w-[150px] text-white bg-black flex items-center justify-center gap-2">
-					<p className="text-sm font-medium">All Categories</p>
-					<FaAngleDown />
+				<div className="flex items-center justify-start h-full gap-1 px-3 text-white bg-black">
+					<MdLocationOn />
+					<p className="text-sm font-medium">{serviceAreaName}</p>
 				</div>
 				{/* <div></div> */}
 				<div className="flex items-center flex-1 gap-4 px-4">

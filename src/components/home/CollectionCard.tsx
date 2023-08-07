@@ -1,4 +1,4 @@
-﻿import { Collection } from "../../../types";
+﻿import type { Collection } from "../../types";
 
 const CollectionCard = (data: Collection) => {
 	return (

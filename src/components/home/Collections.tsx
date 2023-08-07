@@ -1,4 +1,4 @@
-﻿import { Collection } from "../../../types";
+﻿import type { Collection } from "../../types";
 import { useCallback, useRef, useState } from "react";
 
 import CollectionCard from "./CollectionCard";
@@ -19,8 +19,8 @@ const Collections = ({ data }: { data: Collection[] }) => {
 	}, []);
 
 	return (
-		<div className="w-full relative mt-2">
-			<div className="flex justify-between items-center px-4">
+		<div className="relative w-full mt-2">
+			<div className="flex items-center justify-between px-4">
 				<h1 className="text-lg font-semibold tracking-wide md:text-xl xl:text-2xl">
 					Eat what you like most
 				</h1>
@@ -53,7 +53,7 @@ const Collections = ({ data }: { data: Collection[] }) => {
 
 			<div
 				ref={collectionsRef}
-				className="w-full flex overflow-x-scroll vanish-scroll-bar snap-x">
+				className="flex w-full overflow-x-scroll vanish-scroll-bar snap-x">
 				{data.map((collection) => (
 					<CollectionCard key={collection._id} {...collection} />
 				))}

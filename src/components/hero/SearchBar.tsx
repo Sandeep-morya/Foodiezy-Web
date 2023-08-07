@@ -73,7 +73,7 @@ const SearchBar = () => {
 			getAddress(debouncedQuery);
 		}
 	}, [debouncedQuery, getAddress]);
-	// console.log({ isLoading, isError });
+	console.log({ isLoading, isError });
 
 	return (
 		<div className="w-full h-[50px] flex mt-10 my-8 md:h-[60px]">

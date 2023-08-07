@@ -1,10 +1,11 @@
 ﻿// import { useCallback, useEffect } from "react";
-import WithNavbar from "../provider/WithNavbar";
+// import WithNavbar from "../provider/WithNavbar";
 import { useQuery } from "@apollo/client";
 import { GET_SERVICE_AREA_DATA } from "../utils/resolvers";
 import { useParams } from "react-router-dom";
 import { HashLoader } from "react-spinners";
-import Collections from "../components/home/category/Collections";
+import Restaurants from "../components/home/Restaurants";
+import Collections from "../components/home/Collections";
 
 const Homepage = () => {
 	const { serviceAreaName } = useParams();
@@ -18,11 +19,10 @@ const Homepage = () => {
 	}
 
 	return (
-		<WithNavbar>
-			<div className="w-full flex flex-col p-1">
-				<Collections data={data.getServiceAreaData.collections} />
-			</div>
-		</WithNavbar>
+		<div className="flex flex-col w-full p-1">
+			<Collections data={data.getServiceAreaData.collections} />
+			<Restaurants data={data.getServiceAreaData.restaurants} />
+		</div>
 	);
 };
 

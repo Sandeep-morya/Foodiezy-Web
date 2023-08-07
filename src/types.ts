@@ -105,3 +105,38 @@ export interface Collection {
 	__typename: string;
 	_id: string;
 }
+export interface DeliveryData {
+	__typename: string;
+	time: 25;
+	duration: string;
+	distance: string;
+}
+export interface Restaurant {
+	__typename: string;
+	type: string;
+	_id: string;
+	serviceAreaId: string;
+	restaurantId: string;
+	name: string;
+	imageId: string;
+	cuisines: string[];
+	veg: boolean;
+	rating: number;
+	votesString: string;
+	costForTwo: string;
+	areaName: string;
+	locality: string;
+	discount: string;
+	delivery: DeliveryData;
+	createdAt: string;
+	updatedAt: string;
+}
+export interface Restaurants {
+	__typename: string;
+	serviceAreaId: string;
+	page: number;
+	limit: number;
+	count: number;
+	totalCount: number;
+	documents: Restaurant[];
+}
