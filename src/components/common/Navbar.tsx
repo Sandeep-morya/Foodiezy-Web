@@ -4,7 +4,7 @@
 	PiShoppingCart,
 	PiUserCircle,
 } from "react-icons/pi";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import IconButton from "./IconButton";
 // import { useAppSelector } from "../../hook/reduxHooks";
 import Logo from "./Logo";
@@ -13,21 +13,19 @@ import { MdLocationOn } from "react-icons/md";
 
 const Navbar = () => {
 	const { serviceAreaName } = useParams();
-	const [isScrolled, setIsScrolled] = useState(false);
+	// const [isScrolled, setIsScrolled] = useState(false);
 
-	useEffect(() => {
-		const handleScroll = () => {
-			const scrollPosition = window.pageYOffset;
-			setIsScrolled(scrollPosition > 0);
-		};
-		window.onscroll = handleScroll;
-	}, []);
-	console.log({ isScrolled });
+	// useEffect(() => {
+	// 	const handleScroll = () => {
+	// 		const scrollPosition = window.pageYOffset;
+	// 		setIsScrolled(scrollPosition > 0);
+	// 	};
+	// 	window.onscroll = handleScroll;
+	// }, []);
+	// console.log({ isScrolled });
 	return (
 		<header
-			className={`w-screen sticky top-0 z-50 h-[60px] flex justify-between py-2 px-4 items-center md:px-8 lg:h-[80px] lg:px-16 2xl:px-24 bg-white ${
-				isScrolled ? "shadow-md" : ""
-			}`}>
+			className={`w-full h-[60px] fixed top-0 z-50 flex justify-between py-2 px-4 items-center md:px-8 lg:h-[80px] lg:px-16 2xl:px-24 bg-white`}>
 			<div>
 				<Logo />
 			</div>
