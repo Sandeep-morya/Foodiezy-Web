@@ -1,12 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"); */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-* {
+/* * {
 	font-family: "Work Sans", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
 		sans-serif !important;
-}
+} */
 
 .vanish-scroll-bar::-webkit-scrollbar {
 	width: 0.5em; /* Set a width for the scrollbar if you want to show a custom scrollbar */

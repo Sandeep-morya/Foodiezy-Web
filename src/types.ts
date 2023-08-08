@@ -102,17 +102,14 @@ export interface Collection {
 	text: string;
 	type: string;
 	updatedAt: string;
-	__typename: string;
 	_id: string;
 }
 export interface DeliveryData {
-	__typename: string;
 	time: 25;
 	duration: string;
 	distance: string;
 }
 export interface Restaurant {
-	__typename: string;
 	type: string;
 	_id: string;
 	serviceAreaId: string;
@@ -132,7 +129,6 @@ export interface Restaurant {
 	updatedAt: string;
 }
 export interface Restaurants {
-	__typename: string;
 	serviceAreaId: string;
 	page: number;
 	limit: number;
