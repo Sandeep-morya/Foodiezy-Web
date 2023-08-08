@@ -4,6 +4,7 @@
 	PiShoppingCart,
 	PiUserCircle,
 } from "react-icons/pi";
+import { useState, useEffect } from "react";
 import IconButton from "./IconButton";
 // import { useAppSelector } from "../../hook/reduxHooks";
 import Logo from "./Logo";
@@ -12,20 +13,35 @@ import { MdLocationOn } from "react-icons/md";
 
 const Navbar = () => {
 	const { serviceAreaName } = useParams();
+	const [isScrolled, setIsScrolled] = useState(false);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollPosition = window.pageYOffset;
+			setIsScrolled(scrollPosition > 0);
+		};
+		window.onscroll = handleScroll;
+	}, []);
+	console.log({ isScrolled });
 	return (
-		<header className="w-screen bg-[#f9f9f9] h-[60px] flex justify-between py-2 px-4 items-center shadow-md md:px-8 lg:h-[70px] lg:px-16 2xl:px-24">
-			<Logo />
-			<div className="hidden h-[45px] w-[500px] border rounded-md overflow-hidden bg-white shadow-sm lg:flex xl:w-[600px]">
-				<div className="flex items-center justify-start h-full gap-1 px-3 text-white bg-black">
+		<header
+			className={`w-screen sticky top-0 z-50 h-[60px] flex justify-between py-2 px-4 items-center md:px-8 lg:h-[80px] lg:px-16 2xl:px-24 bg-white ${
+				isScrolled ? "shadow-md" : ""
+			}`}>
+			<div>
+				<Logo />
+			</div>
+			<div className="hidden items-center gap-2 h-[45px] w-[500px] border rounded-md overflow-hidden bg-white shadow-sm lg:flex xl:w-[600px]">
+				<div className="flex items-center justify-start gap-1 px-3 text-black/30">
 					<MdLocationOn />
-					<p className="text-sm font-medium">{serviceAreaName}</p>
+					<p className="text-sm font-medium uppercase">{serviceAreaName}</p>
 				</div>
-				{/* <div></div> */}
-				<div className="flex items-center flex-1 gap-4 px-4">
+				<div className="text-black/10 mb-0.5">{"|"}</div>
+				<div className="flex items-center flex-1 gap-4 pl-2 pr-4">
 					<input
-						className="flex-1 outline-none text-md placeholder:text-gray-300 focus:border-none"
+						className="flex-1 capitalize outline-none text-md placeholder:text-black/30 focus:border-none"
 						type="text"
-						placeholder="I am looking for..."
+						placeholder="Looking for something tasty? Start here.."
 					/>
 					<PiMagnifyingGlass size={18} />
 				</div>

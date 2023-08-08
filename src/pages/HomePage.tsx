@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { HashLoader } from "react-spinners";
 import Restaurants from "../components/home/Restaurants";
 import Collections from "../components/home/Collections";
+import withNavbar from "../hocs/withNavbar";
 
 const Homepage = () => {
 	const { serviceAreaName } = useParams();
@@ -26,4 +27,5 @@ const Homepage = () => {
 	);
 };
 
-export default Homepage;
+const Home = withNavbar(Homepage);
+export default Home;

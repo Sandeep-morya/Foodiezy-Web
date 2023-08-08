@@ -8,6 +8,7 @@ const Collections = ({ data }: { data: Collection[] }) => {
 	const [showLeftButton, setShowLeftButton] = useState(false);
 	const [showRightButton, setShowRightButton] = useState(true);
 	const collectionsRef = useRef<HTMLDivElement>(null);
+
 	const handleScroll = useCallback((left: number) => {
 		const element = collectionsRef.current;
 		if (element) {
@@ -53,7 +54,7 @@ const Collections = ({ data }: { data: Collection[] }) => {
 
 			<div
 				ref={collectionsRef}
-				className="flex w-full overflow-x-scroll vanish-scroll-bar snap-x">
+				className="flex items-center justify-start overflow-x-scroll vanish-scroll-bar snap-x">
 				{data.map((collection) => (
 					<CollectionCard key={collection._id} {...collection} />
 				))}

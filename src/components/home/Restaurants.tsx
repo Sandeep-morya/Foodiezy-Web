@@ -14,7 +14,7 @@ const Restaurants = ({ data }: { data: Restaurants }) => {
 				Restaurants near you {`(${data.totalCount})`}
 			</h1>
 			{/*---:: Restaurant Cards ::---*/}
-			<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:gap-5 2xl:grid-cols-5">
+			<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:gap-8 2xl:grid-cols-5">
 				{restaurantList.map((restaurant) => (
 					<RestaurantCard key={restaurant._id} {...restaurant} />
 				))}
