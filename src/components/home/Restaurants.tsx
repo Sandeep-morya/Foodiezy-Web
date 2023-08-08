@@ -12,7 +12,7 @@ const Restaurants = ({ data }: { data: Restaurants }) => {
 	);
 	console.log(restaurantList);
 	return (
-		<div className="flex flex-col gap-0 px-2 md:px-4">
+		<div className="flex flex-col px-2 gap-y-2 md:px-4">
 			<h1
 				ref={ref}
 				className="text-lg font-semibold tracking-wide md:text-xl xl:text-2xl">
@@ -20,7 +20,7 @@ const Restaurants = ({ data }: { data: Restaurants }) => {
 			</h1>
 			<FilterSection atTop={!inView} />
 			{/*---:: Restaurant Cards ::---*/}
-			<div className="grid grid-cols-1 gap-6 px-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:gap-8 2xl:grid-cols-5">
+			<div className="grid grid-cols-1 gap-6 px-1 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:gap-8">
 				{restaurantList.map((restaurant) => (
 					<RestaurantCard key={restaurant._id} {...restaurant} />
 				))}

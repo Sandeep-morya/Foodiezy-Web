@@ -22,6 +22,9 @@ const FilterSection = ({ atTop }: Props) => {
 			<div className="hidden gap-4 md:flex">
 				<FilterButton title="Fast Delivery" active />
 				<FilterButton title="Pure Veg" />
+			</div>
+
+			<div className="hidden gap-4 xl:flex">
 				<FilterButton title="Rs. 300-Rs. 600" />
 				<FilterButton title="Less than Rs. 300" />
 			</div>

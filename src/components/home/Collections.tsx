@@ -7,6 +7,8 @@ import { PiCaretCircleLeft, PiCaretCircleRight } from "react-icons/pi";
 const Collections = ({ data }: { data: Collection[] }) => {
 	const [showLeftButton, setShowLeftButton] = useState(false);
 	const [showRightButton, setShowRightButton] = useState(true);
+	// const colletion_1 = data.slice(0, 10);
+	// const colletion_2 = data.slice(10, data.length);
 	const collectionsRef = useRef<HTMLDivElement>(null);
 
 	const handleScroll = useCallback((left: number) => {
@@ -54,10 +56,12 @@ const Collections = ({ data }: { data: Collection[] }) => {
 
 			<div
 				ref={collectionsRef}
-				className="flex items-center justify-start overflow-x-scroll vanish-scroll-bar snap-x">
-				{data.map((collection) => (
-					<CollectionCard key={collection._id} {...collection} />
-				))}
+				className="w-full overflow-x-scroll vanish-scroll-bar snap-x">
+				<div className="grid items-center content-start self-start grid-cols-10 gap-0 w-max md:gap-x-1 lg:gap-x-2 xl:gap-x-9 2xl:gap-x-16">
+					{data.map((collection) => (
+						<CollectionCard key={collection._id} {...collection} />
+					))}
+				</div>
 			</div>
 		</div>
 	);

@@ -19,27 +19,27 @@ const Rating: FC<{ rating: number; votes: string }> = ({ rating, votes }) => {
 	return (
 		<>
 			<MdStar />
-			<p className="ml-1 text-xs md:text-sm">{rating}</p>
+			<p className="ml-1 text-xs font-medium md:text-sm">{rating}</p>
 			<PiDotOutlineFill />
-			<p className="text-xs md:text-sm">{votes}</p>
+			<p className="text-xs font-medium md:text-sm">{votes}</p>
 		</>
 	);
 };
 
 const RestaurantCard = (data: Restaurant) => {
 	return (
-		<div className="flex flex-row  gap-0 rounded-lg overflow-hidden shadow-[0_0_2px_#0009] md:flex-col transition-all">
+		<div className="group flex flex-row  gap-0 rounded-lg overflow-hidden shadow-[0_0_2px_#0009] md:flex-col">
 			<div className="relative w-[45%] overflow-hidden aspect-[3/4] md:w-full md:aspect-[3/2]">
 				<img
 					loading="lazy"
 					src={`https://res.cloudinary.com/swiggy/image/upload/${data.imageId}`}
-					className="object-cover w-full h-full md:aspect-[3/2] hover:scale-110 transition-all"
+					className="object-cover w-full h-full md:aspect-[3/2] group-hover:scale-110 transition"
 					alt={data.imageId}
 				/>
 				<div className="absolute hidden top-2 left-2 md:flex">
 					<Pills veg={data.veg} />
 				</div>
-				<div className="absolute flex items-center justify-start px-2 py-0.5 text-xs font-semibold shadow-lg bg-white rounded-tl-full rounded-bl-full uppercase -right-1 bottom-5 md:text-sm">
+				<div className="absolute flex items-center justify-start px-2 py-0.5 text-xs font-semibold shadow-lg bg-white rounded-tl-full rounded-bl-full uppercase -right-1 bottom-5 md:bottom-10 md:text-sm">
 					{data.discount || data.costForTwo}
 				</div>
 			</div>
@@ -77,7 +77,7 @@ const RestaurantCard = (data: Restaurant) => {
 							{data.locality.substring(0, 15) || data.areaName}
 						</p>
 					</div>
-					<div className="flex items-center justify-start gap-2 md:gap-1">
+					<div className="flex items-center justify-start gap-2 font-medium md:gap-1">
 						<MdDeliveryDining />
 						<p className="text-xs md:text-sm">{data.delivery.duration}</p>
 					</div>

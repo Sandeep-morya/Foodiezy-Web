@@ -25,7 +25,7 @@ const Navbar = () => {
 	// console.log({ isScrolled });
 	return (
 		<header
-			className={`w-full h-[60px] fixed top-0 z-50 flex justify-between py-2 px-4 items-center md:px-8 lg:h-[80px] lg:px-16 2xl:px-24 bg-white`}>
+			className={`w-full h-[60px] fixed top-0 z-50 flex justify-between py-2 px-4 items-center lg:h-[80px] md:px-12 lg:px-4 2xl:px-44 bg-white`}>
 			<div>
 				<Logo />
 			</div>

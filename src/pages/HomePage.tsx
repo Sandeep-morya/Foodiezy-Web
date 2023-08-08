@@ -20,7 +20,7 @@ const Homepage = () => {
 	}
 
 	return (
-		<div className="flex flex-col w-full p-1 md:px-8 lg:h-[80px] lg:px-16 2xl:px-24">
+		<div className="flex flex-col w-full p-1 gap-y-10 md:px-8 lg:px-4 2xl:px-44">
 			<Collections data={data.getServiceAreaData.collections} />
 			<Restaurants data={data.getServiceAreaData.restaurants} />
 		</div>
