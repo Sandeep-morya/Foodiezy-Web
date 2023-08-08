@@ -57,7 +57,7 @@ const Collections = ({ data }: { data: Collection[] }) => {
 			<div
 				ref={collectionsRef}
 				className="w-full overflow-x-scroll vanish-scroll-bar snap-x">
-				<div className="grid items-center content-start self-start grid-cols-10 gap-0 w-max md:gap-x-1 lg:gap-x-2 xl:gap-x-9 2xl:gap-x-16">
+				<div className="grid items-center content-start self-start grid-cols-10 gap-1 w-max lg:gap-x-2 xl:gap-x-9 2xl:gap-x-16">
 					{data.map((collection) => (
 						<CollectionCard key={collection._id} {...collection} />
 					))}
