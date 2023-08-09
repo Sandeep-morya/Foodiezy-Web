@@ -1,10 +1,10 @@
 ﻿import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import deviceSlice from "./deviceSlice";
-import restorantSlice from "./restorantSlice";
+import restaurantSlice from "./restaurantSlice";
 
 const reducer = combineReducers({
 	device: deviceSlice,
-	restorant: restorantSlice,
+	restaurants: restaurantSlice,
 });
 
 export const store = configureStore({ reducer });

@@ -22,7 +22,7 @@ const SearchBar = () => {
 				<p className="text-sm font-medium uppercase">{serviceAreaName}</p>
 			</div>
 			<Drawer
-				content={<DrawerContent />}
+				content={<DrawerContent {...{ toggleDrawer }} />}
 				label={"Select Your City"}
 				{...{ showDrawer, toggleDrawer }}
 			/>

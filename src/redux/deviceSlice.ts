@@ -4,7 +4,8 @@ import { getItem, setItem } from "../utils/localStorage";
 
 import type { Device, ServiceArea } from "../types";
 
-const KEY = "foodiezy-local-storage-key";
+const KEY = "foodiezy-redux-store-local-storage-key";
+
 const initialState: Device = getItem(KEY) || {
 	theme: "light",
 	serviceArea: null,

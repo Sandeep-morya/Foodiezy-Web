@@ -26,12 +26,20 @@ const Rating: FC<{ rating: number; votes: string }> = ({ rating, votes }) => {
 	);
 };
 
-const RestaurantCard = (data: Restaurant) => {
+interface Props extends Restaurant {
+	target: (node?: Element | null | undefined) => void;
+	index: number;
+	page: number;
+}
+
+const RestaurantCard = (data: Props) => {
 	return (
-		<div className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col">
+		<div
+			ref={data.index + 1 === (data.page + 1) * 20 ? data.target : null}
+			className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col">
 			<div className="relative w-[45%] overflow-hidden aspect-[3/4] md:w-full md:aspect-[3/2]">
 				<img
-					loading="lazy"
+					// loading="lazy"
 					src={`https://res.cloudinary.com/swiggy/image/upload/${data.imageId}`}
 					className="object-cover w-full h-full md:aspect-[3/2] group-hover:scale-110 transition"
 					alt={data.imageId}

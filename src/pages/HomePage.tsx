@@ -36,7 +36,7 @@ const Homepage = () => {
 					<SearchBar />
 				</div>
 				<Collections data={data.getServiceAreaData.collections} />
-				<Restaurants data={data.getServiceAreaData.restaurants} />
+				{serviceArea?._id && <Restaurants id={serviceArea._id} />}
 			</div>
 			<Footer />
 		</div>
