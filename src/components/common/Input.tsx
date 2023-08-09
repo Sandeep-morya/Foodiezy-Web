@@ -8,9 +8,9 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 const Input = (props: Props) => {
 	return (
 		<div className="flex items-center gap-4 h-[45px] w-full border rounded-md overflow-hidden bg-white shadow-sm ">
-			<div className="pl-4">{props.leftIcon}</div>
+			{props.leftIcon && <div className="pl-4">{props.leftIcon}</div>}
 
-			<div className="text-black/10 mb-0.5">{"|"}</div>
+			{props.leftIcon && <div className="text-black/10 mb-0.5">{"|"}</div>}
 			<div className="flex items-center flex-1 gap-4 pr-4">
 				<input
 					className="flex-1 text-sm capitalize outline-none placeholder:text-black/30 focus:border-none md:text-base"

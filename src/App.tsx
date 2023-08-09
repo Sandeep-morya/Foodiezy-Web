@@ -1,7 +1,4 @@
-import { useLayoutEffect } from "react";
-import { useAppDispatch } from "./hook/reduxHooks";
 import AllRoutes from "./routes";
-import { loadFromLocalStorage } from "./redux/deviceSlice";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { Buffer } from "buffer";
 
@@ -18,11 +15,6 @@ const client = new ApolloClient({
 });
 
 const App = () => {
-	const dispatch = useAppDispatch();
-	useLayoutEffect(() => {
-		dispatch(loadFromLocalStorage());
-	}, [dispatch]);
-
 	return (
 		<ApolloProvider client={client}>
 			<AllRoutes />

@@ -1,6 +1,6 @@
 ﻿import { Route, Routes } from "react-router-dom";
 import { HeroPage, HomePage, ErrorPage, AdminLoginPage } from "./pages";
-import WhenGeoLocation from "./provider/WhenGeoLocation";
+import LocationProvider from "./provider/LocationProvider";
 
 export default function AllRoutes() {
 	return (
@@ -9,9 +9,9 @@ export default function AllRoutes() {
 			<Route
 				path="/:serviceAreaName"
 				element={
-					<WhenGeoLocation>
+					<LocationProvider>
 						<HomePage />
-					</WhenGeoLocation>
+					</LocationProvider>
 				}
 			/>
 			<Route path="/admin/login" element={<AdminLoginPage />} />

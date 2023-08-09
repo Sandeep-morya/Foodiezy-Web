@@ -9,7 +9,7 @@ const DrawerContent = () => {
 		<div className="p-2">
 			<Input
 				leftIcon={<MdLocationOn />}
-				placeholder="What is your current city ?"
+				placeholder="Where is your loaction ?"
 				rightIcon={<PiMagnifyingGlass />}
 			/>
 		</div>

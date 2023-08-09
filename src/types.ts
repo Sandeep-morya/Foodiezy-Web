@@ -9,9 +9,15 @@ export interface GeoLocation {
 	display_name: string;
 	address: Address;
 }
+export interface ServiceArea {
+	_id?: string;
+	name: string;
+	lat?: number;
+	lng?: number;
+}
 export interface Device {
 	theme: Theme;
-	geo_location: GeoLocation | null;
+	serviceArea: ServiceArea | null;
 }
 
 export interface MapLocations {

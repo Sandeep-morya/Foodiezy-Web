@@ -5,24 +5,22 @@ import FooterText from "../components/hero/FooterText";
 import ServicesInCities from "../components/hero/ServicesInCities";
 import SearchBar from "../components/hero/SearchBar";
 import { useAppSelector } from "../hook/reduxHooks";
-import { useNavigate } from "react-router-dom";
-import { useLayoutEffect } from "react";
+import { Navigate } from "react-router-dom";
 
 const HeroPage = () => {
-	const { geo_location } = useAppSelector((store) => store.device);
-	const navigate = useNavigate();
-	useLayoutEffect(() => {
-		if (geo_location) {
-			const city = geo_location.address.city;
-			const district = geo_location.address.state;
-			navigate(`/${city || district}`, {
-				replace: true,
-			});
-		}
-	}, [geo_location, navigate]);
+	const { serviceArea } = useAppSelector((store) => store.device);
+
+	if (serviceArea) {
+		return <Navigate to={`/${serviceArea.name}`} replace />;
+	}
+
 	return (
 		<div className="w-screen h-screen overflow-y-scroll bg-[#f9f9f9] flex flex-col bg-none bg-contain bg-right bg bg-no-repeat lg:bg-[url('/hero-image.avif')]">
-			<div className="w-full p-0 lg:w-[800px] bg-[#f9f9f9] lg:ml-[40px] 2xl:ml-[200px]">
+			<div
+				style={{
+					backgroundImage: "linear-gradient(to right , #f9f9f9 60%,transparent",
+				}}
+				className="w-full p-0 lg:w-[800px]  lg:ml-[40px] 2xl:ml-[200px]">
 				<div className="h-[200px] p-2 bg-[url('/hero-image.avif')] bg-cover flex justify-between items-center lg:bg-none lg:h-[250px] 2xl:h-[280px]">
 					<div className="scale-100 md:scale-150 md:ml-10">
 						<Logo />
@@ -53,7 +51,11 @@ const HeroPage = () => {
 					<ServicesInCities />
 				</div>
 			</div>
-			<div className="w-full p-2 pt-[100px] bg-[#f9f9f9] lg:w-[800px] lg:ml-[40px] 2xl:ml-[200px]">
+			<div
+				style={{
+					backgroundImage: "linear-gradient(to right , #f9f9f9 60%,transparent",
+				}}
+				className="w-full p-2 pt-[100px]  lg:w-[800px] lg:ml-[40px] 2xl:ml-[200px]">
 				<div className="h-[340px]">
 					<div className="w-full h-[50%] border-b py-6 flex flex-col justify-between">
 						<SocialLinks />

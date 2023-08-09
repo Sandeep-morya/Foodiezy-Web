@@ -74,7 +74,7 @@ const RestaurantCard = (data: Restaurant) => {
 					<div className="flex items-center justify-start gap-2 md:gap-1">
 						<MdLocationPin />
 						<p className="text-xs md:text-sm">
-							{data.locality.substring(0, 15) || data.areaName}
+							{data.locality.substring(0, 13) || data.areaName}
 						</p>
 					</div>
 					<div className="flex items-center justify-start gap-2 font-medium md:gap-1">

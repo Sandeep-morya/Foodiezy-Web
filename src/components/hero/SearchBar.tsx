@@ -2,13 +2,13 @@
 import { MdOutlineMyLocation } from "react-icons/md";
 import { PiMagnifyingGlass } from "react-icons/pi";
 import { useAppDispatch } from "../../hook/reduxHooks";
-import { setGeoLocation } from "../../redux/deviceSlice";
+import { setServiceArea } from "../../redux/deviceSlice";
 import {
 	findAddress,
 	findAddressWithCoordinates,
 	geolocationError,
 } from "../../utils/geoLocation";
-import { Coordinates, GeoLocation, MapLocations } from "../../types";
+import { Coordinates, MapLocations, ServiceArea } from "../../types";
 import useDebounce from "../../hook/useDebounce";
 import TonedString from "./TonedString";
 import { ClipLoader } from "react-spinners";
@@ -28,12 +28,15 @@ const SearchBar = () => {
 				setIsError(false);
 				setIsLoading(true);
 				const data = await findAddressWithCoordinates(coordinates);
-				const geoLocation: GeoLocation = {
-					address: data.address,
-					display_name: data.display_name,
-					coordinates: { lat: data.lat, lng: data.lon },
+				const serviceArea: ServiceArea = {
+					name:
+						data.address.state === "Delhi"
+							? "Delhi"
+							: data.address.city || data.address.state_district,
+					lat: +data.lat,
+					lng: +data.lon,
 				};
-				dispatch(setGeoLocation(geoLocation));
+				dispatch(setServiceArea(serviceArea));
 				setIsLoading(false);
 			} catch (error) {
 				setIsLoading(false);
