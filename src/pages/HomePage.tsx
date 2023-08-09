@@ -7,6 +7,8 @@ import { HashLoader } from "react-spinners";
 import Restaurants from "../components/home/Restaurants";
 import Collections from "../components/home/Collections";
 import withNavbar from "../hocs/withNavbar";
+import Footer from "../components/home/Footer";
+import SearchBar from "../components/navbar/SearchBar";
 
 const Homepage = () => {
 	const { serviceAreaName } = useParams();
@@ -20,9 +22,15 @@ const Homepage = () => {
 	}
 
 	return (
-		<div className="flex flex-col w-full p-1 gap-y-10 md:px-8 lg:px-4 2xl:px-44">
-			<Collections data={data.getServiceAreaData.collections} />
-			<Restaurants data={data.getServiceAreaData.restaurants} />
+		<div className="w-full">
+			<div className="flex flex-col w-full p-1 gap-y-10 md:px-10 lg:px-4 2xl:px-44">
+				<div className="block w-full px-2 lg:hidden">
+					<SearchBar />
+				</div>
+				<Collections data={data.getServiceAreaData.collections} />
+				<Restaurants data={data.getServiceAreaData.restaurants} />
+			</div>
+			<Footer />
 		</div>
 	);
 };

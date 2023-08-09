@@ -1,18 +1,11 @@
-﻿import {
-	PiHeart,
-	PiMagnifyingGlass,
-	PiShoppingCart,
-	PiUserCircle,
-} from "react-icons/pi";
+﻿import { PiHeart, PiShoppingCart, PiUserCircle } from "react-icons/pi";
 // import { useState, useEffect } from "react";
-import IconButton from "./IconButton";
+import IconButton from "../common/IconButton";
 // import { useAppSelector } from "../../hook/reduxHooks";
-import Logo from "./Logo";
-import { useParams } from "react-router-dom";
-import { MdLocationOn } from "react-icons/md";
+import Logo from "../common/Logo";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
-	const { serviceAreaName } = useParams();
 	// const [isScrolled, setIsScrolled] = useState(false);
 
 	// useEffect(() => {
@@ -29,20 +22,8 @@ const Navbar = () => {
 			<div>
 				<Logo />
 			</div>
-			<div className="hidden items-center gap-2 h-[45px] w-[500px] border rounded-md overflow-hidden bg-white shadow-sm lg:flex xl:w-[600px]">
-				<div className="flex items-center justify-start gap-1 px-3 text-black/30">
-					<MdLocationOn />
-					<p className="text-sm font-medium uppercase">{serviceAreaName}</p>
-				</div>
-				<div className="text-black/10 mb-0.5">{"|"}</div>
-				<div className="flex items-center flex-1 gap-4 pl-2 pr-4">
-					<input
-						className="flex-1 capitalize outline-none text-md placeholder:text-black/30 focus:border-none"
-						type="text"
-						placeholder="Looking for something tasty? Start here.."
-					/>
-					<PiMagnifyingGlass size={18} />
-				</div>
+			<div className="hidden lg:flex">
+				<SearchBar />
 			</div>
 			<nav className="flex items-center gap-5">
 				<IconButton href="#" element={<PiUserCircle />} />

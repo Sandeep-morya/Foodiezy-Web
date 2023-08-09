@@ -28,7 +28,7 @@ const Rating: FC<{ rating: number; votes: string }> = ({ rating, votes }) => {
 
 const RestaurantCard = (data: Restaurant) => {
 	return (
-		<div className="group flex flex-row  gap-0 rounded-lg overflow-hidden shadow-[0_0_2px_#0009] md:flex-col">
+		<div className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col">
 			<div className="relative w-[45%] overflow-hidden aspect-[3/4] md:w-full md:aspect-[3/2]">
 				<img
 					loading="lazy"

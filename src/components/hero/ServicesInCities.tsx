@@ -3,7 +3,7 @@
 const ServicesInCities = () => {
 	const cities = useMemo(() => {
 		const mixedCities =
-			"AhmedabadBangaloreChennaiDelhiGurgaonHyderabadKolkataLudhianaMumbaiPuneVaranasi&more.";
+			"AhmedabadBangaloreChennaiDelhiGuwahatiHyderabadKolkataLudhianaMumbaiPuneVaranasi&more.";
 		return mixedCities.split(/(?=[A-Z&])/);
 	}, []);
 	return (

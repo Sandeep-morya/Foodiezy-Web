@@ -1,5 +1,5 @@
 ﻿import { ComponentType } from "react";
-import Navbar from "../components/common/Navbar";
+import Navbar from "../components/navbar/Navbar";
 
 const withNavbar = <T extends object>(WrappedComponent: ComponentType<T>) => {
 	const WithNavbar = (props: T) => {

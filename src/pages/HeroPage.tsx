@@ -27,18 +27,18 @@ const HeroPage = () => {
 					<div className="scale-100 md:scale-150 md:ml-10">
 						<Logo />
 					</div>
-					<div className="flex gap-1 h-full items-center text-xs md:text-lg">
+					<div className="flex items-center h-full gap-1 text-xs md:text-lg">
 						<button className="px-7 py-2 font-bold hover:text-[#7ed957] backdrop-blur-sm">
 							Login
 						</button>
-						<button className="bg-black shadow-md text-white p-2 font-bold md:px-7">
+						<button className="p-2 font-bold text-white bg-black shadow-md md:px-7">
 							Sign up
 						</button>
 					</div>
 				</div>
 				<div className="w-full p-2">
 					<div className="w-full pt-6 lg:pt-0">
-						<h1 className="font-bold text-gray-500 text-2xl lg:text-3xl 2xl:text-4xl">
+						<h1 className="text-2xl font-bold text-gray-500 lg:text-3xl 2xl:text-4xl">
 							Feeling hungry?
 						</h1>
 						<p className="text-xl text-gray-500">
@@ -48,7 +48,7 @@ const HeroPage = () => {
 					<SearchBar />
 
 					<p className="text-sm text-gray-400 uppercase">
-						Popular cities in india
+						Our Services in india
 					</p>
 					<ServicesInCities />
 				</div>
