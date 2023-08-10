@@ -8,10 +8,11 @@ import {
 	findAddressWithCoordinates,
 	geolocationError,
 } from "../../utils/geoLocation";
-import { Coordinates, MapLocations, ServiceArea } from "../../types";
+import { Coordinates, MapLocations } from "../../types";
 import useDebounce from "../../hook/useDebounce";
 import TonedString from "./TonedString";
 import { ClipLoader } from "react-spinners";
+import { cities } from "../../utils/data";
 
 const SearchBar = () => {
 	const [query, setQuery] = useState("");
@@ -28,15 +29,20 @@ const SearchBar = () => {
 				setIsError(false);
 				setIsLoading(true);
 				const data = await findAddressWithCoordinates(coordinates);
-				const serviceArea: ServiceArea = {
+
+				const serviceArea = {
 					name:
 						data.address.state === "Delhi"
 							? "Delhi"
 							: data.address.city || data.address.state_district,
-					lat: +data.lat,
-					lng: +data.lon,
 				};
-				dispatch(setServiceArea(serviceArea));
+				const matchingCity = cities.find((city) => city === serviceArea.name);
+				if (matchingCity) {
+					dispatch(setServiceArea({ name: matchingCity }));
+				} else {
+					alert("This area is not serviceable");
+				}
+
 				setIsLoading(false);
 			} catch (error) {
 				setIsLoading(false);
@@ -87,7 +93,7 @@ const SearchBar = () => {
 					</div>
 
 					<input
-						className="w-full h-full p-4 pl-10 bg-secondary font-semibold text-sm placeholder:text-gray-300 focus:border-none outline-none lg:text-lg"
+						className="w-full h-full p-4 pl-10 text-sm font-semibold outline-none bg-secondary placeholder:text-gray-300 focus:border-none lg:text-lg"
 						type="text"
 						placeholder="Enter your delivery location"
 						value={query}
@@ -100,7 +106,7 @@ const SearchBar = () => {
 				</div>
 				{/* Search Results */}
 				{debouncedQuery && (
-					<div className="absolute bg-secondary z-10 w-full justify-center items-center border left-0 top-full shadow-sm">
+					<div className="absolute left-0 z-10 items-center justify-center w-full border shadow-sm bg-secondary top-full">
 						{mapLocations &&
 							mapLocations.map((e) => (
 								<div

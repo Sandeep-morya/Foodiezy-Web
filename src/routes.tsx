@@ -5,7 +5,7 @@ import LocationProvider from "./provider/LocationProvider";
 export default function AllRoutes() {
 	return (
 		<Routes>
-			<Route path="/" element={<HeroPage />} />
+			<Route path="/" Component={HeroPage} />
 			<Route
 				path="/:serviceAreaName"
 				element={
@@ -14,8 +14,9 @@ export default function AllRoutes() {
 					</LocationProvider>
 				}
 			/>
+
 			<Route path="/admin/login" element={<AdminLoginPage />} />
-			<Route path="*" element={<ErrorPage />} />
+			<Route path="*" Component={ErrorPage} />
 		</Routes>
 	);
 }

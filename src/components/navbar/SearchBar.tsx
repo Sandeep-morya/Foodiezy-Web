@@ -1,12 +1,12 @@
 ﻿import { MdLocationOn } from "react-icons/md";
 import { PiMagnifyingGlass } from "react-icons/pi";
-import { useParams } from "react-router-dom";
 import Drawer from "../common/Drawer";
 import { useCallback, useState } from "react";
 import DrawerContent from "./DrawerContent";
+import { useAppSelector } from "../../hook/reduxHooks";
 
 const SearchBar = () => {
-	const { serviceAreaName } = useParams();
+	const { serviceArea } = useAppSelector((store) => store.device);
 	const [showDrawer, setShowDrawer] = useState(false);
 
 	const toggleDrawer = useCallback(() => {
@@ -19,7 +19,9 @@ const SearchBar = () => {
 				onClick={toggleDrawer}
 				className="flex items-center justify-start gap-1 px-3 text-black/30">
 				<MdLocationOn />
-				<p className="text-sm font-medium uppercase">{serviceAreaName}</p>
+				<p className="text-sm font-medium uppercase">
+					{serviceArea?.name || "..."}
+				</p>
 			</div>
 			<Drawer
 				content={<DrawerContent {...{ toggleDrawer }} />}

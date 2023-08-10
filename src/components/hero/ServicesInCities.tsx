@@ -1,6 +1,9 @@
 ﻿import { useMemo } from "react";
+import { setServiceArea } from "../../redux/deviceSlice";
+import { useAppDispatch } from "../../hook/reduxHooks";
 
 const ServicesInCities = () => {
+	const dispatch = useAppDispatch();
 	const cities = useMemo(() => {
 		const mixedCities =
 			"AhmedabadBangaloreChennaiDelhiGuwahatiHyderabadKolkataLudhianaMumbaiPuneVaranasi&more.";
@@ -11,7 +14,8 @@ const ServicesInCities = () => {
 			{cities.map((city, index) => (
 				<span
 					key={"cities" + index}
-					className={`text-base font-bold ${
+					onClick={() => dispatch(setServiceArea({ name: city }))}
+					className={`text-base cursor-pointer font-bold ${
 						index % 2 ? "text-gray-400" : "text-gray-600"
 					}`}>
 					{city}

@@ -1,4 +1,5 @@
-﻿import { Navigate, useParams } from "react-router-dom";
+﻿import { useEffect, useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
 import { setServiceArea } from "../redux/deviceSlice";
 import { cities } from "../utils/data";
@@ -7,24 +8,39 @@ const LocationProvider = ({ children }: { children: JSX.Element }) => {
 	const { serviceAreaName } = useParams();
 	const { serviceArea } = useAppSelector((store) => store.device);
 	const dispatch = useAppDispatch();
+	const [unKnown, setUnKnown] = useState(false);
 
-	console.log("ser-b", serviceArea);
+	useEffect(() => {
+		// Handle initial checks and state updates
+		if (serviceAreaName) {
+			const normalizedServiceAreaName = serviceAreaName.toLowerCase();
 
-	if (serviceArea?.name?.toLowerCase() === serviceAreaName?.toLowerCase()) {
-		return children;
-	}
+			if (
+				!serviceArea ||
+				serviceArea.name.toLowerCase() !== normalizedServiceAreaName
+			) {
+				const matchingCity = cities.find(
+					(city) => city.toLowerCase() === normalizedServiceAreaName,
+				);
 
-	console.log("executed");
-	if (serviceAreaName) {
-		for (const city of cities) {
-			if (city.toLowerCase() === serviceAreaName.toLowerCase()) {
-				dispatch(setServiceArea({ name: city }));
-				return children;
+				if (matchingCity) {
+					dispatch(setServiceArea({ name: matchingCity }));
+				} else {
+					setUnKnown(true);
+				}
 			}
 		}
-		alert(`Our services are not in ${serviceAreaName}`);
+	}, [dispatch, serviceArea, serviceAreaName]);
+
+	if (unKnown) {
+		return <Navigate to={`*`} />;
 	}
-	return <Navigate to={"/"} />;
+
+	if (!serviceArea) {
+		return <Navigate to={"/"} />;
+	}
+
+	return children;
 };
 
 export default LocationProvider;

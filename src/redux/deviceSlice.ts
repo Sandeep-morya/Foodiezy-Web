@@ -18,7 +18,7 @@ const deviceSlice = createSlice({
 		toggleTheme(state) {
 			state.theme = state.theme === "light" ? "dark" : "light";
 		},
-		setServiceArea(state, action: PayloadAction<ServiceArea>) {
+		setServiceArea(state, action: PayloadAction<ServiceArea | null>) {
 			state.serviceArea = action.payload;
 			setItem(KEY, state);
 		},
