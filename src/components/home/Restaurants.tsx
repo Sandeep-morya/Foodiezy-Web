@@ -6,16 +6,9 @@ import { useLazyQuery } from "@apollo/client";
 import { GET_RESTAURANTS } from "../../utils/resolvers";
 import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
 import { addRestaurants, initRestorants } from "../../redux/restaurantSlice";
-import RestaurantsLoader from "./Loader/RestaurantsLoader";
 import RestaurantCardSkeletion from "./Loader/RestaurantCardSkeletion";
 
-const Restaurants = ({
-	id,
-	initLoader,
-}: {
-	id: string;
-	initLoader: boolean;
-}) => {
+const Restaurants = ({ id }: { id: string }) => {
 	console.log({ id });
 	const { inView, ref } = useInView();
 	const { ref: target, inView: LastItemInView } = useInView({ threshold: 0.7 });
@@ -58,9 +51,6 @@ const Restaurants = ({
 		}
 	}, [LastItemInView, total]);
 
-	if (initLoader) {
-		return <RestaurantsLoader />;
-	}
 	return (
 		<div className="flex flex-col px-2 gap-y-2 md:px-4">
 			<h1

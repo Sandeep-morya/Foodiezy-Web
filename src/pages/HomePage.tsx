@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
 import { setServiceArea } from "../redux/deviceSlice";
 import CollectionsLoader from "../components/home/Loader/CollectionsLoader";
+import RestaurantsLoader from "../components/home/Loader/RestaurantsLoader";
+import { initRestorants } from "../redux/restaurantSlice";
 
 const Homepage = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);
@@ -21,6 +23,7 @@ const Homepage = () => {
 	useEffect(() => {
 		if (data && data.getServiceAreaData) {
 			const { _id, name, lat, lng } = data.getServiceAreaData;
+			dispatch(initRestorants({ total: 0, restaurants: [] }));
 			dispatch(setServiceArea({ _id, name, lat, lng }));
 		}
 	}, [data, dispatch]);
@@ -37,8 +40,10 @@ const Homepage = () => {
 					<Collections data={data.getServiceAreaData.collections} />
 				)}
 
-				{serviceArea?._id && (
-					<Restaurants id={serviceArea._id} initLoader={loading} />
+				{loading || !serviceArea?._id ? (
+					<RestaurantsLoader />
+				) : (
+					<Restaurants id={serviceArea._id} />
 				)}
 			</div>
 			<Footer />
