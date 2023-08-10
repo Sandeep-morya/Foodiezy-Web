@@ -4,11 +4,18 @@ import FilterSection from "./FilterSection";
 import { useInView } from "react-intersection-observer";
 import { useLazyQuery } from "@apollo/client";
 import { GET_RESTAURANTS } from "../../utils/resolvers";
-import { BarLoader } from "react-spinners";
 import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
 import { addRestaurants, initRestorants } from "../../redux/restaurantSlice";
+import RestaurantsLoader from "./Loader/RestaurantsLoader";
+import RestaurantCardSkeletion from "./Loader/RestaurantCardSkeletion";
 
-const Restaurants = ({ id }: { id: string }) => {
+const Restaurants = ({
+	id,
+	initLoader,
+}: {
+	id: string;
+	initLoader: boolean;
+}) => {
 	console.log({ id });
 	const { inView, ref } = useInView();
 	const { ref: target, inView: LastItemInView } = useInView({ threshold: 0.7 });
@@ -42,19 +49,18 @@ const Restaurants = ({ id }: { id: string }) => {
 		handleGetRestaurants(page);
 	}, [page, handleGetRestaurants]);
 
+	const { total, restaurants } = useAppSelector((store) => store.restaurants);
+
 	useEffect(() => {
 		if (LastItemInView) {
 			console.log({ LastItemInView });
 			setPage((page) => page + 1);
 		}
-	}, [LastItemInView]);
+	}, [LastItemInView, total]);
 
-	const { total, restaurants } = useAppSelector((store) => store.restaurants);
-
-	if (loading) {
-		return <BarLoader />;
+	if (initLoader) {
+		return <RestaurantsLoader />;
 	}
-
 	return (
 		<div className="flex flex-col px-2 gap-y-2 md:px-4">
 			<h1
@@ -72,6 +78,10 @@ const Restaurants = ({ id }: { id: string }) => {
 						{...restaurant}
 					/>
 				))}
+				{loading && <RestaurantCardSkeletion />}
+				{loading && <RestaurantCardSkeletion />}
+				{loading && <RestaurantCardSkeletion />}
+				{loading && <RestaurantCardSkeletion />}
 			</div>
 		</div>
 	);

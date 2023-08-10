@@ -15,7 +15,7 @@ const HeroPage = () => {
 	}
 
 	return (
-		<div className="w-screen h-screen overflow-y-scroll bg-[#f9f9f9] flex flex-col bg-none bg-contain bg-right bg bg-no-repeat lg:bg-[url('/hero-image.avif')]">
+		<div className="w-screen h-screen overflow-y-scroll bg-secondary flex flex-col bg-none bg-contain bg-right bg bg-no-repeat lg:bg-[url('/hero-image.avif')]">
 			<div
 				style={{
 					backgroundImage: "linear-gradient(to right , #f9f9f9 60%,transparent",
@@ -26,7 +26,7 @@ const HeroPage = () => {
 						<Logo />
 					</div>
 					<div className="flex items-center h-full gap-1 text-xs md:text-lg">
-						<button className="px-7 py-2 font-bold hover:text-[#7ed957] backdrop-blur-sm">
+						<button className="py-2 font-bold px-7 hover:text-primary backdrop-blur-sm">
 							Login
 						</button>
 						<button className="p-2 font-bold text-white bg-black shadow-md md:px-7">

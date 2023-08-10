@@ -87,7 +87,7 @@ const SearchBar = () => {
 					</div>
 
 					<input
-						className="w-full h-full p-4 pl-10 bg-[#f9f9f9] font-semibold text-sm placeholder:text-gray-300 focus:border-none outline-none lg:text-lg"
+						className="w-full h-full p-4 pl-10 bg-secondary font-semibold text-sm placeholder:text-gray-300 focus:border-none outline-none lg:text-lg"
 						type="text"
 						placeholder="Enter your delivery location"
 						value={query}
@@ -100,7 +100,7 @@ const SearchBar = () => {
 				</div>
 				{/* Search Results */}
 				{debouncedQuery && (
-					<div className="absolute bg-[#f9f9f9] z-10 w-full justify-center items-center border left-0 top-full shadow-sm">
+					<div className="absolute bg-secondary z-10 w-full justify-center items-center border left-0 top-full shadow-sm">
 						{mapLocations &&
 							mapLocations.map((e) => (
 								<div
@@ -117,7 +117,7 @@ const SearchBar = () => {
 			<button
 				disabled={isLoading}
 				onClick={() => getAddress(debouncedQuery)}
-				className="h-full w-[90px] bg-[#7ed957] text-xs justify-center items-center text-white font-bold uppercase md:w-[180px] md:text-lg">
+				className="h-full w-[90px] bg-primary text-xs justify-center items-center text-white font-bold uppercase md:w-[180px] md:text-lg">
 				{isLoading ? <ClipLoader color="white" /> : "Find food"}
 			</button>
 		</div>

@@ -5,13 +5,14 @@ import Input from "../common/Input";
 import { PiMagnifyingGlass } from "react-icons/pi";
 import FilterButton from "../home/FilterButton";
 import { useNavigate } from "react-router-dom";
+import { cities } from "../../utils/data";
 
 const DrawerContent = ({ toggleDrawer }: { toggleDrawer: () => void }) => {
 	const navigate = useNavigate();
 	const handleChangeCity = useCallback(
 		(name: string) => {
-			toggleDrawer();
 			navigate(`/${name}`);
+			toggleDrawer();
 		},
 		[navigate, toggleDrawer],
 	);
@@ -23,19 +24,13 @@ const DrawerContent = ({ toggleDrawer }: { toggleDrawer: () => void }) => {
 				rightIcon={<PiMagnifyingGlass />}
 			/>
 			<div className="flex flex-wrap gap-2 mt-5">
-				<FilterButton
-					onClick={() => handleChangeCity("Ludhiana")}
-					title="Ludhiana"
-				/>
-				<FilterButton
-					onClick={() => handleChangeCity("Lucknow")}
-					title="Lucknow"
-				/>
-				<FilterButton onClick={() => handleChangeCity("Delhi")} title="Delhi" />
-				<FilterButton
-					onClick={() => handleChangeCity("Mumbai")}
-					title="Mumbai"
-				/>
+				{cities.map((city, index) => (
+					<FilterButton
+						key={city + index}
+						onClick={() => handleChangeCity(city)}
+						title={city}
+					/>
+				))}
 			</div>
 		</div>
 	);

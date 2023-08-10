@@ -3,6 +3,7 @@ import type { Restaurant } from "../../types";
 import Pill from "../common/Pill";
 import { PiDotOutlineFill, PiPath } from "react-icons/pi";
 import { FC } from "react";
+import { IMG_LINK_MD } from "../../utils/links";
 
 const Pills: FC<{ veg: boolean }> = ({ veg }) => {
 	return veg ? (
@@ -35,12 +36,12 @@ interface Props extends Restaurant {
 const RestaurantCard = (data: Props) => {
 	return (
 		<div
-			ref={data.index + 1 === (data.page + 1) * 20 ? data.target : null}
-			className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col">
+			ref={data.index === (data.page + 1) * 20 - 1 ? data.target : null}
+			className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col hover:ring-primary/50">
 			<div className="relative w-[45%] overflow-hidden aspect-[3/4] md:w-full md:aspect-[3/2]">
 				<img
-					// loading="lazy"
-					src={`https://res.cloudinary.com/swiggy/image/upload/${data.imageId}`}
+					loading="lazy"
+					src={IMG_LINK_MD + data.imageId}
 					className="object-cover w-full h-full md:aspect-[3/2] group-hover:scale-110 transition"
 					alt={data.imageId}
 				/>
@@ -61,12 +62,9 @@ const RestaurantCard = (data: Props) => {
 						{data.name.substring(0, 30)}
 					</h3>
 					<div className="flex items-center justify-between">
-						<div className="flex items-center">
-							<p className="text-xs md:text-sm">{data.cuisines[0]} </p>
-							<PiDotOutlineFill />
-							<p className="text-xs md:text-sm">
-								{data.cuisines[data.cuisines.length - 1]}{" "}
-							</p>
+						<div className="flex items-center gap-1">
+							<p className="text-xs md:text-sm">{data.cuisines[0]}, </p>
+							<p className="text-xs md:text-sm">{data.cuisines.at(-1)} </p>
 						</div>
 
 						<div className="items-center hidden text-green-600 drop-shadow-sm md:flex">
