@@ -4,7 +4,7 @@ import type { Restaurant } from "../types";
 type InitialState = {
 	total: number;
 	restaurants: Restaurant[];
-	collections: [];
+	collections?: [];
 };
 
 const initialState: InitialState = {

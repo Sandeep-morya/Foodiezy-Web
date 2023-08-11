@@ -1,8 +1,7 @@
 ﻿import { useCallback, useEffect, useState } from "react";
 
-import { MdLocationOn, MdOutlineWrongLocation } from "react-icons/md";
+import { MdLocationOn, MdOutlineLocationOff,MdMyLocation } from "react-icons/md";
 import Input from "../common/Input";
-import { PiMagnifyingGlass } from "react-icons/pi";
 import FilterButton from "../home/FilterButton";
 import { useNavigate } from "react-router-dom";
 import { cities as listCities } from "../../utils/data";
@@ -43,7 +42,7 @@ const LocationDrawerContent = ({
 			<Input
 				leftIcon={<MdLocationOn />}
 				placeholder="Where is your loaction ?"
-				rightIcon={<PiMagnifyingGlass />}
+				rightIcon={<MdMyLocation />}
 				value={query}
 				onKeyDownCapture={(e) => console.log(e)}
 				onChange={(e) => setQuery(e.target.value.trim())}
@@ -60,7 +59,7 @@ const LocationDrawerContent = ({
 			{cities.length === 0 && (
 				<div className="flex p-2 flex-col items-center gap-4">
 					<div className="text-6xl  text-black/50">
-						<MdOutlineWrongLocation />
+						<MdOutlineLocationOff />
 					</div>
 					<div className="text-center">
 						<p className="text-sm">{`"${query}" is not in our service areas.`}</p>
@@ -78,8 +77,8 @@ const LocationDrawerContent = ({
 					<Button
 						className="rounded-full bg-primary text-white py-2 px-6 flex items-center justify-center space-x-2"
 						onClick={handleFindOnMap}>
-						<PiMagnifyingGlass size={20} />
-						Find with Address
+						<MdMyLocation size={20} />
+						Detect My Location
 					</Button>
 				</div>
 			)}
