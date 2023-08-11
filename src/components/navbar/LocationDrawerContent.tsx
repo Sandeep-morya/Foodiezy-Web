@@ -1,6 +1,10 @@
 ﻿import { useCallback, useEffect, useState } from "react";
 
-import { MdLocationOn, MdOutlineLocationOff,MdMyLocation } from "react-icons/md";
+import {
+	MdLocationOn,
+	MdOutlineLocationOff,
+	MdMyLocation,
+} from "react-icons/md";
 import Input from "../common/Input";
 import FilterButton from "../home/FilterButton";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +13,25 @@ import Button from "../common/Button";
 import { useAppDispatch } from "../../hook/reduxHooks";
 import { setServiceArea } from "../../redux/deviceSlice";
 import { PiMagnifyingGlass } from "react-icons/pi";
+
+interface Props {
+	cities: string[];
+	handleChangeCity: (city: string) => void;
+}
+
+const RenderCities = ({ cities, handleChangeCity }: Props) => {
+	return (
+		<div className="flex flex-wrap gap-2 mt-5">
+			{cities.map((city, index) => (
+				<FilterButton
+					key={city + index}
+					onClick={() => handleChangeCity(city)}
+					title={city}
+				/>
+			))}
+		</div>
+	);
+};
 
 const LocationDrawerContent = ({
 	toggleDrawer,
@@ -48,15 +71,7 @@ const LocationDrawerContent = ({
 				onKeyDownCapture={(e) => console.log(e)}
 				onChange={(e) => setQuery(e.target.value.trim())}
 			/>
-			<div className="flex flex-wrap gap-2 mt-5">
-				{cities.map((city, index) => (
-					<FilterButton
-						key={city + index}
-						onClick={() => handleChangeCity(city)}
-						title={city}
-					/>
-				))}
-			</div>
+			<RenderCities {...{ cities, handleChangeCity }} />
 			{cities.length === 0 && (
 				<div className="flex p-2 flex-col items-center gap-4">
 					<div className="text-6xl  text-black/50">
@@ -66,15 +81,7 @@ const LocationDrawerContent = ({
 						<p className="text-sm">{`"${query}" is not in our service areas.`}</p>
 						<h2 className="font-bold">We are avialable in cities below.</h2>
 					</div>
-					<div className="flex flex-wrap gap-2">
-						{listCities.map((city, index) => (
-							<FilterButton
-								key={city + index}
-								onClick={() => handleChangeCity(city)}
-								title={city}
-							/>
-						))}
-					</div>
+					<RenderCities {...{ cities: listCities, handleChangeCity }} />
 					<Button
 						className="rounded-full bg-primary text-white py-2 px-6 flex items-center justify-center space-x-2"
 						onClick={handleFindOnMap}>
