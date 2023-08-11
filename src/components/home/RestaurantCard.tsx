@@ -72,8 +72,10 @@ const RestaurantCard = (data: Props) => {
 					</h3>
 					<div className="flex items-center justify-between">
 						<div className="flex items-center gap-1">
-							<p className="text-xs ">{data.cuisines[0]}, </p>
-							<p className="text-xs ">{data.cuisines.at(-1)} </p>
+							<p className="text-xs ">
+								{data.cuisines.slice(0, 2).join(", ")}
+								{data.cuisines.length > 2 && " & more..."}
+							</p>
 						</div>
 
 						<div className="items-center hidden text-green-600 drop-shadow-sm md:flex">
