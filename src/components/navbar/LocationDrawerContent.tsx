@@ -8,6 +8,7 @@ import { cities as listCities } from "../../utils/data";
 import Button from "../common/Button";
 import { useAppDispatch } from "../../hook/reduxHooks";
 import { setServiceArea } from "../../redux/deviceSlice";
+import { PiMagnifyingGlass } from "react-icons/pi";
 
 const LocationDrawerContent = ({
 	toggleDrawer,
@@ -42,7 +43,7 @@ const LocationDrawerContent = ({
 			<Input
 				leftIcon={<MdLocationOn />}
 				placeholder="Where is your loaction ?"
-				rightIcon={<MdMyLocation />}
+				rightIcon={<PiMagnifyingGlass />}
 				value={query}
 				onKeyDownCapture={(e) => console.log(e)}
 				onChange={(e) => setQuery(e.target.value.trim())}
