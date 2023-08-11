@@ -13,7 +13,7 @@ const Input = (props: Props) => {
 			{props.leftIcon && <div className="text-black/10 mb-0.5">{"|"}</div>}
 			<div className="flex items-center flex-1 gap-4 pr-4">
 				<input
-					className="flex-1 text-sm capitalize outline-none placeholder:text-black/30 focus:border-none md:text-base"
+					className="flex-1 text-sm outline-none placeholder:text-black/30 focus:border-none md:text-base"
 					type="text"
 					onChange={props.onChange}
 					value={props.value}

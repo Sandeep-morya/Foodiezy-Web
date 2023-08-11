@@ -8,12 +8,16 @@
 		sans-serif !important;
 } */
 
+body {
+	transition: all 0.3s;
+}
+
 .vanish-scroll-bar::-webkit-scrollbar {
 	width: 0.5em; /* Set a width for the scrollbar if you want to show a custom scrollbar */
 }
 
 .vanish-scroll-bar::-webkit-scrollbar-thumb {
-	background-color: transparent; /* Hide the thumb (the draggable part of the scrollbar) */
+	background-color: rgba(0, 0, 0, 0); /* Transparent */
 }
 
 .vanish-scroll-bar {

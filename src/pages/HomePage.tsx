@@ -23,7 +23,13 @@ const Homepage = () => {
 	useEffect(() => {
 		if (data && data.getServiceAreaData) {
 			const { _id, name, lat, lng } = data.getServiceAreaData;
-			dispatch(initRestorants({ total: 0, restaurants: [] }));
+			dispatch(
+				initRestorants({
+					total: 0,
+					restaurants: [],
+					collections: data.getServiceAreaData.collections,
+				}),
+			);
 			dispatch(setServiceArea({ _id, name, lat, lng }));
 		}
 	}, [data, dispatch]);

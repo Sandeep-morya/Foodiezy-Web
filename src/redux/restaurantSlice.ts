@@ -1,10 +1,16 @@
 ﻿import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import type { Restaurant } from "../types";
 
-type InitialState = { total: number; restaurants: Restaurant[] };
+type InitialState = {
+	total: number;
+	restaurants: Restaurant[];
+	collections: [];
+};
+
 const initialState: InitialState = {
 	total: 0,
 	restaurants: [],
+	collections: [],
 };
 
 const restaurantSlice = createSlice({
