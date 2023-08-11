@@ -8,8 +8,8 @@ import SearchBar from "../components/navbar/SearchBar";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
 import { setServiceArea } from "../redux/deviceSlice";
-import CollectionsLoader from "../components/home/Loader/CollectionsLoader";
-import RestaurantsLoader from "../components/home/Loader/RestaurantsLoader";
+import CollectionsLoader from "../components/home/Skeletons/CollectionsLoader";
+import RestaurantsLoader from "../components/home/Skeletons/RestaurantsLoader";
 import { initRestorants } from "../redux/restaurantSlice";
 
 const Homepage = () => {

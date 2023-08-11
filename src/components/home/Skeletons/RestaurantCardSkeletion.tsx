@@ -16,11 +16,8 @@ const RestaurantCardSkeletion = () => {
 				<img
 					className="grayscale h-[30%] aspect-square object-contain"
 					src="/only-smile.png"
-					alt=""
+					alt="logo-skeleton-image"
 				/>
-				{/* <div className="text-6xl text-black/20">
-					<MdRestaurant />
-				</div> */}
 			</div>
 
 			<div className="flex flex-col flex-1 gap-2 p-3 bg-white md:p-2 xl:gap-3 xl:p-3 xl:pt-2">

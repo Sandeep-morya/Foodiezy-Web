@@ -3,11 +3,11 @@ import type { Restaurant } from "../../types";
 import Pill from "../common/Pill";
 import { PiDotOutlineFill, PiPath } from "react-icons/pi";
 import { FC } from "react";
-import { IMG_LINK_MD } from "../../utils/links";
+import { MD_IMG_LINK } from "../../utils/links";
 
 const Pills: FC<{ veg: boolean }> = ({ veg }) => {
 	return veg ? (
-		<Pill title="pure-veg" color={"bg-primary"} />
+		<Pill title="pure-veg" color={"bg-teal-400"} />
 	) : (
 		<div className="flex gap-2">
 			<Pill title="veg" color={"bg-primary"} />
@@ -39,12 +39,21 @@ const RestaurantCard = (data: Props) => {
 			ref={data.index === (data.page + 1) * 20 - 1 ? data.target : null}
 			className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col hover:ring-primary/50">
 			<div className="relative w-[45%] overflow-hidden aspect-[3/4] md:w-full md:aspect-[3/2]">
+				{/* Actual Image of Restaurant */}
 				<img
 					loading="lazy"
-					src={IMG_LINK_MD + data.imageId}
+					src={MD_IMG_LINK + data.imageId}
 					className="object-cover w-full h-full md:aspect-[3/2] group-hover:scale-110 transition"
 					alt={data.imageId}
 				/>
+				{/* Placeholder image */}
+				<div className="absolute inset-0 flex items-center justify-center object-cover -z-10 bg-black/20">
+					<img
+						className="grayscale h-[30%] aspect-square object-contain"
+						src="/only-smile.png"
+						alt="logo-skeleton-image"
+					/>
+				</div>
 				<div className="absolute hidden top-2 left-2 md:flex">
 					<Pills veg={data.veg} />
 				</div>
@@ -63,8 +72,8 @@ const RestaurantCard = (data: Props) => {
 					</h3>
 					<div className="flex items-center justify-between">
 						<div className="flex items-center gap-1">
-							<p className="text-xs md:text-sm">{data.cuisines[0]}, </p>
-							<p className="text-xs md:text-sm">{data.cuisines.at(-1)} </p>
+							<p className="text-xs ">{data.cuisines[0]}, </p>
+							<p className="text-xs ">{data.cuisines.at(-1)} </p>
 						</div>
 
 						<div className="items-center hidden text-green-600 drop-shadow-sm md:flex">
@@ -79,17 +88,17 @@ const RestaurantCard = (data: Props) => {
 				<div className="flex flex-col gap-2 md:flex-row md:justify-between">
 					<div className="flex items-center justify-start gap-2 md:gap-1">
 						<MdLocationPin />
-						<p className="text-xs md:text-sm">
+						<p className="text-xs">
 							{data.locality.substring(0, 13) || data.areaName}
 						</p>
 					</div>
 					<div className="flex items-center justify-start gap-2 font-medium md:gap-1">
 						<MdDeliveryDining />
-						<p className="text-xs md:text-sm">{data.delivery.duration}</p>
+						<p className="text-xs">{data.delivery.duration}</p>
 					</div>
 					<div className="flex items-center justify-start gap-2 md:gap-1">
 						<PiPath />
-						<p className="text-xs md:text-sm">{data.delivery.distance}</p>
+						<p className="text-xs">{data.delivery.distance}</p>
 					</div>
 				</div>
 			</div>

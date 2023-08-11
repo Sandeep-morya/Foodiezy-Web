@@ -6,7 +6,7 @@ import { useLazyQuery } from "@apollo/client";
 import { GET_RESTAURANTS } from "../../utils/resolvers";
 import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
 import { addRestaurants, initRestorants } from "../../redux/restaurantSlice";
-import RestaurantCardSkeletion from "./Loader/RestaurantCardSkeletion";
+import RestaurantCardSkeletion from "./Skeletons/RestaurantCardSkeletion";
 
 const Restaurants = ({ id }: { id: string }) => {
 	console.log({ id });
@@ -68,10 +68,10 @@ const Restaurants = ({ id }: { id: string }) => {
 						{...restaurant}
 					/>
 				))}
-				{loading && <RestaurantCardSkeletion />}
-				{loading && <RestaurantCardSkeletion />}
-				{loading && <RestaurantCardSkeletion />}
-				{loading && <RestaurantCardSkeletion />}
+				{loading &&
+					Array.from({ length: 16 }).map((_, index) => (
+						<RestaurantCardSkeletion key={"restaurants-skeleton" + index} />
+					))}
 			</div>
 		</div>
 	);
