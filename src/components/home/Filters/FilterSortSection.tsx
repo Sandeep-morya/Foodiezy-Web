@@ -1,38 +1,33 @@
-﻿import { useState, useEffect } from "react";
+﻿import { useState, useEffect, useCallback } from "react";
 import { LuSettings2 } from "react-icons/lu";
 import FilterButton from "./FilterButton";
 import { SortType } from "../../../types";
-// import SelectBox from "../../common/SelectBox";
 import Dropdown from "../../common/Dropdown";
 import { useSearchParams } from "react-router-dom";
 import { useAppDispatch } from "../../../hook/reduxHooks";
 import { sortAccording } from "../../../redux/restaurantSlice";
+import { dropdownOptions } from "../../../utils/data";
+import FilterModal from "./FilterModal";
 
 interface Props {
 	atTop: boolean;
 	total: number;
 }
 
-const FilterSection = ({ atTop, total }: Props) => {
+const FilterSortSection = ({ atTop, total }: Props) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const initailValue = (searchParams.get("sortby") as SortType) || "default";
 	const [selectBoxValue, setSelectBoxValue] = useState<SortType>(initailValue);
+	const [showFilterModal, setShowFilterModal] = useState(false);
 	const dispatch = useAppDispatch();
 
-	const dropdownOptions: SortType[] = [
-		"default",
-		"title",
-		"rating",
-		"h2l",
-		"l2h",
-		"delivery",
-	];
-	console.log({ searchParams });
+	const toggleFilterModal = useCallback(() => {
+		setShowFilterModal((e) => !e);
+	}, []);
 
 	useEffect(() => {
 		setSearchParams({ sortby: selectBoxValue });
 	}, [selectBoxValue, setSearchParams]);
-
 	useEffect(() => {
 		if (total > 1) {
 			dispatch(sortAccording(selectBoxValue));
@@ -44,11 +39,21 @@ const FilterSection = ({ atTop, total }: Props) => {
 			className={`sticky z-40 flex w-full flex-wrap justify-start items-center gap-3 px-0 py-4 bg-white top-[50px] md:gap-4 lg:top-[75px] ${
 				atTop && "shadow-[0_8px_6px_-8px_#000]"
 			} transition`}>
-			<FilterButton title="Filters" count={1} icon={<LuSettings2 />} />
+			<FilterButton
+				onClick={toggleFilterModal}
+				title="Filters"
+				count={1}
+				icon={<LuSettings2 />}
+			/>
+			{showFilterModal && (
+				<FilterModal
+					{...{ toggleFilterModal, selectBoxValue, setSelectBoxValue }}
+				/>
+			)}
 
 			<div className="hidden gap-4 md:flex">
 				<FilterButton title="Ratings 4.0+" />
-				<FilterButton title="Fast Delivery" active />
+				<FilterButton title="Fast Delivery" />
 				<FilterButton title="Pure Veg" />
 			</div>
 
@@ -65,4 +70,4 @@ const FilterSection = ({ atTop, total }: Props) => {
 	);
 };
 
-export default FilterSection;
+export default FilterSortSection;

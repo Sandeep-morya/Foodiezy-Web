@@ -1,4 +1,4 @@
-﻿// import React from "react";
+﻿//
 import Login from "../components/admin/Login";
 import Logo from "../components/common/Logo";
 

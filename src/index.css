@@ -13,7 +13,7 @@ body {
 }
 
 .vanish-scroll-bar::-webkit-scrollbar {
-	width: 0.5em; /* Set a width for the scrollbar if you want to show a custom scrollbar */
+	width: 0em; /* Set a width for the scrollbar if you want to show a custom scrollbar */
 }
 
 .vanish-scroll-bar::-webkit-scrollbar-thumb {

@@ -1,15 +1,14 @@
 ﻿import { useState, useEffect, useCallback } from "react";
 import RestaurantCard from "./RestaurantCard";
-import FilterSection from "./Filters/FilterSection";
 import { useInView } from "react-intersection-observer";
 import { useLazyQuery } from "@apollo/client";
 import { GET_RESTAURANTS } from "../../utils/resolvers";
 import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
 import { addRestaurants, initRestorants } from "../../redux/restaurantSlice";
 import RestaurantCardSkeletion from "./Skeletons/RestaurantCardSkeletion";
+import FilterSortSection from "./Filters/FilterSortSection";
 
 const Restaurants = ({ id }: { id: string }) => {
-	console.log({ id });
 	const { inView, ref } = useInView();
 	const { ref: target, inView: LastItemInView } = useInView({ threshold: 0.7 });
 	const [page, setPage] = useState(0);
@@ -59,7 +58,7 @@ const Restaurants = ({ id }: { id: string }) => {
 				Restaurants near you {`(${total})`}
 			</h1>
 
-			<FilterSection atTop={!inView} total={total} />
+			<FilterSortSection atTop={!inView} total={total} />
 
 			{/*---:: Restaurant Cards ::---*/}
 			<div className="grid grid-cols-1 gap-6 px-1 mt-8 transition md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 2xl:gap-8">

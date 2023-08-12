@@ -1,4 +1,24 @@
-﻿export const cities = [
+﻿import { SortType } from "../types";
+
+export const dropdownOptions: SortType[] = [
+	"default",
+	"title",
+	"rating",
+	"h2l",
+	"l2h",
+	"delivery",
+];
+
+export const filterTypes = [
+	"Veg/Non-Veg",
+	"Cuisines",
+	"Delivery Time",
+	"Rating",
+	"Cost for two",
+	"Explore",
+	"Sort",
+];
+export const cities = [
 	"Agra",
 	"Ahmedabad",
 	"Ajmer",

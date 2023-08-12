@@ -1,4 +1,4 @@
-﻿// import React from "react";
+﻿//
 
 const Logo = ({ dim }: { dim?: boolean }) => {
 	return (
