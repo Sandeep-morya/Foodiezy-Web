@@ -59,10 +59,10 @@ const Restaurants = ({ id }: { id: string }) => {
 				Restaurants near you {`(${total})`}
 			</h1>
 
-			<FilterSection atTop={!inView} />
+			<FilterSection atTop={!inView} total={total} />
 
 			{/*---:: Restaurant Cards ::---*/}
-			<div className="grid grid-cols-1 gap-6 px-1 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 2xl:gap-8 transition">
+			<div className="grid grid-cols-1 gap-6 px-1 mt-8 transition md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 2xl:gap-8">
 				{restaurants.map((restaurant, index) => (
 					<RestaurantCard
 						key={restaurant._id}

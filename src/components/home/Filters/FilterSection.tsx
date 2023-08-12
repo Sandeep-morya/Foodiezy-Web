@@ -3,16 +3,17 @@ import { LuSettings2 } from "react-icons/lu";
 import FilterButton from "./FilterButton";
 import { SortType } from "../../../types";
 // import SelectBox from "../../common/SelectBox";
-import Dropdown from "./Dropdown";
+import Dropdown from "../../common/Dropdown";
 import { useSearchParams } from "react-router-dom";
 import { useAppDispatch } from "../../../hook/reduxHooks";
 import { sortAccording } from "../../../redux/restaurantSlice";
 
 interface Props {
 	atTop: boolean;
+	total: number;
 }
 
-const FilterSection = ({ atTop }: Props) => {
+const FilterSection = ({ atTop, total }: Props) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const initailValue = (searchParams.get("sortby") as SortType) || "default";
 	const [selectBoxValue, setSelectBoxValue] = useState<SortType>(initailValue);
@@ -33,8 +34,10 @@ const FilterSection = ({ atTop }: Props) => {
 	}, [selectBoxValue, setSearchParams]);
 
 	useEffect(() => {
-		dispatch(sortAccording(selectBoxValue));
-	}, [selectBoxValue, dispatch]);
+		if (total > 1) {
+			dispatch(sortAccording(selectBoxValue));
+		}
+	}, [selectBoxValue, dispatch, total]);
 
 	return (
 		<div

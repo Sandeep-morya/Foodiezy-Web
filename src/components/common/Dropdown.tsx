@@ -6,19 +6,22 @@
 	SetStateAction,
 	useCallback,
 } from "react";
-import { getSortingTitle } from "../../../utils/sorting";
+import { getSortingTitle } from "../../utils/sorting";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import RadioButton from "./RadioButton";
 
 interface DropdownProps<T> {
 	options: T[];
 	value: T;
 	setValue: Dispatch<SetStateAction<T>>;
+	radio?: boolean;
 }
 
 const Dropdown = <T extends string>({
 	options,
 	value,
 	setValue,
+	radio,
 }: DropdownProps<T>) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -49,7 +52,7 @@ const Dropdown = <T extends string>({
 	return (
 		<div className="relative" ref={dropdownRef}>
 			<button
-				className={`flex justify-start items-center gap-2 px-2 py-1.5 border rounded-full text-black/50 hover:cursor-pointer md:px-3 xl:py-2 hover:shadow ${
+				className={`flex justify-start items-center gap-2 px-2 py-1.5 border rounded-full text-black/50 hover:cursor-pointer md:px-3 xl:py-2 hover:shadow transition-all duration-500 ${
 					value !== options[0] && "bg-primary/25"
 				}`}
 				onClick={() => setIsOpen((e) => !e)}>
@@ -62,22 +65,13 @@ const Dropdown = <T extends string>({
 				<ul className="absolute top-12 left-0 w-[160px] lg:w-[180px] p-2 bg-white ring-1 ring-black/5 rounded-xl flex flex-col  shadow-md cursor-default">
 					{options.map((e, index) => (
 						<li
-							className="active:scale-95 flex p-2 justify-between items-center hover:bg-black/10 rounded cursor-pointer"
+							className="flex items-center justify-between p-2 rounded cursor-pointer active:scale-95 hover:bg-black/10"
 							onClick={() => handleSelect(e as T)}
 							key={"sort-item" + index}>
 							<p className="text-xs lg:text-sm text-black/50">
 								{getSortingTitle(e as T)}
 							</p>
-							<div
-								className={`outline outline-1 outline-offset-2 ${
-									value === e ? "outline-primary" : "outline-black/30"
-								} rounded-full`}>
-								<div
-									className={`${
-										value === e ? "bg-primary" : "bg-none"
-									} rounded-full w-[6px] h-[6px]`}
-								/>
-							</div>
+							{!radio && <RadioButton active={value === e} />}
 						</li>
 					))}
 				</ul>
