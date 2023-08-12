@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect, useCallback } from "react";
 import RestaurantCard from "./RestaurantCard";
-import FilterSection from "./FilterSection";
+import FilterSection from "./Filters/FilterSection";
 import { useInView } from "react-intersection-observer";
 import { useLazyQuery } from "@apollo/client";
 import { GET_RESTAURANTS } from "../../utils/resolvers";
@@ -58,9 +58,11 @@ const Restaurants = ({ id }: { id: string }) => {
 				className="text-lg font-semibold tracking-wide md:text-xl xl:text-2xl">
 				Restaurants near you {`(${total})`}
 			</h1>
+
 			<FilterSection atTop={!inView} />
+
 			{/*---:: Restaurant Cards ::---*/}
-			<div className="grid grid-cols-1 gap-6 px-1 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 2xl:gap-8">
+			<div className="grid grid-cols-1 gap-6 px-1 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 2xl:gap-8 transition">
 				{restaurants.map((restaurant, index) => (
 					<RestaurantCard
 						key={restaurant._id}

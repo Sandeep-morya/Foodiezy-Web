@@ -111,7 +111,7 @@ export interface Collection {
 	_id: string;
 }
 export interface DeliveryData {
-	time: 25;
+	time: number;
 	duration: string;
 	distance: string;
 }
@@ -142,3 +142,11 @@ export interface Restaurants {
 	totalCount: number;
 	documents: Restaurant[];
 }
+
+export type SortType =
+	| "default"
+	| "title"
+	| "rating"
+	| "h2l"
+	| "l2h"
+	| "delivery";

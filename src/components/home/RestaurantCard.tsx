@@ -37,8 +37,9 @@ const RestaurantCard = (data: Props) => {
 	return (
 		<div
 			ref={data.index === (data.page + 1) * 20 - 1 ? data.target : null}
+			onClick={() => console.log(data._id)}
 			className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col hover:ring-primary/50">
-			<div className="relative w-[45%] overflow-hidden aspect-[3/4] md:w-full md:aspect-[3/2]">
+			<div className="relative w-[45%] overflow-hidden aspect-[3/4] md:w-full md:aspect-[3/2] transition">
 				{/* Actual Image of Restaurant */}
 				<img
 					loading="lazy"
@@ -58,7 +59,7 @@ const RestaurantCard = (data: Props) => {
 					<Pills veg={data.veg} />
 				</div>
 				<div className="absolute flex items-center justify-start px-2 py-0.5 text-xs font-semibold shadow-lg bg-white rounded-tl-full rounded-bl-full uppercase -right-1 bottom-5 md:bottom-10 md:text-sm">
-					{data.discount || data.costForTwo}
+					{data.costForTwo}
 				</div>
 			</div>
 			<div className="flex flex-col flex-1 gap-2 p-3 bg-white md:p-2 xl:gap-3 xl:p-3 xl:pt-2">

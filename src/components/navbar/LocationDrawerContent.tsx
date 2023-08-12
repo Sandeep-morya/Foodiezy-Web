@@ -6,7 +6,7 @@ import {
 	MdMyLocation,
 } from "react-icons/md";
 import Input from "../common/Input";
-import FilterButton from "../home/FilterButton";
+import FilterButton from "../home/Filters/FilterButton";
 import { useNavigate } from "react-router-dom";
 import { cities as listCities } from "../../utils/data";
 import Button from "../common/Button";

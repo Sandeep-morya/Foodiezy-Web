@@ -1,5 +1,13 @@
 ﻿import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import type { Restaurant } from "../types";
+import type { Restaurant, SortType } from "../types";
+import {
+	sortByCostH2L,
+	sortByCostL2H,
+	sortByDelivery,
+	sortByRating,
+	sortByTitle,
+} from "../utils/sorting";
+import { getItem, setItem } from "../utils/localStorage";
 
 type InitialState = {
 	total: number;
@@ -18,12 +26,37 @@ const restaurantSlice = createSlice({
 	initialState,
 	reducers: {
 		initRestorants(_, action: PayloadAction<InitialState>) {
+			setItem("restorants", action.payload.restaurants);
 			return action.payload;
 		},
 		addRestaurants(state, action: PayloadAction<Restaurant[]>) {
+			setItem("restorants", [...getItem("restorants"), ...action.payload]);
 			state.restaurants = [...state.restaurants, ...action.payload];
+		},
+		sortAccording(state, action: PayloadAction<SortType>) {
+			switch (action.payload) {
+				case "rating":
+					state.restaurants = state.restaurants.sort(sortByRating);
+					break;
+				case "title":
+					state.restaurants = state.restaurants.sort(sortByTitle);
+					break;
+				case "delivery":
+					state.restaurants = state.restaurants.sort(sortByDelivery);
+					break;
+				case "h2l":
+					state.restaurants = state.restaurants.sort(sortByCostH2L);
+					break;
+				case "l2h":
+					state.restaurants = state.restaurants.sort(sortByCostL2H);
+					break;
+				default:
+					state.restaurants = getItem("restorants");
+					return;
+			}
 		},
 	},
 });
-export const { initRestorants, addRestaurants } = restaurantSlice.actions;
+export const { initRestorants, addRestaurants, sortAccording } =
+	restaurantSlice.actions;
 export default restaurantSlice.reducer;
