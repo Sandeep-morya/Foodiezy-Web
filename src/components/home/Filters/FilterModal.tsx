@@ -25,7 +25,7 @@ const FilterModal = ({
 	const [filterTitleIndex, setFilterTitleIndex] = useState(0);
 
 	return (
-		<div className="fixed w-screen h-screen top-0 left-0 z-[500] bg-black/50 flex justify-center items-end md:items-center">
+		<div className="fixed w-screen h-screen top-0 left-0 z-[500] bg-black/50 flex justify-center items-end md:items-center xl:items-end 2xl:md:items-center">
 			<div className="w-[100%] h-auto bg-white rounded-xl divide-y md:w-[70%] lg:w-[60%] 2xl:w-[50%]">
 				<div className="flex justify-between items-center p-3">
 					<div className="flex items-center  gap-2 text-lg font-bold tracking-wide md:text-xl">

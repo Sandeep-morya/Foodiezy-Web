@@ -26,7 +26,7 @@ const Navbar = () => {
 	const favourites = 3;
 	return (
 		<header
-			className={`w-full h-[60px] fixed top-0 z-10 flex justify-between py-2 px-4 items-center lg:h-[80px] md:px-12 lg:px-4 2xl:px-44 bg-white`}>
+			className={`w-full h-[60px] fixed top-0 z-40 flex justify-between py-2 px-4 items-center lg:h-[80px] md:px-12 lg:px-4 2xl:px-44 bg-white`}>
 			<div>
 				<Logo />
 			</div>

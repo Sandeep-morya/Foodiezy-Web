@@ -36,7 +36,7 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 
 	return (
 		<div
-			className={`sticky z-40 flex w-full flex-wrap justify-start items-center gap-3 px-0 py-4 bg-white top-[50px] md:gap-4 lg:top-[75px] ${
+			className={`sticky z-20 flex w-full flex-wrap justify-start items-center gap-3 px-0 py-4 bg-white top-[50px] md:gap-4 lg:top-[75px] ${
 				atTop && "shadow-[0_8px_6px_-8px_#000]"
 			} transition`}>
 			<FilterButton
