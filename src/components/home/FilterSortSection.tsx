@@ -174,7 +174,11 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 			{searchParamsCount > 0 && (
 				<FilterButton
 					onClick={handleClearFilters}
-					icon={<LuFilterX />}
+					icon={
+						<div className="hidden md:block">
+							<LuFilterX />
+						</div>
+					}
 					title="Clear All"
 				/>
 			)}

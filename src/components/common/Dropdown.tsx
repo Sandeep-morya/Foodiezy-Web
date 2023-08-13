@@ -1,8 +1,15 @@
-import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import {
+	Dispatch,
+	SetStateAction,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
-import { getSortingTitle } from '../../utils/sorting';
-import RadioButton from './RadioButton';
+import { getSortingTitle } from "../../utils/sorting";
+import RadioButton from "./RadioButton";
 
 interface DropdownProps<T> {
 	options: T[];
@@ -46,7 +53,7 @@ const Dropdown = <T extends string>({
 	return (
 		<div className="relative" ref={dropdownRef}>
 			<button
-				className={`flex justify-start items-center gap-2 px-2 py-1.5 border rounded-full text-black/50 hover:cursor-pointer md:px-3 xl:py-2 hover:shadow transition-all duration-500 ${
+				className={`flex justify-start items-center gap-2 px-2 py-[5px] border rounded-full text-black/50 hover:cursor-pointer md:px-3 xl:py-2 hover:shadow transition-all duration-500 ${
 					value !== options[0] && "bg-primary/25"
 				}`}
 				onClick={() => setIsOpen((e) => !e)}>
