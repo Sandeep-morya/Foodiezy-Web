@@ -139,11 +139,7 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 						defaultValue={ratingList.includes("Ratings 4.0+")}
 						callback={setRatingList}
 					/>
-					<ToggleButton
-						title="Fast Delivery"
-						defaultValue={deliveryInList.includes("Fast Delivery")}
-						callback={setDeliveryInList}
-					/>
+
 					<ToggleButton
 						title="Pure Veg"
 						defaultValue={foodTypeList.includes("Pure Veg")}
@@ -153,6 +149,11 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 
 				{/*---:: Cost For Two Buttons ::---*/}
 				<div className="hidden gap-4 xl:flex">
+					<ToggleButton
+						title="Fast Delivery"
+						defaultValue={deliveryInList.includes("Fast Delivery")}
+						callback={setDeliveryInList}
+					/>
 					{["₹300 - ₹500", "Less than ₹300"].map((title, index) => (
 						<ToggleButton
 							key={title + index}
