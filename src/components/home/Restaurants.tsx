@@ -6,7 +6,7 @@ import { GET_RESTAURANTS } from "../../utils/resolvers";
 import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
 import { addRestaurants, initRestorants } from "../../redux/restaurantSlice";
 import RestaurantCardSkeletion from "./Skeletons/RestaurantCardSkeletion";
-import FilterSortSection from "./Filters/FilterSortSection";
+import FilterSortSection from "./FilterSortSection";
 
 const Restaurants = ({ id }: { id: string }) => {
 	const { inView, ref } = useInView();

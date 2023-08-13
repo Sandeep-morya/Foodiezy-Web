@@ -7,7 +7,7 @@ const RadioButton = ({ active }: Props) => {
 			className={`outline outline-1 outline-offset-2 rounded-full
             ${active ? "outline-primary" : "outline-black/30"}`}>
 			<div
-				className={`rounded-full w-[6px] aspect-square xl:w-[8px]
+				className={`rounded-full w-[8px] aspect-square xl:w-[10px]
                 ${active ? "bg-primary" : "bg-none"} `}
 			/>
 		</div>

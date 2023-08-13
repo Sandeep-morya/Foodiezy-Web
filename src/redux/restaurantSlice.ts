@@ -1,5 +1,5 @@
 ﻿import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import type { Restaurant, SortType } from "../types";
+import type { FiltersType, Restaurant, SortType } from "../types";
 import {
 	sortByCostH2L,
 	sortByCostL2H,
@@ -55,8 +55,13 @@ const restaurantSlice = createSlice({
 					return;
 			}
 		},
+		applyFilter(state, action: PayloadAction<FiltersType>) {
+			const value = [...state.restaurants];
+			console.log(value);
+			console.log(action.payload);
+		},
 	},
 });
-export const { initRestorants, addRestaurants, sortAccording } =
+export const { initRestorants, addRestaurants, sortAccording, applyFilter } =
 	restaurantSlice.actions;
 export default restaurantSlice.reducer;

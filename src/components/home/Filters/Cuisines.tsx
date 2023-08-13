@@ -1,9 +1,14 @@
 ﻿import { useAppSelector } from "../../../hook/reduxHooks";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import FilterHeading from "./FilterHeading";
 import ListItem from "./ListItem";
 
-const Cuisines = () => {
+interface Props {
+	cuisineList: string[];
+	setCuisineList: Dispatch<SetStateAction<string[]>>;
+}
+
+const Cuisines = ({ cuisineList, setCuisineList }: Props) => {
 	const { restaurants } = useAppSelector((store) => store.restaurants);
 	const [cuisineSet, setCuisineSet] = useState(new Set<string>());
 
@@ -24,7 +29,12 @@ const Cuisines = () => {
 			<FilterHeading title="Filter By cuisine" />
 
 			{cuisineArray.map((x, index) => (
-				<ListItem key={x + index + "list-item"} title={x} />
+				<ListItem
+					key={x + index + "cuisine"}
+					title={x}
+					callback={setCuisineList}
+					defaultValue={cuisineList.includes(x)}
+				/>
 			))}
 		</div>
 	);

@@ -1,14 +1,13 @@
 ﻿import { FC, useState, useEffect, Dispatch, SetStateAction } from "react";
-import CheckBox from "../../common/CheckBox";
-
+import { MdClose } from "react-icons/md";
 interface Props {
 	title: string;
 	defaultValue: boolean;
 	callback: Dispatch<SetStateAction<string[]>>;
 }
-
-const ListItem: FC<Props> = ({ title, defaultValue, callback }) => {
+const ToggleButton: FC<Props> = ({ title, defaultValue, callback }) => {
 	const [checked, setChecked] = useState(defaultValue || false);
+
 	useEffect(() => {
 		callback((prev) => {
 			if (checked) {
@@ -24,15 +23,19 @@ const ListItem: FC<Props> = ({ title, defaultValue, callback }) => {
 	}, [checked, title, callback]);
 	return (
 		<div
-			className="py-3 px-4 flex gap-2 select-none text-black/70 items-center text-sm lg:text-base font-medium hover:bg-black/5 rounded-tl-full rounded-bl-full"
-			onClick={() => setChecked(true)}>
-			<CheckBox
-				checked={checked}
-				onChange={(e) => setChecked(e.target.checked)}
-			/>
-			<p className={checked ? "line-through" : ""}>{title}</p>
+			onClick={() => setChecked((e) => !e)}
+			className={`flex justify-start max-w-max items-center gap-2 px-2 py-1.5 border rounded-full  hover:cursor-pointer md:px-3 xl:py-2 hover:shadow ${
+				checked && "bg-primary/25"
+			}`}>
+			<p className="text-xs text-black/50 md:text-sm">{title}</p>
+
+			{checked && (
+				<div className="text-black/90">
+					<MdClose />
+				</div>
+			)}
 		</div>
 	);
 };
 
-export default ListItem;
+export default ToggleButton;

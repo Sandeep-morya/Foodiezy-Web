@@ -18,6 +18,12 @@ export const filterTypes = [
 	"Explore",
 	"Sort",
 ];
+export const foodTypeArray = ["Pure Veg", "Non-Veg"];
+export const deliveryArray = ["Fast Delivery"];
+export const ratingArray = ["Ratings 4.5+", "Ratings 4.0+", "Ratings 3.5+"];
+export const costArray = ["₹300 - ₹500", "Greater than ₹500", "Less than ₹300"];
+export const exploreArray = ["New on Foodiezy"];
+
 export const cities = [
 	"Agra",
 	"Ahmedabad",
