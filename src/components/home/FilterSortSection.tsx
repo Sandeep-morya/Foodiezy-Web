@@ -1,5 +1,5 @@
 ﻿import { useCallback, useEffect, useMemo, useState } from "react";
-import { LuSettings2 } from "react-icons/lu";
+import { LuFilterX, LuSettings2 } from "react-icons/lu";
 import { useSearchParams } from "react-router-dom";
 
 import { useAppDispatch } from "../../hook/reduxHooks";
@@ -10,6 +10,7 @@ import Dropdown from "../common/Dropdown";
 import FilterButton from "./Filters/FilterButton";
 import FilterModal from "./Filters/FilterModal";
 import ToggleButton from "./Filters/ToggleButton";
+import Button from "../common/Button";
 
 interface Props {
 	atTop: boolean;
@@ -42,6 +43,17 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 
 	const toggleFilterModal = useCallback(() => {
 		setShowFilterModal((e) => !e);
+	}, []);
+
+	const handleClearFilters = useCallback(() => {
+		// Clear all filter lists and reset the selectBoxValue to "default"
+		setSelectBoxValue("default");
+		setFoodTypeList([]);
+		setCuisineList([]);
+		setDeliveryInList([]);
+		setRatingList([]);
+		setCostForTwoList([]);
+		setExpoloreList([]);
 	}, []);
 
 	const searchParamsCount = useMemo(() => {
@@ -82,79 +94,92 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 		}
 	}, [selectBoxValue, dispatch, total]);
 
+	console.log("flag");
+
 	return (
 		<div
-			className={`sticky z-20 flex w-full flex-wrap justify-start items-center gap-3 px-0 py-4 bg-white top-[50px] md:gap-4 lg:top-[75px] ${
+			className={`sticky z-20 flex w-full justify-between items-center px-0 py-4 bg-white top-[50px]  lg:top-[75px] ${
 				atTop && "shadow-[0_8px_6px_-8px_#000]"
 			} transition`}>
-			{/*---:: Filter Modal Toggle Button ::---*/}
-			<FilterButton
-				onClick={toggleFilterModal}
-				title="Filters"
-				count={searchParamsCount}
-				icon={<LuSettings2 />}
-			/>
+			<div className={"flex gap-3 items-center md:gap-4"}>
+				{/*---:: Filter Modal Toggle Button ::---*/}
+				<FilterButton
+					onClick={toggleFilterModal}
+					title="Filters"
+					count={searchParamsCount}
+					icon={<LuSettings2 />}
+				/>
 
-			{/*---:: Filters Modal with Modal Content ::---*/}
-			{showFilterModal && (
-				<FilterModal
-					{...{
-						toggleFilterModal,
-						selectBoxValue,
-						setSelectBoxValue,
-						foodTypeList,
-						setFoodTypeList,
-						cuisineList,
-						setCuisineList,
-						deliveryInList,
-						setDeliveryInList,
-						ratingList,
-						setRatingList,
-						costForTwoList,
-						setCostForTwoList,
-						expoloreList,
-						setExpoloreList,
-					}}
-				/>
-			)}
-
-			{/*---:: Some Filter Buttons ::---*/}
-			<div className="hidden gap-4 md:flex">
-				<ToggleButton
-					title="Ratings 4.0+"
-					defaultValue={ratingList.includes("Ratings 4.0+")}
-					callback={setRatingList}
-				/>
-				<ToggleButton
-					title="Fast Delivery"
-					defaultValue={deliveryInList.includes("Fast Delivery")}
-					callback={setDeliveryInList}
-				/>
-				<ToggleButton
-					title="Pure Veg"
-					defaultValue={foodTypeList.includes("Pure Veg")}
-					callback={setFoodTypeList}
-				/>
-			</div>
-
-			{/*---:: Cost For Two Buttons ::---*/}
-			<div className="hidden gap-4 xl:flex">
-				{["₹300 - ₹500", "Less than ₹300"].map((title, index) => (
-					<ToggleButton
-						key={title + index}
-						title={title}
-						defaultValue={costForTwoList.includes(title)}
-						callback={setCostForTwoList}
+				{/*---:: Filters Modal with Modal Content ::---*/}
+				{showFilterModal && (
+					<FilterModal
+						{...{
+							toggleFilterModal,
+							selectBoxValue,
+							setSelectBoxValue,
+							foodTypeList,
+							setFoodTypeList,
+							cuisineList,
+							setCuisineList,
+							deliveryInList,
+							setDeliveryInList,
+							ratingList,
+							setRatingList,
+							costForTwoList,
+							setCostForTwoList,
+							expoloreList,
+							setExpoloreList,
+						}}
 					/>
-				))}
+				)}
+
+				{/*---:: Some Filter Buttons ::---*/}
+				<div className="hidden gap-4 md:flex">
+					<ToggleButton
+						title="Ratings 4.0+"
+						defaultValue={ratingList.includes("Ratings 4.0+")}
+						callback={setRatingList}
+					/>
+					<ToggleButton
+						title="Fast Delivery"
+						defaultValue={deliveryInList.includes("Fast Delivery")}
+						callback={setDeliveryInList}
+					/>
+					<ToggleButton
+						title="Pure Veg"
+						defaultValue={foodTypeList.includes("Pure Veg")}
+						callback={setFoodTypeList}
+					/>
+				</div>
+
+				{/*---:: Cost For Two Buttons ::---*/}
+				<div className="hidden gap-4 xl:flex">
+					{["₹300 - ₹500", "Less than ₹300"].map((title, index) => (
+						<ToggleButton
+							key={title + index}
+							title={title}
+							defaultValue={costForTwoList.includes(title)}
+							callback={setCostForTwoList}
+						/>
+					))}
+				</div>
+
+				{/*---:: Sorting Dropdown Menu ::---*/}
+				<Dropdown
+					options={dropdownOptions}
+					value={selectBoxValue}
+					setValue={setSelectBoxValue}
+				/>
 			</div>
 
-			{/*---:: Sorting Dropdown Menu ::---*/}
-			<Dropdown
-				options={dropdownOptions}
-				value={selectBoxValue}
-				setValue={setSelectBoxValue}
-			/>
+			{searchParamsCount > 0 && (
+				<Button
+					onClick={handleClearFilters}
+					icon={<LuFilterX />}
+					className="shadow-none text-primary">
+					Clear All
+				</Button>
+			)}
 		</div>
 	);
 };
