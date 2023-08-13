@@ -1,6 +1,6 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 
-import CheckBox from '../../common/CheckBox';
+import CheckBox from "../../common/CheckBox";
 
 interface Props {
 	title: string;
@@ -25,7 +25,7 @@ const ListItem: FC<Props> = ({ title, defaultValue, callback }) => {
 	}, [checked, title, callback]);
 	return (
 		<div
-			className="py-3 px-4 flex gap-2 select-none text-black/70 items-center text-sm lg:text-base font-medium hover:bg-black/5 rounded-tl-full rounded-bl-full"
+			className="py-3 px-4 flex gap-2 select-none text-lightblack items-center text-sm lg:text-base font-medium hover:bg-black/5 rounded-tl-full rounded-bl-full"
 			onClick={() => setChecked(true)}>
 			<CheckBox
 				checked={checked}

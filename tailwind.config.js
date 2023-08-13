@@ -6,6 +6,7 @@ export default {
 			colors: {
 				primary: "#7ed957",
 				secondary: "#f9f9f9",
+				lightblack: "rgba(0,0,0,0.7)",
 			},
 		},
 	},

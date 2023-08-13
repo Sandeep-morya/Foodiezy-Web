@@ -1,4 +1,4 @@
-import { Restaurant } from '../types';
+import { Restaurant } from "../types";
 
 export const getSortingTitle = <T>(title: T) => {
 	switch (title) {
@@ -13,7 +13,7 @@ export const getSortingTitle = <T>(title: T) => {
 		case "delivery":
 			return "Fast Delivery";
 		default:
-			return "Relevance (default)";
+			return "Relevance (Default)";
 	}
 };
 

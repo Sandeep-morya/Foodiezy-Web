@@ -1,10 +1,10 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from "react";
 
-import { SortType } from '../../../types';
-import { dropdownOptions } from '../../../utils/data';
-import { getSortingTitle } from '../../../utils/sorting';
-import RadioButton from '../../common/RadioButton';
-import FilterHeading from './FilterHeading';
+import { SortType } from "../../../types";
+import { dropdownOptions } from "../../../utils/data";
+import { getSortingTitle } from "../../../utils/sorting";
+import RadioButton from "../../common/RadioButton";
+import FilterHeading from "./FilterHeading";
 
 interface Props {
 	selectBoxValue: SortType;
@@ -22,7 +22,7 @@ const Sort = (props: Props) => {
 						onClick={() => props.setSelectBoxValue(e)}
 						key={"sort-item" + index}>
 						<RadioButton active={props.selectBoxValue === e} />
-						<p className="text-black/70 font-medium text-sm lg:text-base ">
+						<p className="text-lightblack font-medium text-sm lg:text-base ">
 							{getSortingTitle(e)}
 						</p>
 					</li>

@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction, useCallback, useRef, useState } from 'react';
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { Dispatch, SetStateAction, useCallback, useRef, useState } from "react";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
-import { getSortingTitle } from '../../utils/sorting';
+import { getSortingTitle } from "../../utils/sorting";
 
 interface Props<T> {
 	value: T;
@@ -38,7 +38,7 @@ const SelectBox = <T extends string>({ value, setValue }: Props<T>) => {
 				onMouseLeave={() => setHover2(false)}
 				className={`absolute ${
 					value !== "default" && "bg-primary/30"
-				} p-2 top-0 left-0 z-20 border w-full h-full flex justify-between text-black/50 items-center rounded-full md:px-3`}>
+				} p-2 top-0 left-0 z-20 border w-full h-full flex justify-between text-lightblack items-center rounded-full md:px-3`}>
 				<p className="text-xs md:text-sm">{getSortingTitle(value as T)}</p>
 				<div className={`${active ? "rotate-180" : "rotate-0"} transition-all`}>
 					<MdOutlineKeyboardArrowDown size={20} />
@@ -60,7 +60,7 @@ const SelectBox = <T extends string>({ value, setValue }: Props<T>) => {
 							className="flex p-2 justify-between items-center hover:bg-black/10 rounded"
 							onClick={() => handleSelect(e as T)}
 							key={"sort-item" + index}>
-							<p className="text-xs lg:text-sm text-black/50">
+							<p className="text-xs lg:text-sm text-lightblack">
 								{getSortingTitle(e as T)}
 							</p>
 							<input

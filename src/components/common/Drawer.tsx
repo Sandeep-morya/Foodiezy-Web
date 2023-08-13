@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { MdClose } from 'react-icons/md';
-import { twMerge } from 'tailwind-merge';
+import React, { useCallback, useEffect, useState } from "react";
+import { MdClose } from "react-icons/md";
+import { twMerge } from "tailwind-merge";
 
 interface Props {
 	right?: boolean;
@@ -44,7 +44,7 @@ const Drawer = ({
 	}, [right, slideEffect, withScrollbar]);
 
 	return (
-		<div className="fixed top-0 left-0 w-screen h-screen z-[500] bg-black/50 flex">
+		<div className="fixed top-0 left-0 w-screen h-screen z-[500] bg-black/50">
 			<div
 				className={twMerge(
 					`w-full h-full md:w-[400px] pt-1 px-2 bg-white transition-all ease-out duration-${animationDuration} absolute ${
@@ -58,7 +58,7 @@ const Drawer = ({
 					</h1>
 					<div
 						onClick={handleClose}
-						className="p-1 bg-white mr-2 text-xl transition-all  rounded-full hover:bg-primary/25 lg:text-2xl">
+						className="p-1 mr-2 text-xl transition-all bg-white rounded-full hover:bg-primary/25 lg:text-2xl">
 						<MdClose />
 					</div>
 				</div>

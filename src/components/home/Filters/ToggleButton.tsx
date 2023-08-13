@@ -29,13 +29,13 @@ const ToggleButton: FC<Props> = ({ title, defaultValue, callback }) => {
 	return (
 		<div
 			onClick={() => setChecked((e) => !e)}
-			className={`flex justify-start max-w-max items-center gap-2 px-2 py-1.5 border rounded-full  hover:cursor-pointer md:px-3 xl:py-2 hover:shadow ${
+			className={`flex justify-start max-w-max items-center gap-2 px-2 py-1.5 border rounded-full hover:cursor-pointer text-sm text-lightblack md:text-base md:px-3 xl:py-2 hover:shadow ${
 				checked && "bg-primary/25"
 			}`}>
-			<p className="text-xs text-black/50 md:text-sm">{title}</p>
+			<p>{title}</p>
 
 			{checked && (
-				<div className="text-black/90">
+				<div>
 					<MdClose />
 				</div>
 			)}

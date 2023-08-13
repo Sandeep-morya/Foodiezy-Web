@@ -1,5 +1,4 @@
-import { FC } from 'react';
-import { MdClose } from 'react-icons/md';
+import { FC } from "react";
 
 interface Props {
 	title: string;
@@ -26,12 +25,9 @@ const FilterButton: FC<Props> = ({
 					{count}
 				</div>
 			)}
-			<p className="text-xs text-black/50 md:text-sm">{title}</p>
-			{icon && <div className="text-xs text-black/50 md:text-base">{icon}</div>}
-			{active && (
-				<div className="text-black/90">
-					<MdClose />
-				</div>
+			<p className="text-sm text-lightblack md:text-base">{title}</p>
+			{icon && (
+				<div className="text-sm text-lightblack md:text-base">{icon}</div>
 			)}
 		</div>
 	);

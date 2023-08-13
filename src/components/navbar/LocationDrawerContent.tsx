@@ -1,14 +1,18 @@
-import { useCallback, useEffect, useState } from 'react';
-import { MdLocationOn, MdMyLocation, MdOutlineLocationOff } from 'react-icons/md';
-import { PiMagnifyingGlass } from 'react-icons/pi';
-import { useNavigate } from 'react-router-dom';
+import { useCallback, useEffect, useState } from "react";
+import {
+	MdLocationOn,
+	MdMyLocation,
+	MdOutlineLocationOff,
+} from "react-icons/md";
+import { PiMagnifyingGlass } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
 
-import { useAppDispatch } from '../../hook/reduxHooks';
-import { setServiceArea } from '../../redux/deviceSlice';
-import { cities as listCities } from '../../utils/data';
-import Button from '../common/Button';
-import Input from '../common/Input';
-import FilterButton from '../home/Filters/FilterButton';
+import { useAppDispatch } from "../../hook/reduxHooks";
+import { setServiceArea } from "../../redux/deviceSlice";
+import { cities as listCities } from "../../utils/data";
+import Button from "../common/Button";
+import Input from "../common/Input";
+import FilterButton from "../home/Filters/FilterButton";
 
 interface Props {
 	cities: string[];
@@ -58,19 +62,22 @@ const LocationDrawerContent = ({
 		);
 	}, [query]);
 	return (
-		<div className="flex flex-col p-2 w-full h-full">
-			<Input
-				leftIcon={<MdLocationOn />}
-				placeholder="Where is your loaction ?"
-				rightIcon={<PiMagnifyingGlass />}
-				value={query}
-				onKeyDownCapture={(e) => console.log(e)}
-				onChange={(e) => setQuery(e.target.value.trim())}
-			/>
+		<div className="flex flex-col w-full h-full p-2 pb-20 overflow-y-scroll vanish-scroll-bar ">
+			<div>
+				<Input
+					leftIcon={<MdLocationOn />}
+					placeholder="Where is your loaction ?"
+					rightIcon={<PiMagnifyingGlass />}
+					value={query}
+					onKeyDownCapture={(e) => console.log(e)}
+					onChange={(e) => setQuery(e.target.value.trim())}
+				/>
+			</div>
+
 			<RenderCities {...{ cities, handleChangeCity }} />
 			{cities.length === 0 && (
-				<div className="flex p-2 flex-col items-center gap-4">
-					<div className="text-6xl  text-black/50">
+				<div className="flex flex-col items-center gap-4 p-2">
+					<div className="text-6xl text-lightblack">
 						<MdOutlineLocationOff />
 					</div>
 					<div className="text-center">
@@ -79,7 +86,7 @@ const LocationDrawerContent = ({
 					</div>
 					<RenderCities {...{ cities: listCities, handleChangeCity }} />
 					<Button
-						className="rounded-full bg-primary text-white py-2 px-6 flex items-center justify-center space-x-2"
+						className="flex items-center justify-center px-6 py-2 space-x-2 text-white rounded-full bg-primary"
 						onClick={handleFindOnMap}>
 						<MdMyLocation size={20} />
 						Detect My Location

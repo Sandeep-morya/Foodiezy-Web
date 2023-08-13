@@ -93,11 +93,9 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 		}
 	}, [selectBoxValue, dispatch, total]);
 
-	console.log("flag");
-
 	return (
 		<div
-			className={`sticky z-20 flex w-full justify-between items-center gap-0 px-0 py-4 bg-white top-[50px]  lg:top-[75px] ${
+			className={`sticky z-20 flex w-full justify-between items-center gap-0 px-0 py-4 bg-white top-[50px]  lg:top-[65px] ${
 				atTop && "shadow-[0_8px_6px_-8px_#000]"
 			} transition`}>
 			<div className={"flex gap-3 items-center md:gap-4"}>

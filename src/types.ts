@@ -150,9 +150,3 @@ export type SortType =
 	| "h2l"
 	| "l2h"
 	| "delivery";
-
-export interface FiltersType {
-	foodTypes?: [];
-	cuisines?: [];
-	ratings?: [];
-}

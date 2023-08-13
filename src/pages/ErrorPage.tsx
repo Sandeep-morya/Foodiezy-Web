@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
 	return (
 		<section className="flex flex-col justify-center w-screen h-screen px-0 py-10 bg-white">
 			<div className="flex flex-col">
 				<h1 className="font-bold text-center text-8xl text-primary">404</h1>
-				<h2 className="text-2xl font-bold text-center text-black/50">
+				<h2 className="text-2xl font-bold text-center text-lightblack">
 					Not Found
 				</h2>
 			</div>

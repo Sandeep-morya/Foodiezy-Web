@@ -1,12 +1,16 @@
 import {
-    PiBell, PiHeart, PiShoppingBag, PiShoppingBagOpenLight, PiUserCircle
-} from 'react-icons/pi';
+	PiBell,
+	PiHeart,
+	PiShoppingBag,
+	PiShoppingBagOpenLight,
+	PiUserCircle,
+} from "react-icons/pi";
 
 // import { useState, useEffect } from "react";
-import IconButton from '../common/IconButton';
+import IconButton from "../common/IconButton";
 // import { useAppSelector } from "../../hook/reduxHooks";
-import Logo from '../common/Logo';
-import SearchBar from './SearchBar';
+import Logo from "../common/Logo";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
 	// const [isScrolled, setIsScrolled] = useState(false);
@@ -42,7 +46,7 @@ const Navbar = () => {
 					/>
 
 					<div className="items-start hidden h-full pl-4 md:grid">
-						<p className="text-xs text-black/50">Your Bag</p>
+						<p className="text-xs text-lightblack">Your Bag</p>
 						<h2 className="font-medium">{!count ? "is Empty" : `₹ 789`}</h2>
 					</div>
 				</div>
