@@ -10,7 +10,6 @@ import Dropdown from "../common/Dropdown";
 import FilterButton from "./Filters/FilterButton";
 import FilterModal from "./Filters/FilterModal";
 import ToggleButton from "./Filters/ToggleButton";
-import Button from "../common/Button";
 
 interface Props {
 	atTop: boolean;
@@ -98,7 +97,7 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 
 	return (
 		<div
-			className={`sticky z-20 flex w-full justify-between items-center px-0 py-4 bg-white top-[50px]  lg:top-[75px] ${
+			className={`sticky z-20 flex w-full justify-between items-center gap-0 px-0 py-4 bg-white top-[50px]  lg:top-[75px] ${
 				atTop && "shadow-[0_8px_6px_-8px_#000]"
 			} transition`}>
 			<div className={"flex gap-3 items-center md:gap-4"}>
@@ -173,12 +172,11 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 			</div>
 
 			{searchParamsCount > 0 && (
-				<Button
+				<FilterButton
 					onClick={handleClearFilters}
 					icon={<LuFilterX />}
-					className="shadow-none text-primary">
-					Clear All
-				</Button>
+					title="Clear All"
+				/>
 			)}
 		</div>
 	);

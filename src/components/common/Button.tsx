@@ -1,5 +1,5 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { ButtonHTMLAttributes, ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 	icon?: ReactNode;
@@ -10,7 +10,7 @@ const Button = (props: Props) => {
 		<button
 			{...props}
 			className={twMerge(
-				`text-sm flex items-center py-3 px-5 gap-3 shadow-md text-black hover:opacity-75 transition font-medium md:text-base`,
+				`text-sm flex items-center py-3 px-5 gap-3 shadow-md text-black hover:opacity-75 transition font-medium md:text-base active:scale-95`,
 				props.className,
 			)}>
 			{props.children}
