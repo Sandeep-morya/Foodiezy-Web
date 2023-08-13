@@ -1,5 +1,5 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
-import { MdClose } from 'react-icons/md';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { MdClose } from "react-icons/md";
 
 interface Props {
 	title: string;
@@ -7,7 +7,7 @@ interface Props {
 	callback: Dispatch<SetStateAction<string[]>>;
 }
 const ToggleButton: FC<Props> = ({ title, defaultValue, callback }) => {
-	const [checked, setChecked] = useState(defaultValue || false);
+	const [checked, setChecked] = useState(defaultValue);
 
 	useEffect(() => {
 		callback((prev) => {
@@ -22,6 +22,10 @@ const ToggleButton: FC<Props> = ({ title, defaultValue, callback }) => {
 			}
 		});
 	}, [checked, title, callback]);
+
+	useEffect(() => {
+		setChecked(defaultValue);
+	}, [defaultValue]);
 	return (
 		<div
 			onClick={() => setChecked((e) => !e)}
