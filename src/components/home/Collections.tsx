@@ -1,8 +1,8 @@
 ﻿import type { Collection } from "../../types";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState } from 'react';
+import { PiCaretCircleLeft, PiCaretCircleRight } from 'react-icons/pi';
 
-import CollectionCard from "./CollectionCard";
-import { PiCaretCircleLeft, PiCaretCircleRight } from "react-icons/pi";
+import CollectionCard from './CollectionCard';
 
 const Collections = ({ data }: { data: Collection[] }) => {
 	const [showLeftButton, setShowLeftButton] = useState(false);

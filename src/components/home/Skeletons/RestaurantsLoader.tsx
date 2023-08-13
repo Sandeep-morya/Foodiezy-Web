@@ -1,4 +1,5 @@
-﻿import RestaurantCardSkeletion from "./RestaurantCardSkeletion";
+import RestaurantCardSkeletion from './RestaurantCardSkeletion';
+
 const PillSkeleton = () => {
 	return <div className={"w-[90px] h-[35px] rounded-full bg-black/20"} />;
 };

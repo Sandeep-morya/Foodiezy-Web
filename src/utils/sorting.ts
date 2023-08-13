@@ -1,4 +1,4 @@
-﻿import { Restaurant } from "../types";
+import { Restaurant } from '../types';
 
 export const getSortingTitle = <T>(title: T) => {
 	switch (title) {

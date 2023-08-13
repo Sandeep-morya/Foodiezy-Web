@@ -1,6 +1,6 @@
-﻿//
-import Login from "../components/admin/Login";
-import Logo from "../components/common/Logo";
+//
+import Login from '../components/admin/Login';
+import Logo from '../components/common/Logo';
 
 const AdminLoginPage = () => {
 	return (

@@ -1,5 +1,5 @@
 ﻿import type { Collection } from "../../types";
-import { LOW_IMG_LINK } from "../../utils/links";
+import { LOW_IMG_LINK } from '../../utils/links';
 
 const CollectionCard = (data: Collection) => {
 	return (

@@ -1,6 +1,6 @@
-﻿import React, { useCallback, useEffect, useState } from "react";
-import { MdClose } from "react-icons/md";
-import { twMerge } from "tailwind-merge";
+import React, { useCallback, useEffect, useState } from 'react';
+import { MdClose } from 'react-icons/md';
+import { twMerge } from 'tailwind-merge';
 
 interface Props {
 	right?: boolean;

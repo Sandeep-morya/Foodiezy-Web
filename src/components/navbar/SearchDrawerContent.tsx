@@ -1,6 +1,7 @@
-﻿import { useState } from "react";
-import Input from "../common/Input";
-import { PiHamburger, PiMagnifyingGlass } from "react-icons/pi";
+import { useState } from 'react';
+import { PiHamburger, PiMagnifyingGlass } from 'react-icons/pi';
+
+import Input from '../common/Input';
 
 interface Props {
 	toggleDrawer: () => void;

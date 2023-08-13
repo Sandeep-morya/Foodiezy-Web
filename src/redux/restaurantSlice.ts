@@ -1,14 +1,11 @@
-﻿import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import type { FiltersType, Restaurant, SortType } from "../types";
-import {
-	sortByCostH2L,
-	sortByCostL2H,
-	sortByDelivery,
-	sortByRating,
-	sortByTitle,
-} from "../utils/sorting";
-import { getItem, setItem } from "../utils/localStorage";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { getItem, setItem } from '../utils/localStorage';
+import {
+    sortByCostH2L, sortByCostL2H, sortByDelivery, sortByRating, sortByTitle
+} from '../utils/sorting';
+
+import type { FiltersType, Restaurant, SortType } from "../types";
 type InitialState = {
 	total: number;
 	restaurants: Restaurant[];

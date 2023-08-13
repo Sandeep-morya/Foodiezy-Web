@@ -1,19 +1,16 @@
-﻿import { Dispatch, SetStateAction, useState } from "react";
-import { twMerge } from "tailwind-merge";
-import { LuSettings2 } from "react-icons/lu";
-import { MdClose } from "react-icons/md";
+import { Dispatch, SetStateAction, useState } from 'react';
+import { LuSettings2 } from 'react-icons/lu';
+import { MdClose } from 'react-icons/md';
+import { twMerge } from 'tailwind-merge';
+
+import { SortType } from '../../../types';
 import {
-	costArray,
-	deliveryArray,
-	exploreArray,
-	filterTypes,
-	foodTypeArray,
-	ratingArray,
-} from "../../../utils/data";
-import Cuisines from "./Cuisines";
-import Sort from "./Sort";
-import { SortType } from "../../../types";
-import Filter from "./Filter";
+    costArray, deliveryArray, exploreArray, filterTypes, foodTypeArray, ratingArray
+} from '../../../utils/data';
+import Cuisines from './Cuisines';
+import Filter from './Filter';
+import Sort from './Sort';
+
 interface Props {
 	toggleFilterModal: () => void;
 	selectBoxValue: SortType;
@@ -57,25 +54,25 @@ const FilterModal = ({
 			{/*---:: Modal ::---*/}
 			<div className="w-[100%] h-auto bg-white rounded-xl divide-y md:w-[70%] lg:w-[60%] 2xl:w-[50%]">
 				{/*---:: Heading Section ::---*/}
-				<div className="flex justify-between items-center p-3">
+				<div className="flex items-center justify-between p-3">
 					{/*---:: Heading ::---*/}
-					<div className="flex items-center  gap-2 text-lg font-bold tracking-wide md:text-xl">
+					<div className="flex items-center gap-2 text-lg font-bold tracking-wide md:text-xl">
 						<LuSettings2 />
 						<h1>Filters</h1>
 					</div>
 					{/*---:: Close Button ::---*/}
 					<div
 						onClick={toggleFilterModal}
-						className="p-1 bg-white text-xl transition-all  rounded-full hover:bg-primary/25 lg:text-2xl">
+						className="p-1 text-xl transition-all bg-white rounded-full hover:bg-primary/25 lg:text-2xl">
 						<MdClose />
 					</div>
 				</div>
 				{/*---:: Main Section ::---*/}
-				<div className="flex-1 h-full flex justify-between">
+				<div className="flex justify-between flex-1 h-full">
 					{/*---:: Left Section ::---*/}
 					<div className="w-[45%] relative h-full flex flex-col md:w-[40%] xl:w-[30%] bg-black/5">
 						{/*---:: Left side Auto Scrollbar ::---*/}
-						<div className="absolute top-0 z-10 left-0 w-2 h-full">
+						<div className="absolute top-0 left-0 z-10 w-2 h-full">
 							<div
 								style={{ transform: `translateY(${filterTitleIndex * 100}%)` }}
 								className={`w-full h-[calc(100%/7)] bg-primary rounded-tr-xl rounded-br-xl transition duration-500 ease-out`}

@@ -1,18 +1,15 @@
-﻿import { useCallback, useState, useEffect } from "react";
-import { MdOutlineMyLocation } from "react-icons/md";
-import { PiMagnifyingGlass } from "react-icons/pi";
-import { useAppDispatch } from "../../hook/reduxHooks";
-import { setServiceArea } from "../../redux/deviceSlice";
-import {
-	findAddress,
-	findAddressWithCoordinates,
-	geolocationError,
-} from "../../utils/geoLocation";
-import { Coordinates, MapLocations } from "../../types";
-import useDebounce from "../../hook/useDebounce";
-import TonedString from "./TonedString";
-import { ClipLoader } from "react-spinners";
-import { cities } from "../../utils/data";
+import { useCallback, useEffect, useState } from 'react';
+import { MdOutlineMyLocation } from 'react-icons/md';
+import { PiMagnifyingGlass } from 'react-icons/pi';
+import { ClipLoader } from 'react-spinners';
+
+import { useAppDispatch } from '../../hook/reduxHooks';
+import useDebounce from '../../hook/useDebounce';
+import { setServiceArea } from '../../redux/deviceSlice';
+import { Coordinates, MapLocations } from '../../types';
+import { cities } from '../../utils/data';
+import { findAddress, findAddressWithCoordinates, geolocationError } from '../../utils/geoLocation';
+import TonedString from './TonedString';
 
 const SearchBar = () => {
 	const [query, setQuery] = useState("");

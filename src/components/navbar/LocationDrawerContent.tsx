@@ -1,18 +1,14 @@
-﻿import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
+import { MdLocationOn, MdMyLocation, MdOutlineLocationOff } from 'react-icons/md';
+import { PiMagnifyingGlass } from 'react-icons/pi';
+import { useNavigate } from 'react-router-dom';
 
-import {
-	MdLocationOn,
-	MdOutlineLocationOff,
-	MdMyLocation,
-} from "react-icons/md";
-import Input from "../common/Input";
-import FilterButton from "../home/Filters/FilterButton";
-import { useNavigate } from "react-router-dom";
-import { cities as listCities } from "../../utils/data";
-import Button from "../common/Button";
-import { useAppDispatch } from "../../hook/reduxHooks";
-import { setServiceArea } from "../../redux/deviceSlice";
-import { PiMagnifyingGlass } from "react-icons/pi";
+import { useAppDispatch } from '../../hook/reduxHooks';
+import { setServiceArea } from '../../redux/deviceSlice';
+import { cities as listCities } from '../../utils/data';
+import Button from '../common/Button';
+import Input from '../common/Input';
+import FilterButton from '../home/Filters/FilterButton';
 
 interface Props {
 	cities: string[];

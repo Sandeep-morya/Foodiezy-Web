@@ -1,6 +1,7 @@
-﻿import { useMemo } from "react";
-import { setServiceArea } from "../../redux/deviceSlice";
-import { useAppDispatch } from "../../hook/reduxHooks";
+import { useMemo } from 'react';
+
+import { useAppDispatch } from '../../hook/reduxHooks';
+import { setServiceArea } from '../../redux/deviceSlice';
 
 const ServicesInCities = () => {
 	const dispatch = useAppDispatch();

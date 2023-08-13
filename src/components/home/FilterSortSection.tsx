@@ -1,12 +1,13 @@
-﻿import { useState, useEffect, useCallback, useMemo } from "react";
+﻿import { useCallback, useEffect, useMemo, useState } from "react";
 import { LuSettings2 } from "react-icons/lu";
-import FilterButton from "./Filters/FilterButton";
-import { SortType } from "../../types";
-import Dropdown from "../common/Dropdown";
 import { useSearchParams } from "react-router-dom";
+
 import { useAppDispatch } from "../../hook/reduxHooks";
 import { sortAccording } from "../../redux/restaurantSlice";
+import { SortType } from "../../types";
 import { dropdownOptions } from "../../utils/data";
+import Dropdown from "../common/Dropdown";
+import FilterButton from "./Filters/FilterButton";
 import FilterModal from "./Filters/FilterModal";
 import ToggleButton from "./Filters/ToggleButton";
 

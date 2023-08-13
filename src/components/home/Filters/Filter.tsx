@@ -1,6 +1,7 @@
-﻿import { FC, Dispatch, SetStateAction } from "react";
-import FilterHeading from "./FilterHeading";
-import ListItem from "./ListItem";
+import { Dispatch, FC, SetStateAction } from 'react';
+
+import FilterHeading from './FilterHeading';
+import ListItem from './ListItem';
 
 interface Props {
 	heading: string;

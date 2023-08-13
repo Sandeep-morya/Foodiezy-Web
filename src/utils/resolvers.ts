@@ -1,4 +1,4 @@
-﻿import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const GET_SERVICE_AREA_DATA = gql`
 	query getServiceAreaData($serviceAreaName: String!) {

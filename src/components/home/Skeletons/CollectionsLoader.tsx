@@ -1,4 +1,4 @@
-﻿import CollectionCardSkeleton from "./CollectionCardSkeleton";
+import CollectionCardSkeleton from './CollectionCardSkeleton';
 
 const CollectionsLoader = () => {
 	return (

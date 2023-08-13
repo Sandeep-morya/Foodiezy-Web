@@ -1,8 +1,9 @@
-﻿import { useEffect, useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
-import { setServiceArea } from "../redux/deviceSlice";
-import { cities } from "../utils/data";
+import { useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
+
+import { useAppDispatch, useAppSelector } from '../hook/reduxHooks';
+import { setServiceArea } from '../redux/deviceSlice';
+import { cities } from '../utils/data';
 
 const LocationProvider = ({ children }: { children: JSX.Element }) => {
 	const { serviceAreaName } = useParams();

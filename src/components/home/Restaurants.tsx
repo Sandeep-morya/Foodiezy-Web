@@ -1,12 +1,14 @@
-﻿import { useState, useEffect, useCallback } from "react";
-import RestaurantCard from "./RestaurantCard";
-import { useInView } from "react-intersection-observer";
-import { useLazyQuery } from "@apollo/client";
-import { GET_RESTAURANTS } from "../../utils/resolvers";
-import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
-import { addRestaurants, initRestorants } from "../../redux/restaurantSlice";
-import RestaurantCardSkeletion from "./Skeletons/RestaurantCardSkeletion";
-import FilterSortSection from "./FilterSortSection";
+import { useCallback, useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+import { useLazyQuery } from '@apollo/client';
+
+import { useAppDispatch, useAppSelector } from '../../hook/reduxHooks';
+import { addRestaurants, initRestorants } from '../../redux/restaurantSlice';
+import { GET_RESTAURANTS } from '../../utils/resolvers';
+import FilterSortSection from './FilterSortSection';
+import RestaurantCard from './RestaurantCard';
+import RestaurantCardSkeletion from './Skeletons/RestaurantCardSkeletion';
 
 const Restaurants = ({ id }: { id: string }) => {
 	const { inView, ref } = useInView();

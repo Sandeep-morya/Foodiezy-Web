@@ -1,7 +1,8 @@
-﻿import { useAppSelector } from "../../../hook/reduxHooks";
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
-import FilterHeading from "./FilterHeading";
-import ListItem from "./ListItem";
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+
+import { useAppSelector } from '../../../hook/reduxHooks';
+import FilterHeading from './FilterHeading';
+import ListItem from './ListItem';
 
 interface Props {
 	cuisineList: string[];

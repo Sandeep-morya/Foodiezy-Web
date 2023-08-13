@@ -1,4 +1,4 @@
-﻿import { FC } from "react";
+import { FC } from 'react';
 
 const FilterHeading: FC<{ title: string }> = ({ title }) => {
 	return (

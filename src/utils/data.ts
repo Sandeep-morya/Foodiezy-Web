@@ -1,4 +1,4 @@
-﻿import { SortType } from "../types";
+import { SortType } from '../types';
 
 export const dropdownOptions: SortType[] = [
 	"default",

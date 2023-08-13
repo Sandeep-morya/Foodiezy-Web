@@ -1,6 +1,7 @@
-﻿import { Route, Routes } from "react-router-dom";
-import { HeroPage, HomePage, ErrorPage, AdminLoginPage } from "./pages";
-import LocationProvider from "./provider/LocationProvider";
+import { Route, Routes } from 'react-router-dom';
+
+import { AdminLoginPage, ErrorPage, HeroPage, HomePage } from './pages';
+import LocationProvider from './provider/LocationProvider';
 
 export default function AllRoutes() {
 	return (

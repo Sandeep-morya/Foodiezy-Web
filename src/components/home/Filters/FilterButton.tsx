@@ -1,5 +1,6 @@
-﻿import { FC } from "react";
-import { MdClose } from "react-icons/md";
+import { FC } from 'react';
+import { MdClose } from 'react-icons/md';
+
 interface Props {
 	title: string;
 	icon?: JSX.Element;

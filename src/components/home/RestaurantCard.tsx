@@ -1,10 +1,11 @@
-﻿import { MdDeliveryDining, MdLocationPin, MdStar } from "react-icons/md";
-import type { Restaurant } from "../../types";
-import Pill from "../common/Pill";
-import { PiDotOutlineFill, PiPath } from "react-icons/pi";
-import { FC } from "react";
-import { MD_IMG_LINK } from "../../utils/links";
+import { FC } from 'react';
+import { MdDeliveryDining, MdLocationPin, MdStar } from 'react-icons/md';
+import { PiDotOutlineFill, PiPath } from 'react-icons/pi';
 
+import { MD_IMG_LINK } from '../../utils/links';
+import Pill from '../common/Pill';
+
+import type { Restaurant } from "../../types";
 const Pills: FC<{ veg: boolean }> = ({ veg }) => {
 	return veg ? (
 		<Pill title="pure-veg" color={"bg-teal-400"} />

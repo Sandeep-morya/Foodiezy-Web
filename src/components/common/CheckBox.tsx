@@ -1,5 +1,7 @@
-﻿import { ChangeEvent } from "react";
-import "./CheckBox.css";
+import './CheckBox.css';
+
+import { ChangeEvent } from 'react';
+
 interface Props {
 	checked: boolean;
 	onChange: (e: ChangeEvent<HTMLInputElement>) => void;

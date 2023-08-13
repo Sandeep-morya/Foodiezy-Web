@@ -1,6 +1,7 @@
-﻿import IconButton from "../common/IconButton";
-import { FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { SiUpwork } from "react-icons/si";
+import { FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { SiUpwork } from 'react-icons/si';
+
+import IconButton from '../common/IconButton';
 
 const SocialLinks = () => {
 	return (

@@ -1,13 +1,9 @@
-﻿import { useState } from "react";
-import Button from "../common/Button";
-import { MdLockOutline, MdMailOutline, MdLogin } from "react-icons/md";
-import { RxDividerVertical } from "react-icons/rx";
-import {
-	PiCheck,
-	PiEyeClosedDuotone,
-	PiEyeDuotone,
-	PiInfo,
-} from "react-icons/pi";
+import { useState } from 'react';
+import { MdLockOutline, MdLogin, MdMailOutline } from 'react-icons/md';
+import { PiCheck, PiEyeClosedDuotone, PiEyeDuotone, PiInfo } from 'react-icons/pi';
+import { RxDividerVertical } from 'react-icons/rx';
+
+import Button from '../common/Button';
 
 const Login = () => {
 	const [show, setShow] = useState(false);

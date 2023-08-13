@@ -1,15 +1,12 @@
-﻿import {
-	PiBell,
-	PiHeart,
-	PiShoppingBag,
-	PiShoppingBagOpenLight,
-	PiUserCircle,
-} from "react-icons/pi";
+import {
+    PiBell, PiHeart, PiShoppingBag, PiShoppingBagOpenLight, PiUserCircle
+} from 'react-icons/pi';
+
 // import { useState, useEffect } from "react";
-import IconButton from "../common/IconButton";
+import IconButton from '../common/IconButton';
 // import { useAppSelector } from "../../hook/reduxHooks";
-import Logo from "../common/Logo";
-import SearchBar from "./SearchBar";
+import Logo from '../common/Logo';
+import SearchBar from './SearchBar';
 
 const Navbar = () => {
 	// const [isScrolled, setIsScrolled] = useState(false);

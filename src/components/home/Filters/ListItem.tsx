@@ -1,5 +1,6 @@
-﻿import { FC, useState, useEffect, Dispatch, SetStateAction } from "react";
-import CheckBox from "../../common/CheckBox";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+
+import CheckBox from '../../common/CheckBox';
 
 interface Props {
 	title: string;

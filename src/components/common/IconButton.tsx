@@ -1,6 +1,7 @@
-﻿import { ReactNode } from "react";
-import NoficationCount from "./NotificationCount";
-import { Link } from "react-router-dom";
+import { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
+
+import NoficationCount from './NotificationCount';
 
 interface Props {
 	href: string;

@@ -1,9 +1,10 @@
-﻿import { Dispatch, SetStateAction } from "react";
-import { SortType } from "../../../types";
-import { dropdownOptions } from "../../../utils/data";
-import { getSortingTitle } from "../../../utils/sorting";
-import RadioButton from "../../common/RadioButton";
-import FilterHeading from "./FilterHeading";
+import { Dispatch, SetStateAction } from 'react';
+
+import { SortType } from '../../../types';
+import { dropdownOptions } from '../../../utils/data';
+import { getSortingTitle } from '../../../utils/sorting';
+import RadioButton from '../../common/RadioButton';
+import FilterHeading from './FilterHeading';
 
 interface Props {
 	selectBoxValue: SortType;

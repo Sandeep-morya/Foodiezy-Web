@@ -1,11 +1,12 @@
-﻿import Logo from "../components/common/Logo";
-import SocialLinks from "../components/hero/SocialLinks";
-import StoreButtons from "../components/hero/StoreButtons";
-import FooterText from "../components/hero/FooterText";
-import ServicesInCities from "../components/hero/ServicesInCities";
-import SearchBar from "../components/hero/SearchBar";
-import { useAppSelector } from "../hook/reduxHooks";
-import { Navigate } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
+
+import Logo from '../components/common/Logo';
+import FooterText from '../components/hero/FooterText';
+import SearchBar from '../components/hero/SearchBar';
+import ServicesInCities from '../components/hero/ServicesInCities';
+import SocialLinks from '../components/hero/SocialLinks';
+import StoreButtons from '../components/hero/StoreButtons';
+import { useAppSelector } from '../hook/reduxHooks';
 
 const HeroPage = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);

@@ -1,6 +1,8 @@
-import AllRoutes from "./routes";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { Buffer } from "buffer";
+import { Buffer } from 'buffer';
+
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+
+import AllRoutes from './routes';
 
 const { VITE_API_CYCLIC, VITE_API_ACCESS_KEY } = import.meta.env;
 

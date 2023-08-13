@@ -1,16 +1,18 @@
-﻿import { useQuery } from "@apollo/client";
-import { GET_SERVICE_AREA_DATA } from "../utils/resolvers";
-import Restaurants from "../components/home/Restaurants";
-import Collections from "../components/home/Collections";
-import withNavbar from "../hocs/withNavbar";
-import Footer from "../components/home/Footer";
-import SearchBar from "../components/navbar/SearchBar";
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
-import { setServiceArea } from "../redux/deviceSlice";
-import CollectionsLoader from "../components/home/Skeletons/CollectionsLoader";
-import RestaurantsLoader from "../components/home/Skeletons/RestaurantsLoader";
-import { initRestorants } from "../redux/restaurantSlice";
+import { useEffect } from 'react';
+
+import { useQuery } from '@apollo/client';
+
+import Collections from '../components/home/Collections';
+import Footer from '../components/home/Footer';
+import Restaurants from '../components/home/Restaurants';
+import CollectionsLoader from '../components/home/Skeletons/CollectionsLoader';
+import RestaurantsLoader from '../components/home/Skeletons/RestaurantsLoader';
+import SearchBar from '../components/navbar/SearchBar';
+import withNavbar from '../hocs/withNavbar';
+import { useAppDispatch, useAppSelector } from '../hook/reduxHooks';
+import { setServiceArea } from '../redux/deviceSlice';
+import { initRestorants } from '../redux/restaurantSlice';
+import { GET_SERVICE_AREA_DATA } from '../utils/resolvers';
 
 const Homepage = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);

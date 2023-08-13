@@ -1,14 +1,8 @@
-﻿import {
-	useState,
-	useRef,
-	useEffect,
-	Dispatch,
-	SetStateAction,
-	useCallback,
-} from "react";
-import { getSortingTitle } from "../../utils/sorting";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import RadioButton from "./RadioButton";
+import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+
+import { getSortingTitle } from '../../utils/sorting';
+import RadioButton from './RadioButton';
 
 interface DropdownProps<T> {
 	options: T[];

@@ -1,6 +1,7 @@
-﻿import { Dispatch, SetStateAction, useCallback, useRef, useState } from "react";
-import { getSortingTitle } from "../../utils/sorting";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { Dispatch, SetStateAction, useCallback, useRef, useState } from 'react';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+
+import { getSortingTitle } from '../../utils/sorting';
 
 interface Props<T> {
 	value: T;

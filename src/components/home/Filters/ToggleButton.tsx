@@ -1,5 +1,6 @@
-﻿import { FC, useState, useEffect, Dispatch, SetStateAction } from "react";
-import { MdClose } from "react-icons/md";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import { MdClose } from 'react-icons/md';
+
 interface Props {
 	title: string;
 	defaultValue: boolean;

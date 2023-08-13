@@ -1,7 +1,7 @@
-﻿import SocialLinks from "../hero/SocialLinks";
-import StoreButtons from "../hero/StoreButtons";
-import FooterText from "../hero/FooterText";
-import Logo from "../common/Logo";
+import Logo from '../common/Logo';
+import FooterText from '../hero/FooterText';
+import SocialLinks from '../hero/SocialLinks';
+import StoreButtons from '../hero/StoreButtons';
 
 const Footer = () => {
 	return (

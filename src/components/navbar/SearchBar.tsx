@@ -1,11 +1,12 @@
-﻿import { MdLocationOn } from "react-icons/md";
-import { PiMagnifyingGlass } from "react-icons/pi";
-import Drawer from "../common/Drawer";
-import { useCallback, useState } from "react";
-import LocationDrawerContent from "./LocationDrawerContent";
-import { useAppSelector } from "../../hook/reduxHooks";
-import SearchDrawerContent from "./SearchDrawerContent";
-import Logo from "../common/Logo";
+import { useCallback, useState } from 'react';
+import { MdLocationOn } from 'react-icons/md';
+import { PiMagnifyingGlass } from 'react-icons/pi';
+
+import { useAppSelector } from '../../hook/reduxHooks';
+import Drawer from '../common/Drawer';
+import Logo from '../common/Logo';
+import LocationDrawerContent from './LocationDrawerContent';
+import SearchDrawerContent from './SearchDrawerContent';
 
 const SearchBar = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);
