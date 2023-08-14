@@ -31,7 +31,7 @@ const ListItem: FC<Props> = ({ title, defaultValue, callback }) => {
 				checked={checked}
 				onChange={(e) => setChecked(e.target.checked)}
 			/>
-			<p className={checked ? "line-through" : ""}>{title}</p>
+			<p>{title}</p>
 		</div>
 	);
 };

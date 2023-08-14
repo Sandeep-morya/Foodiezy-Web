@@ -52,10 +52,10 @@ const Dropdown = <T extends string>({
 
 	return (
 		<div
-			className="relative text-sm lg:text-base text-lightblack"
+			className="relative text-sm 2xl:text-base text-lightblack"
 			ref={dropdownRef}>
 			<button
-				className={`flex justify-start items-center gap-2 px-2 py-[6px] border rounded-full text-lightblack hover:cursor-pointer md:px-3 xl:py-2 hover:shadow transition-all duration-500 ${
+				className={`flex justify-start items-center gap-2 px-2 py-[6px]  border rounded-full text-lightblack hover:cursor-pointer md:px-3 md:py-2 hover:shadow transition-all duration-500 ${
 					value !== options[0] && "bg-primary/25"
 				}`}
 				onClick={() => setIsOpen((e) => !e)}>
@@ -65,7 +65,7 @@ const Dropdown = <T extends string>({
 				</div>
 			</button>
 			{isOpen && (
-				<ul className="absolute top-12 left-0 w-[180px] lg:w-[200px] p-2 bg-white ring-1 ring-black/5 rounded-xl flex flex-col  shadow-md cursor-default">
+				<ul className="absolute top-12 left-0 w-[180px] md:w-[200px] p-2 bg-white ring-1 ring-black/5 rounded-xl flex flex-col  shadow-md cursor-default">
 					{options.map((e, index) => (
 						<li
 							className="flex items-center justify-between p-2 rounded cursor-pointer active:scale-95 hover:bg-black/10"

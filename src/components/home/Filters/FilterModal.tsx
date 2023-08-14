@@ -1,18 +1,30 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-import { LuSettings2 } from 'react-icons/lu';
-import { MdClose } from 'react-icons/md';
-import { twMerge } from 'tailwind-merge';
-
-import { SortType } from '../../../types';
 import {
-    costArray, deliveryArray, exploreArray, filterTypes, foodTypeArray, ratingArray
-} from '../../../utils/data';
-import Cuisines from './Cuisines';
-import Filter from './Filter';
-import Sort from './Sort';
+	Dispatch,
+	SetStateAction,
+	useCallback,
+	useEffect,
+	useState,
+} from "react";
+import { LuSettings2 } from "react-icons/lu";
+import { MdClose } from "react-icons/md";
+import { twMerge } from "tailwind-merge";
+
+import { SortType } from "../../../types";
+import {
+	costArray,
+	deliveryArray,
+	exploreArray,
+	filterTypes,
+	foodTypeArray,
+	ratingArray,
+} from "../../../utils/data";
+import Cuisines from "./Cuisines";
+import Filter from "./Filter";
+import Sort from "./Sort";
 
 interface Props {
 	toggleFilterModal: () => void;
+	searchParamsCount: number;
 	selectBoxValue: SortType;
 	setSelectBoxValue: Dispatch<SetStateAction<SortType>>;
 	foodTypeList: string[];
@@ -30,6 +42,7 @@ interface Props {
 }
 
 const FilterModal = ({
+	searchParamsCount,
 	toggleFilterModal,
 	selectBoxValue,
 	setSelectBoxValue,
@@ -47,12 +60,28 @@ const FilterModal = ({
 	setExpoloreList,
 }: Props) => {
 	const [filterTitleIndex, setFilterTitleIndex] = useState(0);
+	const [inView, setInView] = useState(false);
+
+	const handleClose = useCallback(() => {
+		setInView(false);
+		setTimeout(() => {
+			toggleFilterModal();
+		}, 300);
+	}, [toggleFilterModal]);
+
+	useEffect(() => {
+		setInView(true);
+	}, []);
 
 	return (
 		// :: Outer Overlay ::
-		<div className="fixed w-screen h-screen top-0 left-0 z-[500] bg-black/50 flex justify-center items-end 2xl:md:items-center">
+		<div className="fixed z-10 w-screen h-screen top-0 left-0  bg-white/50 backdrop-blur-sm flex justify-center items-end 2xl:md:items-center">
 			{/*---:: Modal ::---*/}
-			<div className="w-[100%] h-auto bg-white rounded-xl divide-y md:w-[70%] lg:w-[60%] 2xl:w-[50%]">
+			<div
+				className={twMerge(
+					`w-[100%] translate-y-[100%] h-auto bg-white rounded-xl divide-y  lg:w-[60%] lg:scale-75 xl:scale-90 2xl:scale-100 2xl:w-[50%] transition duration-300 scale-100 `,
+					inView && "translate-x-0 translate-y-0",
+				)}>
 				{/*---:: Heading Section ::---*/}
 				<div className="flex items-center justify-between p-3">
 					{/*---:: Heading ::---*/}
@@ -62,7 +91,7 @@ const FilterModal = ({
 					</div>
 					{/*---:: Close Button ::---*/}
 					<div
-						onClick={toggleFilterModal}
+						onClick={handleClose}
 						className="p-1 text-xl transition-all bg-white rounded-full hover:bg-primary/25 lg:text-2xl">
 						<MdClose />
 					</div>
@@ -84,7 +113,7 @@ const FilterModal = ({
 								key={x + index}
 								onClick={() => setFilterTitleIndex(index)}
 								className={twMerge(
-									"text-md font-semibold px-5 py-4 2xl:text-lg",
+									"text-sm font-semibold px-5 py-4 2xl:text-lg",
 									index === filterTitleIndex ? "bg-none" : "bg-white",
 									index === filterTitleIndex + 1 && "rounded-tr-xl",
 									index === filterTitleIndex - 1 && "rounded-br-xl",
@@ -94,7 +123,7 @@ const FilterModal = ({
 						))}
 					</div>
 					{/*---:: Right Section ::---*/}
-					<div className="flex-1 py-2 pl-4 bg-black/5 h-[450px] overflow-y-scroll vanish-scroll-bar 2xl:h-[480px]">
+					<div className="flex-1 py-2 pl-4 bg-black/5 h-[420px] overflow-y-scroll vanish-scroll-bar 2xl:h-[480px]">
 						{/*---:: Food-Type ::---*/}
 						{filterTitleIndex === 0 && (
 							<Filter
@@ -161,6 +190,24 @@ const FilterModal = ({
 						)}
 					</div>
 				</div>
+
+				{/*---:: Footer Section ::---*/}
+				{searchParamsCount > 0 && (
+					<div className="flex items-center justify-end px-2 h-[60px]">
+						<div className="flex gap-4">
+							{/*---:: Clear filter Button ::---*/}
+							<button className="text-sm text-lightblack py-2 px-4 font-medium active:scale-95 hover:bg-secondary">
+								{"Clear Filter"}
+							</button>
+
+							{/*---:: Apply Filter Button ::---*/}
+
+							<button className="text-sm active:scale-95 bg-primary py-2 px-4 rounded-full text-white font-medium">
+								{searchParamsCount > 1 ? "Apply Filters" : "Apply Filter"}
+							</button>
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	);

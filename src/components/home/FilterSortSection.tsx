@@ -55,10 +55,10 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 		setExpoloreList([]);
 	}, []);
 
-	const searchParamsCount = useMemo(() => {
-		const count = Array.from(searchParams.keys()).length;
-		return selectBoxValue === "default" ? count - 1 : count;
-	}, [selectBoxValue, searchParams]);
+	const searchParamsCount = useMemo(
+		() => Array.from(searchParams.keys()).length - 1,
+		[searchParams],
+	);
 
 	useEffect(() => {
 		// :: Managing Parmas view in url ::
@@ -95,10 +95,10 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 
 	return (
 		<div
-			className={`sticky z-20 flex w-full justify-between items-center gap-0 px-0 py-4 bg-white top-[50px]  lg:top-[65px] ${
+			className={`sticky z-10 flex w-full justify-between items-center gap-0 px-0 py-3 bg-white top-[50px]  lg:top-[70px] ${
 				atTop && "shadow-[0_8px_6px_-8px_#000]"
 			} transition`}>
-			<div className={"flex gap-3 items-center md:gap-4"}>
+			<div className={"flex flex-1 gap-3 items-center md:gap-4"}>
 				{/*---:: Filter Modal Toggle Button ::---*/}
 				<FilterButton
 					onClick={toggleFilterModal}
@@ -112,6 +112,7 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 					<FilterModal
 						{...{
 							toggleFilterModal,
+							searchParamsCount,
 							selectBoxValue,
 							setSelectBoxValue,
 							foodTypeList,
@@ -171,15 +172,12 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 			</div>
 
 			{searchParamsCount > 0 && (
-				<FilterButton
-					onClick={handleClearFilters}
-					icon={
-						<div className="hidden md:block">
-							<LuFilterX />
-						</div>
-					}
-					title="Clear All"
-				/>
+				<button
+					className="px-4 text-sm md:text-base ring-1 bg-black rounded-full ring-primary/10 py-2 text-secondary flex justify-center items-center hover:opacity-95 active:scale-95 gap-2"
+					onClick={handleClearFilters}>
+					<LuFilterX />
+					<p className="hidden md:block">Clear</p>
+				</button>
 			)}
 		</div>
 	);

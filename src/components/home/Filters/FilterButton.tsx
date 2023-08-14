@@ -25,7 +25,7 @@ const FilterButton: FC<Props> = ({
 					{count}
 				</div>
 			)}
-			<p className="text-sm text-lightblack md:text-base">{title}</p>
+			<p className="text-sm text-lightblack 2xl:text-base">{title}</p>
 			{icon && (
 				<div className="text-sm text-lightblack md:text-base">{icon}</div>
 			)}
