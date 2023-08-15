@@ -44,10 +44,6 @@ const Restaurants = ({ id }: { id: string }) => {
 		[getRestaurants, id, dispatch, queryParams],
 	);
 
-	const handleApplyFilter = useCallback(() => {
-		setQueryParams(searchParams.toString());
-	}, [searchParams]);
-
 	useEffect(() => {
 		handleGetRestaurants(page);
 	}, [page, handleGetRestaurants]);
@@ -71,7 +67,7 @@ const Restaurants = ({ id }: { id: string }) => {
 
 			<FilterSortSection
 				atTop={!inView}
-				{...{ total, searchParams, setSearchParams, handleApplyFilter }}
+				{...{ total, searchParams, setSearchParams, setQueryParams }}
 			/>
 
 			{/*---:: Restaurant Cards ::---*/}

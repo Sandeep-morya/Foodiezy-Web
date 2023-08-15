@@ -1,5 +1,12 @@
 ﻿// :: Dependencies Imports ::
-import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+	Dispatch,
+	SetStateAction,
+	useCallback,
+	useEffect,
+	useMemo,
+	useState,
+} from "react";
 import { LuSettings2 } from "react-icons/lu";
 
 // :: Types Imports ::
@@ -23,7 +30,7 @@ interface Props {
 	total: number;
 	searchParams: URLSearchParams;
 	setSearchParams: SetURLSearchParams;
-	handleApplyFilter: () => void;
+	setQueryParams: Dispatch<SetStateAction<string>>;
 }
 
 const FilterSortSection = ({
@@ -31,7 +38,7 @@ const FilterSortSection = ({
 	total,
 	searchParams,
 	setSearchParams,
-	handleApplyFilter,
+	setQueryParams,
 }: Props) => {
 	// :: Search Params ::
 
@@ -62,6 +69,7 @@ const FilterSortSection = ({
 
 	// Clear all filter lists and reset the selectBoxValue to "default"
 	const handleClearFilters = useCallback(() => {
+		setQueryParams("");
 		setSelectBoxValue("default");
 		setFoodTypeList([]);
 		setCuisineList([]);
@@ -69,7 +77,11 @@ const FilterSortSection = ({
 		setRatingList([]);
 		setCostForTwoList([]);
 		setExpoloreList([]);
-	}, []);
+	}, [setQueryParams]);
+
+	const handleApplyFilter = useCallback(() => {
+		setQueryParams(searchParams.toString());
+	}, [searchParams, setQueryParams]);
 
 	// :: For Counting number of filters applied including "sort" ::
 	const searchParamsCount = useMemo(
