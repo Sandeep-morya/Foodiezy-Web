@@ -9,7 +9,7 @@ interface Props {
 }
 
 const ListItem: FC<Props> = ({ title, defaultValue, callback }) => {
-	const [checked, setChecked] = useState(defaultValue || false);
+	const [checked, setChecked] = useState(defaultValue);
 	useEffect(() => {
 		callback((prev) => {
 			if (checked) {
@@ -23,9 +23,13 @@ const ListItem: FC<Props> = ({ title, defaultValue, callback }) => {
 			}
 		});
 	}, [checked, title, callback]);
+
+	useEffect(() => {
+		setChecked(defaultValue);
+	}, [defaultValue]);
 	return (
 		<div
-			className="py-3 px-4 flex gap-2 select-none text-lightblack items-center text-sm lg:text-base font-medium hover:bg-black/5 rounded-tl-full rounded-bl-full"
+			className="flex items-center gap-2 px-4 py-3 text-sm font-medium rounded-tl-full rounded-bl-full select-none text-lightblack lg:text-base hover:bg-black/5"
 			onClick={() => setChecked(true)}>
 			<CheckBox
 				checked={checked}

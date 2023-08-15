@@ -1,24 +1,40 @@
-﻿import { useCallback, useEffect, useMemo, useState } from "react";
-import { LuFilterX, LuSettings2 } from "react-icons/lu";
-import { useSearchParams } from "react-router-dom";
+﻿// :: Dependencies Imports ::
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { LuSettings2 } from "react-icons/lu";
 
-import { useAppDispatch } from "../../hook/reduxHooks";
+// :: Types Imports ::
+import type { SortType } from "../../types";
+import type { SetURLSearchParams } from "react-router-dom";
+
+// :: Local Imports ::
 import { sortAccording } from "../../redux/restaurantSlice";
-import { SortType } from "../../types";
-import { dropdownOptions } from "../../utils/data";
 import Dropdown from "../common/Dropdown";
 import FilterButton from "./Filters/FilterButton";
 import FilterModal from "./Filters/FilterModal";
 import ToggleButton from "./Filters/ToggleButton";
 
+// :: Utilities and Custom Hooks Import
+import { dropdownOptions } from "../../utils/data";
+import { cleanParams } from "../../utils/sorting";
+import { useAppDispatch } from "../../hook/reduxHooks";
+
 interface Props {
 	atTop: boolean;
 	total: number;
+	searchParams: URLSearchParams;
+	setSearchParams: SetURLSearchParams;
+	handleApplyFilter: () => void;
 }
 
-const FilterSortSection = ({ atTop, total }: Props) => {
+const FilterSortSection = ({
+	atTop,
+	total,
+	searchParams,
+	setSearchParams,
+	handleApplyFilter,
+}: Props) => {
 	// :: Search Params ::
-	const [searchParams, setSearchParams] = useSearchParams();
+
 	const sortParams = (searchParams.get("sortby") as SortType) || "default";
 	const foodTypeParams = searchParams.getAll("foodType");
 	const cuisineParams = searchParams.getAll("cuisine");
@@ -44,8 +60,8 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 		setShowFilterModal((e) => !e);
 	}, []);
 
+	// Clear all filter lists and reset the selectBoxValue to "default"
 	const handleClearFilters = useCallback(() => {
-		// Clear all filter lists and reset the selectBoxValue to "default"
 		setSelectBoxValue("default");
 		setFoodTypeList([]);
 		setCuisineList([]);
@@ -55,23 +71,27 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 		setExpoloreList([]);
 	}, []);
 
+	// :: For Counting number of filters applied including "sort" ::
 	const searchParamsCount = useMemo(
-		() => Array.from(searchParams.keys()).length - 1,
+		() => Array.from(searchParams.keys()).length,
 		[searchParams],
 	);
 
+	// :: Handling Params in Url ::
+
 	useEffect(() => {
-		// :: Managing Parmas view in url ::
 		setSearchParams((prev) => {
 			return {
 				...prev,
-				sortby: selectBoxValue,
-				foodType: foodTypeList,
-				cuisine: cuisineList,
-				delivery: deliveryInList,
-				rating: ratingList,
-				costForTwo: costForTwoList,
-				explore: expoloreList,
+				...cleanParams({
+					sortby: selectBoxValue === "default" ? null : selectBoxValue,
+					foodType: foodTypeList,
+					cuisine: cuisineList,
+					delivery: deliveryInList,
+					rating: ratingList,
+					costForTwo: costForTwoList,
+					explore: expoloreList,
+				}),
 			};
 		});
 	}, [
@@ -85,6 +105,7 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 		expoloreList,
 	]);
 
+	// :: Handling Sorting Functionality ::
 	useEffect(() => {
 		// :: Sorting Logic written in redux slice ::
 		if (total > 1) {
@@ -111,6 +132,8 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 				{showFilterModal && (
 					<FilterModal
 						{...{
+							handleApplyFilter,
+							handleClearFilters,
 							toggleFilterModal,
 							searchParamsCount,
 							selectBoxValue,
@@ -132,7 +155,7 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 				)}
 
 				{/*---:: Some Filter Buttons ::---*/}
-				<div className="hidden gap-4 md:flex">
+				<div className="hidden gap-4 xl:flex">
 					<ToggleButton
 						title="Ratings 4.0+"
 						defaultValue={ratingList.includes("Ratings 4.0+")}
@@ -144,10 +167,6 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 						defaultValue={foodTypeList.includes("Pure Veg")}
 						callback={setFoodTypeList}
 					/>
-				</div>
-
-				{/*---:: Cost For Two Buttons ::---*/}
-				<div className="hidden gap-4 xl:flex">
 					<ToggleButton
 						title="Fast Delivery"
 						defaultValue={deliveryInList.includes("Fast Delivery")}
@@ -171,14 +190,14 @@ const FilterSortSection = ({ atTop, total }: Props) => {
 				/>
 			</div>
 
-			{searchParamsCount > 0 && (
+			{/* {searchParamsCount > 0 && (
 				<button
-					className="px-4 text-sm md:text-base ring-1 bg-black rounded-full ring-primary/10 py-2 text-secondary flex justify-center items-center hover:opacity-95 active:scale-95 gap-2"
+					className="flex items-center justify-center gap-2 px-4 py-2 text-sm bg-black rounded-full md:text-base ring-1 ring-primary/10 text-secondary hover:opacity-95 active:scale-95"
 					onClick={handleClearFilters}>
 					<LuFilterX />
 					<p className="hidden md:block">Clear</p>
 				</button>
-			)}
+			)} */}
 		</div>
 	);
 };

@@ -1,4 +1,4 @@
-import { Restaurant } from "../types";
+import { ParamsObject, Restaurant } from "../types";
 
 export const getSortingTitle = <T>(title: T) => {
 	switch (title) {
@@ -44,4 +44,13 @@ export const sortByCostL2H = (a: Restaurant, b: Restaurant) => {
 	const priceA = +a.costForTwo.split(" ")[0].substring(1);
 	const priceB = +b.costForTwo.split(" ")[0].substring(1);
 	return priceA - priceB;
+};
+
+// :: Managing Parmas view in url ::
+export const cleanParams = (paramsObject: ParamsObject) => {
+	const newParamsObject = { ...paramsObject };
+	if (!newParamsObject.sortby) {
+		delete newParamsObject.sortby;
+	}
+	return newParamsObject;
 };

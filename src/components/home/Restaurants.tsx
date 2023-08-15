@@ -1,16 +1,20 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
+import { useCallback, useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
-import { useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from "@apollo/client";
 
-import { useAppDispatch, useAppSelector } from '../../hook/reduxHooks';
-import { addRestaurants, initRestorants } from '../../redux/restaurantSlice';
-import { GET_RESTAURANTS } from '../../utils/resolvers';
-import FilterSortSection from './FilterSortSection';
-import RestaurantCard from './RestaurantCard';
-import RestaurantCardSkeletion from './Skeletons/RestaurantCardSkeletion';
+import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
+import { addRestaurants, initRestorants } from "../../redux/restaurantSlice";
+import { GET_RESTAURANTS } from "../../utils/resolvers";
+import FilterSortSection from "./FilterSortSection";
+import RestaurantCard from "./RestaurantCard";
+import RestaurantCardSkeletion from "./Skeletons/RestaurantCardSkeletion";
+import { useSearchParams } from "react-router-dom";
 
 const Restaurants = ({ id }: { id: string }) => {
+	const [searchParams, setSearchParams] = useSearchParams();
+	const [queryParams, setQueryParams] = useState(searchParams.toString());
+
 	const { inView, ref } = useInView();
 	const { ref: target, inView: LastItemInView } = useInView({ threshold: 0.7 });
 	const [page, setPage] = useState(0);
@@ -20,9 +24,10 @@ const Restaurants = ({ id }: { id: string }) => {
 
 	const handleGetRestaurants = useCallback(
 		async (page: number) => {
+			console.log({ queryParams });
 			try {
 				const { data } = await getRestaurants({
-					variables: { page, serviceAreaId: id },
+					variables: { page, queryParams, serviceAreaId: id },
 				});
 				console.log("API called for page:", data.getRestaurants.page);
 				const total = data.getRestaurants.totalCount;
@@ -36,8 +41,12 @@ const Restaurants = ({ id }: { id: string }) => {
 				console.log({ error });
 			}
 		},
-		[getRestaurants, id, dispatch],
+		[getRestaurants, id, dispatch, queryParams],
 	);
+
+	const handleApplyFilter = useCallback(() => {
+		setQueryParams(searchParams.toString());
+	}, [searchParams]);
 
 	useEffect(() => {
 		handleGetRestaurants(page);
@@ -60,7 +69,10 @@ const Restaurants = ({ id }: { id: string }) => {
 				Restaurants near you {`(${total})`}
 			</h1>
 
-			<FilterSortSection atTop={!inView} total={total} />
+			<FilterSortSection
+				atTop={!inView}
+				{...{ total, searchParams, setSearchParams, handleApplyFilter }}
+			/>
 
 			{/*---:: Restaurant Cards ::---*/}
 			<div className="grid grid-cols-1 gap-6 px-1 mt-8 transition md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 2xl:gap-8">

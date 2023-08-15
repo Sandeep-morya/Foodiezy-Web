@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_SERVICE_AREA_DATA = gql`
 	query getServiceAreaData($serviceAreaName: String!) {
@@ -18,36 +18,6 @@ export const GET_SERVICE_AREA_DATA = gql`
 				updatedAt
 				type
 			}
-			restaurants {
-				serviceAreaId
-				page
-				limit
-				count
-				totalCount
-				documents {
-					type
-					_id
-					serviceAreaId
-					restaurantId
-					name
-					imageId
-					cuisines
-					veg
-					rating
-					votesString
-					costForTwo
-					areaName
-					locality
-					discount
-					delivery {
-						time
-						duration
-						distance
-					}
-					createdAt
-					updatedAt
-				}
-			}
 			createdAt
 			updatedAt
 		}
@@ -55,8 +25,18 @@ export const GET_SERVICE_AREA_DATA = gql`
 `;
 
 export const GET_RESTAURANTS = gql`
-	query GetRestaurants($serviceAreaId: ID!, $page: Int, $limit: Int) {
-		getRestaurants(serviceAreaId: $serviceAreaId, page: $page, limit: $limit) {
+	query GetRestaurants(
+		$serviceAreaId: ID!
+		$queryParams: String
+		$page: Int
+		$limit: Int
+	) {
+		getRestaurants(
+			serviceAreaId: $serviceAreaId
+			queryParams: $queryParams
+			page: $page
+			limit: $limit
+		) {
 			serviceAreaId
 			page
 			limit

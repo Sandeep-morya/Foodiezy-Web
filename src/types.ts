@@ -150,3 +150,13 @@ export type SortType =
 	| "h2l"
 	| "l2h"
 	| "delivery";
+
+export interface ParamsObject {
+	sortby?: string | null;
+	foodType: string[];
+	cuisine: string[];
+	delivery: string[];
+	rating: string[];
+	costForTwo: string[];
+	explore: string[];
+}

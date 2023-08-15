@@ -23,7 +23,9 @@ import Filter from "./Filter";
 import Sort from "./Sort";
 
 interface Props {
+	handleApplyFilter: () => void;
 	toggleFilterModal: () => void;
+	handleClearFilters: () => void;
 	searchParamsCount: number;
 	selectBoxValue: SortType;
 	setSelectBoxValue: Dispatch<SetStateAction<SortType>>;
@@ -42,6 +44,8 @@ interface Props {
 }
 
 const FilterModal = ({
+	handleApplyFilter,
+	handleClearFilters,
 	searchParamsCount,
 	toggleFilterModal,
 	selectBoxValue,
@@ -75,11 +79,11 @@ const FilterModal = ({
 
 	return (
 		// :: Outer Overlay ::
-		<div className="fixed z-10 w-screen h-screen top-0 left-0  bg-white/50 backdrop-blur-sm flex justify-center items-end 2xl:md:items-center">
+		<div className="fixed top-0 left-0 z-10 flex items-end justify-center w-screen h-screen bg-white/50 backdrop-blur-sm 2xl:md:items-center">
 			{/*---:: Modal ::---*/}
 			<div
 				className={twMerge(
-					`w-[100%] translate-y-[100%] h-auto bg-white rounded-xl divide-y  lg:w-[60%] lg:scale-75 xl:scale-90 2xl:scale-100 2xl:w-[50%] transition duration-300 scale-100 `,
+					`w-[100%] translate-y-[100%] h-auto bg-secondary shadow-[0_0_10px_#0007] rounded-xl divide-y  lg:w-[60%] lg:scale-75 xl:scale-90 2xl:scale-100 2xl:w-[50%] transition duration-300 scale-100 `,
 					inView && "translate-x-0 translate-y-0",
 				)}>
 				{/*---:: Heading Section ::---*/}
@@ -92,7 +96,7 @@ const FilterModal = ({
 					{/*---:: Close Button ::---*/}
 					<div
 						onClick={handleClose}
-						className="p-1 text-xl transition-all bg-white rounded-full hover:bg-primary/25 lg:text-2xl">
+						className="p-1 text-xl transition-all rounded-full text-secondary bg-primary hover:opacity-75 lg:text-2xl active:scale-90">
 						<MdClose />
 					</div>
 				</div>
@@ -196,13 +200,17 @@ const FilterModal = ({
 					<div className="flex items-center justify-end px-2 h-[60px]">
 						<div className="flex gap-4">
 							{/*---:: Clear filter Button ::---*/}
-							<button className="text-sm text-lightblack py-2 px-4 font-medium active:scale-95 hover:bg-secondary">
+							<button
+								onClick={handleClearFilters}
+								className="px-4 py-2 text-sm font-medium text-lightblack active:scale-95 hover:bg-secondary">
 								{"Clear Filter"}
 							</button>
 
 							{/*---:: Apply Filter Button ::---*/}
 
-							<button className="text-sm active:scale-95 bg-primary py-2 px-4 rounded-full text-white font-medium">
+							<button
+								onClick={handleApplyFilter}
+								className="px-4 py-2 text-sm font-medium text-white rounded-full active:scale-95 bg-primary">
 								{searchParamsCount > 1 ? "Apply Filters" : "Apply Filter"}
 							</button>
 						</div>
