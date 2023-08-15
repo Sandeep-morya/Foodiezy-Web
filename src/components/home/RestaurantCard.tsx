@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { MdDeliveryDining, MdLocationPin, MdStar } from 'react-icons/md';
-import { PiDotOutlineFill, PiPath } from 'react-icons/pi';
+import { FC } from "react";
+import { MdDeliveryDining, MdLocationPin, MdStar } from "react-icons/md";
+import { PiDotOutlineFill, PiPath } from "react-icons/pi";
 
-import { MD_IMG_LINK } from '../../utils/links';
-import Pill from '../common/Pill';
+import { MD_IMG_LINK } from "../../utils/links";
+import Pill from "../common/Pill";
 
 import type { Restaurant } from "../../types";
 const Pills: FC<{ veg: boolean }> = ({ veg }) => {
@@ -59,8 +59,8 @@ const RestaurantCard = (data: Props) => {
 				<div className="absolute hidden top-2 left-2 md:flex">
 					<Pills veg={data.veg} />
 				</div>
-				<div className="absolute flex items-center justify-start px-2 py-0.5 text-xs font-semibold shadow-lg bg-white rounded-tl-full rounded-bl-full uppercase -right-1 bottom-5 md:bottom-10 md:text-sm">
-					{data.costForTwo}
+				<div className="absolute flex items-center justify-start px-2 py-0.5 text-xs font-semibold shadow-lg bg-white rounded-tl-full rounded-bl-full uppercase -right-1 bottom-5 md:bottom-10 ">
+					{`₹${data.costForTwo} for Two`}
 				</div>
 			</div>
 			<div className="flex flex-col flex-1 gap-2 p-3 bg-white md:p-2 xl:gap-3 xl:p-3 xl:pt-2">

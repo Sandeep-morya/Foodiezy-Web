@@ -4,10 +4,10 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
 import AllRoutes from "./routes";
 
-const { VITE_API_CYCLIC, VITE_API_ACCESS_KEY } = import.meta.env;
+const { VITE_API_URL, VITE_API_ACCESS_KEY } = import.meta.env;
 
 const client = new ApolloClient({
-	uri: VITE_API_CYCLIC + "/graphql",
+	uri: VITE_API_URL + "/graphql",
 	cache: new InMemoryCache(),
 	headers: {
 		Authorization: `Basic ${Buffer.from(VITE_API_ACCESS_KEY).toString(

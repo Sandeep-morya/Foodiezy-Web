@@ -126,7 +126,7 @@ export interface Restaurant {
 	veg: boolean;
 	rating: number;
 	votesString: string;
-	costForTwo: string;
+	costForTwo: number;
 	areaName: string;
 	locality: string;
 	discount: string;

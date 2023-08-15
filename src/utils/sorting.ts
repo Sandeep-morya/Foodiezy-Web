@@ -35,16 +35,11 @@ export const sortByDelivery = (a: Restaurant, b: Restaurant) => {
 	return timeA - timeB;
 };
 
-export const sortByCostH2L = (a: Restaurant, b: Restaurant) => {
-	const priceA = +a.costForTwo.split(" ")[0].substring(1);
-	const priceB = +b.costForTwo.split(" ")[0].substring(1);
-	return priceB - priceA;
-};
-export const sortByCostL2H = (a: Restaurant, b: Restaurant) => {
-	const priceA = +a.costForTwo.split(" ")[0].substring(1);
-	const priceB = +b.costForTwo.split(" ")[0].substring(1);
-	return priceA - priceB;
-};
+export const sortByCostH2L = (a: Restaurant, b: Restaurant) =>
+	b.costForTwo - a.costForTwo;
+
+export const sortByCostL2H = (a: Restaurant, b: Restaurant) =>
+	a.costForTwo - b.costForTwo;
 
 // :: Managing Parmas view in url ::
 export const cleanParams = (paramsObject: ParamsObject) => {
