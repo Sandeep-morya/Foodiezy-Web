@@ -209,7 +209,10 @@ const FilterModal = ({
 							{/*---:: Apply Filter Button ::---*/}
 
 							<button
-								onClick={handleApplyFilter}
+								onClick={() => {
+									handleApplyFilter();
+									toggleFilterModal();
+								}}
 								className="px-4 py-2 text-sm font-medium text-white rounded-full active:scale-95 bg-primary">
 								{searchParamsCount > 1 ? "Apply Filters" : "Apply Filter"}
 							</button>

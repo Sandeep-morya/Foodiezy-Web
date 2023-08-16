@@ -1,24 +1,25 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-import { useQuery } from '@apollo/client';
+import { useQuery } from "@apollo/client";
 
-import Collections from '../components/home/Collections';
-import Footer from '../components/home/Footer';
-import Restaurants from '../components/home/Restaurants';
-import CollectionsLoader from '../components/home/Skeletons/CollectionsLoader';
-import RestaurantsLoader from '../components/home/Skeletons/RestaurantsLoader';
-import SearchBar from '../components/navbar/SearchBar';
-import withNavbar from '../hocs/withNavbar';
-import { useAppDispatch, useAppSelector } from '../hook/reduxHooks';
-import { setServiceArea } from '../redux/deviceSlice';
-import { initRestorants } from '../redux/restaurantSlice';
-import { GET_SERVICE_AREA_DATA } from '../utils/resolvers';
+import Collections from "../components/home/Collections";
+import Footer from "../components/home/Footer";
+import Restaurants from "../components/home/Restaurants";
+import CollectionsLoader from "../components/home/Skeletons/CollectionsLoader";
+import RestaurantsLoader from "../components/home/Skeletons/RestaurantsLoader";
+import SearchBar from "../components/navbar/SearchBar";
+import withNavbar from "../hocs/withNavbar";
+import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
+import { setServiceArea } from "../redux/deviceSlice";
+import { initRestorants } from "../redux/restaurantSlice";
+import { GET_SERVICE_AREA_DATA } from "../utils/resolvers";
+import { Navigate } from "react-router-dom";
 
 const Homepage = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);
 	const dispatch = useAppDispatch();
 
-	const { loading, data } = useQuery(GET_SERVICE_AREA_DATA, {
+	const { loading, error, data } = useQuery(GET_SERVICE_AREA_DATA, {
 		variables: { serviceAreaName: serviceArea?.name },
 	});
 
@@ -35,6 +36,10 @@ const Homepage = () => {
 			dispatch(setServiceArea({ _id, name, lat, lng }));
 		}
 	}, [data, dispatch]);
+
+	if (error) {
+		return <Navigate to={"*"} />;
+	}
 
 	return (
 		<div className="w-full">

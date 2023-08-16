@@ -14,7 +14,7 @@ import type { SortType } from "../../types";
 import type { SetURLSearchParams } from "react-router-dom";
 
 // :: Local Imports ::
-import { sortAccording } from "../../redux/restaurantSlice";
+// import { sortAccording } from "../../redux/restaurantSlice";
 import Dropdown from "../common/Dropdown";
 import FilterButton from "./Filters/FilterButton";
 import FilterModal from "./Filters/FilterModal";
@@ -23,7 +23,8 @@ import ToggleButton from "./Filters/ToggleButton";
 // :: Utilities and Custom Hooks Import
 import { dropdownOptions } from "../../utils/data";
 import { cleanParams } from "../../utils/sorting";
-import { useAppDispatch } from "../../hook/reduxHooks";
+// import { useAppDispatch } from "../../hook/reduxHooks";
+import useThrottle from "../../hook/useThrottle";
 
 interface Props {
 	atTop: boolean;
@@ -35,7 +36,6 @@ interface Props {
 
 const FilterSortSection = ({
 	atTop,
-	total,
 	searchParams,
 	setSearchParams,
 	setQueryParams,
@@ -61,7 +61,8 @@ const FilterSortSection = ({
 
 	// :: Toggle Modal  ::
 	const [showFilterModal, setShowFilterModal] = useState(false);
-	const dispatch = useAppDispatch();
+	//const dispatch = useAppDispatch();
+	const throttle = useThrottle();
 
 	const toggleFilterModal = useCallback(() => {
 		setShowFilterModal((e) => !e);
@@ -80,8 +81,10 @@ const FilterSortSection = ({
 	}, [setQueryParams]);
 
 	const handleApplyFilter = useCallback(() => {
-		setQueryParams(searchParams.toString());
-	}, [searchParams, setQueryParams]);
+		throttle(() => {
+			setQueryParams(searchParams.toString());
+		}, 2000);
+	}, [searchParams, setQueryParams, throttle]);
 
 	// :: For Counting number of filters applied including "sort" ::
 	const searchParamsCount = useMemo(
@@ -118,13 +121,13 @@ const FilterSortSection = ({
 	]);
 
 	// :: Handling Sorting Functionality ::
-	useEffect(() => {
-		// :: Sorting Logic written in redux slice ::
-		if (total > 1) {
-			// :: Dispatching the Action with Paylaod here for Sorting ::
-			dispatch(sortAccording(selectBoxValue));
-		}
-	}, [selectBoxValue, dispatch, total]);
+	//useEffect(() => {
+	// :: Sorting Logic written in redux slice ::
+	//if (total > 1) {
+	// :: Dispatching the Action with Paylaod here for Sorting ::
+	// dispatch(sortAccording(selectBoxValue));
+	//}
+	//	}, [selectBoxValue, dispatch, total]);
 
 	return (
 		<div
@@ -202,14 +205,24 @@ const FilterSortSection = ({
 				/>
 			</div>
 
-			{/* {searchParamsCount > 0 && (
-				<button
-					className="flex items-center justify-center gap-2 px-4 py-2 text-sm bg-black rounded-full md:text-base ring-1 ring-primary/10 text-secondary hover:opacity-95 active:scale-95"
-					onClick={handleClearFilters}>
-					<LuFilterX />
-					<p className="hidden md:block">Clear</p>
-				</button>
-			)} */}
+			{searchParamsCount > 0 && (
+				<div className="hidden gap-4 lg:flex">
+					{/*---:: Clear filter Button ::---*/}
+					<button
+						onClick={handleClearFilters}
+						className="px-4 py-2 text-sm font-medium text-lightblack active:scale-95 hover:bg-secondary">
+						{"Clear Filter"}
+					</button>
+
+					{/*---:: Apply Filter Button ::---*/}
+
+					<button
+						onClick={handleApplyFilter}
+						className="px-4 py-2 text-sm font-medium text-white rounded-full active:scale-95 bg-primary">
+						{searchParamsCount > 1 ? "Apply Filters" : "Apply Filter"}
+					</button>
+				</div>
+			)}
 		</div>
 	);
 };
