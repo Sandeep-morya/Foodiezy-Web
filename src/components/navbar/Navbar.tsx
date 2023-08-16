@@ -11,8 +11,10 @@ import IconButton from "../common/IconButton";
 // import { useAppSelector } from "../../hook/reduxHooks";
 import Logo from "../common/Logo";
 import SearchBar from "./SearchBar";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+	const navigate = useNavigate();
 	// const [isScrolled, setIsScrolled] = useState(false);
 
 	// useEffect(() => {
@@ -28,7 +30,7 @@ const Navbar = () => {
 	return (
 		<header
 			className={`w-full h-[60px] fixed top-0 z-40 flex justify-between py-2 px-4 items-center lg:h-[80px] md:px-12 lg:px-4 2xl:px-44 bg-white`}>
-			<div>
+			<div onClick={() => navigate("/")}>
 				<Logo />
 			</div>
 			<div className="hidden lg:flex">
