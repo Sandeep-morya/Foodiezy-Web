@@ -11,7 +11,11 @@ import RestaurantCard from "./RestaurantCard";
 import RestaurantCardSkeletion from "./Skeletons/RestaurantCardSkeletion";
 import { useSearchParams } from "react-router-dom";
 
-const Restaurants = ({ id }: { id: string }) => {
+interface Props {
+	id: string;
+}
+
+const Restaurants = ({ id }: Props) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [queryParams, setQueryParams] = useState(searchParams.toString());
 

@@ -68,3 +68,31 @@ export const GET_RESTAURANTS = gql`
 		}
 	}
 `;
+
+export const GET_RESTAURANT = gql`
+	query GetRestaurant($id: ID!) {
+		restaurant: getRestaurant(id: $id) {
+			type
+			_id
+			serviceAreaId
+			restaurantId
+			name
+			imageId
+			cuisines
+			veg
+			rating
+			votesString
+			costForTwo
+			areaName
+			locality
+			discount
+			delivery {
+				time
+				duration
+				distance
+			}
+			createdAt
+			updatedAt
+		}
+	}
+`;

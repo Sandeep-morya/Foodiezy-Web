@@ -8,3 +8,6 @@ export const MD_IMG_LINK =
 	"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_420/";
 export const LOW_IMG_LINK =
 	"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_180/";
+
+export const RESTAURANT_LINK =
+	"https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true";

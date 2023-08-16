@@ -6,6 +6,7 @@ import { MD_IMG_LINK } from "../../utils/links";
 import Pill from "../common/Pill";
 
 import type { Restaurant } from "../../types";
+import { useNavigate } from "react-router-dom";
 const Pills: FC<{ veg: boolean }> = ({ veg }) => {
 	return veg ? (
 		<Pill title="pure-veg" color={"bg-teal-400"} />
@@ -35,10 +36,17 @@ interface Props extends Restaurant {
 }
 
 const RestaurantCard = (data: Props) => {
+	const navigate = useNavigate();
 	return (
 		<div
 			ref={data.index === (data.page + 1) * 20 - 1 ? data.target : null}
-			onClick={() => console.log(data._id)}
+			onClick={() => {
+				navigate(
+					`/restaurant/${data.name.split(" ").join("-")}?id=${
+						data._id
+					}&restaurantId=${data.restaurantId}`,
+				);
+			}}
 			className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col hover:ring-primary/50">
 			<div className="relative w-[45%] overflow-hidden aspect-[3/4] md:w-full md:aspect-[3/2] transition">
 				{/* Actual Image of Restaurant */}
