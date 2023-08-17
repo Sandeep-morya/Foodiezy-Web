@@ -23,3 +23,10 @@ body {
 .vanish-scroll-bar {
 	scrollbar-width: none;
 }
+
+.dish-card-overlay {
+	background: linear-gradient(to top, #000c 60%, transparent);
+}
+.dish-card:hover .dish-card-overlay {
+	background: linear-gradient(to top, #000a 99%, transparent);
+}

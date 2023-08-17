@@ -21,7 +21,7 @@ const useGetRestaurantData = (args: Args) => {
 			try {
 				const extraURL = `&lat=${lat}&lng=${lng}&restaurantId=${restaurantId}`;
 				const { data } = await axios.get(RESTAURANT_LINK + extraURL);
-				setData(data.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards);
+				setData(data.data.cards.at(-1).groupedCard.cardGroupMap.REGULAR.cards);
 				setLoading(false);
 			} catch (error) {
 				setLoading(false);

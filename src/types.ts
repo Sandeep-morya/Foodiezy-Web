@@ -160,3 +160,70 @@ export interface ParamsObject {
 	costForTwo: string[];
 	explore: string[];
 }
+export interface MenuItem {
+	card: Card;
+}
+export interface Card {
+	info: Info;
+}
+
+export interface Info {
+	id: string;
+	name: string;
+	category: string;
+	description: string;
+	imageId: string;
+	inStock: number;
+	isVeg: number;
+	price: number;
+	addons: Addon[];
+	itemAttribute: ItemAttribute;
+	ribbon: Ribbon;
+	showImage: boolean;
+	isBestseller: boolean;
+	ratings: Ratings;
+}
+
+export interface Addon {
+	groupId: string;
+	groupName: string;
+	choices: Choice[];
+	maxAddons: number;
+	maxFreeAddons: number;
+}
+
+export interface Choice {
+	id: string;
+	name: string;
+	price: number;
+	isVeg: number;
+	isEnabled: number;
+	inStock?: number;
+}
+
+export interface ItemAttribute {
+	vegClassifier: string;
+	portionSize: string;
+}
+
+export interface Ratings {
+	aggregatedRating: AggregatedRating;
+}
+
+export interface AggregatedRating {
+	rating: string;
+	ratingCount: string;
+	ratingCountV2: string;
+}
+
+export interface Ribbon {
+	text: string;
+	textColor: string;
+	topBackgroundColor: string;
+	bottomBackgroundColor: string;
+}
+
+export interface MenuCard {
+	title: string;
+	itemCards: MenuItem[];
+}
