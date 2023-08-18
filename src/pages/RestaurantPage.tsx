@@ -1,7 +1,7 @@
 ﻿import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
 import { Navigate, useSearchParams } from "react-router-dom";
 import withNavbar from "../hocs/withNavbar";
-// import useGetRestaurantData from "../hook/useGetRestaurantData";
+import useGetRestaurantData from "../hook/useGetRestaurantData";
 import { useQuery } from "@apollo/client";
 import { useState, useEffect, useCallback } from "react";
 import { GET_RESTAURANT } from "../utils/resolvers";
@@ -14,11 +14,10 @@ import {
 	MdRestaurant,
 	MdStar,
 } from "react-icons/md";
-// import { PiPath } from "react-icons/pi";
 import MenuContent from "../components/restaurant/MenuContent";
-import { menuData } from "../utils/data";
 import { addInitialMenu } from "../redux/menuSlice";
 import MenuList from "../components/restaurant/MenuList";
+import { MenuCard } from "../types";
 
 const RestaurantPage = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);
@@ -32,35 +31,43 @@ const RestaurantPage = () => {
 	}, []);
 
 	const variables = { id: searchParams.get("id") };
-	// const args = {
-	// 	restaurantId: searchParams.get("restaurantId"),
-	// 	lat: serviceArea?.lat,
-	// 	lng: serviceArea?.lng,
-	// };
+	const args = {
+		restaurantId: searchParams.get("restaurantId"),
+		lat: serviceArea?.lat,
+		lng: serviceArea?.lng,
+	};
 
-	// const [isLoading, isError, menuData] = useGetRestaurantData(args);
+	const [isLoading, isError, menuData] = useGetRestaurantData(args);
 	const { loading, error, data } = useQuery(GET_RESTAURANT, { variables });
 
 	useEffect(() => {
-		if (menuData.length > 0) {
-			const menu = menuData.slice(1, -3).map((e) => e.card.card);
+		if (Array.isArray(menuData) && menuData.length > 0) {
+			const data = [...menuData] as { card: { card: MenuCard } }[];
+			const menu = data
+				.slice(1, -3)
+				.map((e) => e.card.card)
+				.filter(
+					(e) =>
+						e.title !== "Breakfast" &&
+						e.title !== "Lunch" &&
+						e.title !== "Dinner",
+				);
 			dispatch(addInitialMenu(menu));
 		}
-	}, [dispatch]);
+	}, [dispatch, menuData]);
 
 	if (!serviceArea || !serviceArea.lat || !serviceArea.lng) {
 		return <Navigate to="/" />;
 	}
 
-	if (error /* || isError */) {
+	if (error || isError) {
 		return <Navigate to="*" state={"503-Internal Server Error"} />;
 	}
 
-	if (loading) {
+	if (loading || isLoading) {
 		return <>Loading...</>;
 	}
 
-	console.log(data);
 	return (
 		<div className="flex w-full h-[calc(100vh-60px)] lg:h-[calc(100vh-80px)] flex-col gap-3 p-2 lg:flex-row lg:gap-4 overflow-auto lg:overflow-hidden md:px-10 xl:px-6 2xl:px-44">
 			<div className="w-full h-auto vanish-scroll-bar flex flex-col gap-2 lg:w-[420px] lg:h-full lg:overflow-y-scroll">

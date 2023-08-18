@@ -1,13 +1,25 @@
 ﻿// import React from "react";
 
-import { MdFavoriteBorder } from "react-icons/md";
-import { Info } from "../../types";
+import type { Info } from "../../types";
 import { MD_IMG_LINK } from "../../utils/links";
 import Pill from "../common/Pill";
-import { PiCheckSquareOffsetFill, PiShoppingBag } from "react-icons/pi";
+import {
+	PiChecksBold,
+	PiHeartStraightDuotone,
+	PiShoppingBag,
+} from "react-icons/pi";
+import { useState, useMemo } from "react";
+import Counter from "./Counter";
 
 const DishCard = (card: Info) => {
 	const src = card.imageId ? MD_IMG_LINK + card.imageId : "/sample.png";
+	const [count, setCount] = useState(0);
+	const price = useMemo(() => {
+		let value = card.price / 100;
+		value = count === 0 ? value * (count + 1) : value * count;
+		return value.toFixed(2);
+	}, [count, card.price]);
+
 	return (
 		<div className="relative dish-card w-full h-[240px] border rounded-lg overflow-hidden group">
 			<img
@@ -15,7 +27,7 @@ const DishCard = (card: Info) => {
 				src={src}
 				alt=""
 			/>
-			<div className="dish-card-overlay absolute bottom-0  left-0 w-full h-[90px] p-3 duration-300 flex flex-col justify-center items-start group-hover:h-full group-hover:justify-start text-secondary transition-all">
+			<div className="dish-card-overlay absolute bottom-0  left-0 w-full h-[90px] p-3 duration-300 flex flex-col justify-center items-start group-hover:h-full group-hover:justify-start text-secondary transition-all overflow-y-scroll vanish-scroll-bar">
 				<div className="flex flex-col items-start  gap-1">
 					<Pill
 						title={card.isVeg ? "Pure Veg" : "Non-Veg"}
@@ -26,32 +38,38 @@ const DishCard = (card: Info) => {
 
 				<div className=" w-full mt-0.5 flex-col drop-shadow-md hidden group-hover:flex flex-1">
 					{/* <h3 className="underline font-medium">Description</h3> */}
-					<h3 className="text-xl font-bold">
-						₹{(card.price / 100).toFixed(2)}
-					</h3>
-					<p className=" text-sm tracking-wider">{card.description}</p>
+					<h3 className="text-xl font-bold">₹{price}</h3>
+					<p className=" text-sm tracking-wider py-1 text-justify">
+						{card.description}
+					</p>
 
-					<div className="flex-1 w-full flex items-end">
-						<div className="w-full h-[40px] flex items-center gap-2">
-							<button className="flex-1 text-center rounded  font-medium  bg-primary flex h-[35px] items-center justify-center gap-3 active:scale-95">
-								<div className="text-xl">
-									<PiShoppingBag />
-								</div>
-								Add to bag
-							</button>
+					<div className="flex-1 w-full flex pt-2 items-end">
+						<div className="w-full h-[40px] flex items-center gap-2 text-lightblack">
+							{count === 0 ? (
+								<button
+									onClick={() => setCount(1)}
+									className="flex-1 text-center rounded  font-medium  bg-white/30 text-secondary flex h-[35px] items-center justify-center gap-3 active:scale-95">
+									<div className="text-xl">
+										<PiShoppingBag />
+									</div>
+									Add to bag
+								</button>
+							) : (
+								<Counter {...{ count, setCount }} />
+							)}
 							<div className="w-[35px] aspect-square flex justify-center items-center text-3xl rounded-md text-amber-500">
-								<MdFavoriteBorder />
+								<PiHeartStraightDuotone />
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div className="absolute top-2 right-2 text-2xl text-white">
-				<PiCheckSquareOffsetFill
-					style={{ filter: "drop-shadow(0 0 5px #0005)" }}
-				/>
-			</div>
+			{count > 0 && (
+				<div className="absolute top-2 right-2 text-xs bg-black/50 text-secondary rounded-full w-[30px] h-[30px] font-medium flex justify-center items-center">
+					{count} <PiChecksBold />
+				</div>
+			)}
 		</div>
 	);
 };

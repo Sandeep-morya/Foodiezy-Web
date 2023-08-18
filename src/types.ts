@@ -224,6 +224,6 @@ export interface Ribbon {
 }
 
 export interface MenuCard {
-	title: string;
+	title: "Breakfast" | "Lunch" | "Dinner" | string;
 	itemCards: MenuItem[];
 }

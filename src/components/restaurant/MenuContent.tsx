@@ -17,7 +17,17 @@ const MenuContent = ({ tabIndex }: Props) => {
 		[menu, tabIndex],
 	);
 
-	const [menuList, setMenuList] = useState(currentMenu?.itemCards);
+	const [menuList, setMenuList] = useState(() => {
+		if (currentMenu) {
+			// if (currentMenu.title === "Breakfast") {
+			// 	return currentMenu.categories[0].itemCards;
+			// } else {
+			return currentMenu.itemCards;
+			// }
+		} else {
+			return null;
+		}
+	});
 
 	useEffect(() => {
 		setQuery("");
@@ -26,7 +36,11 @@ const MenuContent = ({ tabIndex }: Props) => {
 	useEffect(() => {
 		if (currentMenu) {
 			setMenuList(() => {
-				const itemCards = currentMenu.itemCards.filter((e) =>
+				const list = currentMenu.itemCards;
+				// if (currentMenu.title === "Breakfast") {
+				// 	list = currentMenu.categories[0].itemCards;
+				// }
+				const itemCards = list.filter((e) =>
 					e.card.info.name.toLowerCase().includes(query.toLowerCase().trim()),
 				);
 				return itemCards;
@@ -41,7 +55,7 @@ const MenuContent = ({ tabIndex }: Props) => {
 	return (
 		<div className="w-full h-auto lg:h-full lg:overflow-y-scroll  vanish-scroll-bar flex flex-col gap-2 pb-10">
 			<div className="sticky -top-5 z-10  flex flex-col pb-4 md:-top-2  lg:top-0 p-2 xl:pt-0 bg-white md:flex-row md:gap-10 md:items-center md:justify-between">
-				<h2 className="text-lg mb-1 font-semibold tracking-wide md:text-xl xl:text-2xl">{`${currentMenu.title} (${currentMenu.itemCards.length})`}</h2>
+				<h2 className="text-lg mb-1 font-semibold tracking-wide md:text-xl xl:text-2xl">{`${currentMenu.title} (${menuList.length})`}</h2>
 				<div className="flex-1 max-w-full md:max-w-[300px]">
 					<Input
 						value={query}

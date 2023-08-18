@@ -16,7 +16,12 @@ const MenuList = (props: Props) => {
 	}
 	return (
 		<div className="flex flex-col gap-1 mt-4 pb-20">
-			{menus.map(({ title, itemCards }, index) => {
+			{menus.map((data, index) => {
+				const title = data.title;
+				const itemCards = data.itemCards;
+				// if (title === "Breakfast") {
+				// 	itemCards = data.categories[0].itemCards;
+				// }
 				return (
 					<div
 						key={title + index + "list"}
@@ -31,7 +36,7 @@ const MenuList = (props: Props) => {
 								: "bg-white text-lightblack",
 						)}>
 						<p>{title}</p>
-						<p>{itemCards.length}</p>
+						<p>{itemCards?.length}</p>
 					</div>
 				);
 			})}
