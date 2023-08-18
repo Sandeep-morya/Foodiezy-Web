@@ -14,12 +14,16 @@ const RestrautantFaceCard = (data: Restaurant) => {
 
 			<div
 				style={{
-					background: "linear-gradient(to right, #fffe 60%, transparent)",
+					background: "linear-gradient(to right, #fffc 60%, transparent)",
 				}}
 				className="absolute inset-0 flex flex-col p-2">
 				<div className="p-2 text-lightblack ">
-					<h1 className="text-xl font-medium">{data.name}</h1>
-					<p className="text-sm">{data.areaName + ", " + data.locality}</p>
+					<h1 className="text-xl font-medium uppercase text-shadow">
+						{data.name}
+					</h1>
+					<p className="text-sm font-medium tracking-wide text-shadow">
+						{data.areaName + ", " + data.locality}
+					</p>
 				</div>
 				<div className="flex items-center justify-between px-2">
 					<div className="flex items-center gap-2 text-lg font-medium text-lightblack">

@@ -18,8 +18,11 @@ import MenuContentSkeleton from "../components/restaurant/Skeletons/MenuContentS
 
 const RestaurantPage = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);
-	const [searchParams] = useSearchParams();
-	const [tabIndex, setTabIndex] = useState(0);
+	const [searchParams, setSearchParams] = useSearchParams();
+	const intialTabIndex = searchParams.get("menu")
+		? Number(searchParams.get("menu"))
+		: 0;
+	const [tabIndex, setTabIndex] = useState(intialTabIndex);
 	const dispatch = useAppDispatch();
 	const [showMenu, setShowMenu] = useState(false);
 
@@ -27,31 +30,31 @@ const RestaurantPage = () => {
 		setShowMenu((e) => !e);
 	}, []);
 
-	const variables = { id: searchParams.get("id") };
+	const restaurantId = searchParams.get("restaurantId");
+	const id = searchParams.get("id");
+
 	const args = {
-		restaurantId: searchParams.get("restaurantId"),
+		restaurantId,
 		lat: serviceArea?.lat,
 		lng: serviceArea?.lng,
 	};
 
 	const [isLoading, isError, menuData] = useGetRestaurantData(args);
-	const { loading, error, data } = useQuery(GET_RESTAURANT, { variables });
+	const { loading, error, data } = useQuery(GET_RESTAURANT, {
+		variables: { id },
+	});
 
 	useEffect(() => {
 		if (Array.isArray(menuData) && menuData.length > 0) {
 			const data = [...menuData] as { card: { card: MenuCard } }[];
-			const menu = data
-				.slice(1, -3)
-				.map((e) => e.card.card)
-				.filter(
-					(e) =>
-						e.title !== "Breakfast" &&
-						e.title !== "Lunch" &&
-						e.title !== "Dinner",
-				);
+			const menu = data.slice(1, -3).map((e) => e.card.card);
 			dispatch(addInitialMenu(menu));
 		}
 	}, [dispatch, menuData]);
+
+	useEffect(() => {
+		setSearchParams((prev) => ({ ...prev, id, restaurantId, menu: tabIndex }));
+	}, [tabIndex, setSearchParams, id, restaurantId]);
 
 	if (!serviceArea || !serviceArea.lat || !serviceArea.lng) {
 		return <Navigate to="/" />;

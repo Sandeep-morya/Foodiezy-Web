@@ -14,11 +14,14 @@ const MenuList = (props: Props) => {
 	if (!menus) {
 		return <>Loading..</>;
 	}
+	console.log({ menus });
 	return (
-		<div className="flex flex-col gap-1 mt-4 pb-20">
+		<div className="flex flex-col gap-1 pb-20 mt-4">
 			{menus.map((data, index) => {
 				const title = data.title;
-				const itemCards = data.itemCards;
+				const itemCards = data?.categories
+					? data.categories[0].itemCards
+					: data.itemCards;
 				// if (title === "Breakfast") {
 				// 	itemCards = data.categories[0].itemCards;
 				// }
