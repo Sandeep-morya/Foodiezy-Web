@@ -7,7 +7,7 @@ const LoginPage = () => {
 		<div className="relative flex items-center justify-center w-screen h-screen bg-[url('/admin-login-bg.avif')] bg-center bg-cover">
 			<div className="container relative p-0 m-auto text-gray-500 md:px-12 xl:px-40">
 				<div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
-					<div className="bg-[url('/admin-login-bg.avif')] bg-center shadow-[0_0_20px_#000] rounded-xl">
+					<div className="bg-[url('/admin-login-bg.avif')] bg-center shadow-[0_0_20px_5px_#000] rounded-xl">
 						<div className="p-6 sm:p-16">
 							<div className="space-y-4">
 								<img
