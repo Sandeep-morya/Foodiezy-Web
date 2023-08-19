@@ -1,12 +1,12 @@
-import { useCallback, useState } from 'react';
-import { MdLocationOn } from 'react-icons/md';
-import { PiMagnifyingGlass } from 'react-icons/pi';
+import { useCallback, useState } from "react";
+import { MdLocationOn } from "react-icons/md";
+import { PiMagnifyingGlass } from "react-icons/pi";
 
-import { useAppSelector } from '../../hook/reduxHooks';
-import Drawer from '../common/Drawer';
-import Logo from '../common/Logo';
-import LocationDrawerContent from './LocationDrawerContent';
-import SearchDrawerContent from './SearchDrawerContent';
+import { useAppSelector } from "../../hook/reduxHooks";
+import Drawer from "../common/Drawer";
+import Logo from "../common/Logo";
+import LocationDrawerContent from "./LocationDrawerContent";
+import SearchDrawerContent from "./SearchDrawerContent";
 
 const SearchBar = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);
@@ -14,10 +14,10 @@ const SearchBar = () => {
 	const [showSearchDrawer, setShowSearchDrawer] = useState(false);
 
 	const toggleLocationDrawer = useCallback(() => {
-		setShowLocationDrawer((e) => (e ? false : true));
+		setShowLocationDrawer((e) => !e);
 	}, []);
 	const toggleSearchDrawer = useCallback(() => {
-		setShowSearchDrawer((e) => (e ? false : true));
+		setShowSearchDrawer((e) => !e);
 	}, []);
 
 	return (
@@ -41,10 +41,10 @@ const SearchBar = () => {
 			)}
 			<div className="text-black/10 mb-0.5">{"|"}</div>
 			<div className="flex items-center justify-between flex-1 pl-2 pr-4 gap-x-3">
-				<div onClick={toggleSearchDrawer} className="flex-1 overflow-hidden">
+				<div className="flex-1 overflow-hidden">
 					<input
 						className="w-full text-sm outline-none placeholder:text-black/30 focus:border-none md:text-base disabled:bg-white"
-						disabled
+						onClick={toggleSearchDrawer}
 						type="text"
 						placeholder="Looking for something tasty? Start here..."
 					/>
@@ -52,7 +52,6 @@ const SearchBar = () => {
 				{showSearchDrawer && (
 					<Drawer
 						content={<SearchDrawerContent toggleDrawer={toggleSearchDrawer} />}
-						right
 						label={
 							<div>
 								<Logo />

@@ -29,7 +29,7 @@
 
 `Current Progress`
 
-- HeroPage
+- LandingPage
 - AdminLogin Ui
 - Error Page
 - Homepage Dishes Section

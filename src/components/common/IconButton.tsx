@@ -1,19 +1,38 @@
-import { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
-import NoficationCount from './NotificationCount';
+import NoficationCount from "./NotificationCount";
 
 interface Props {
-	href: string;
+	href?: string;
 	element: ReactNode;
 	count?: number;
+	asButton?: boolean;
+	onClick?: () => void;
 }
-const IconButton = ({ href, element, count = 0 }: Props) => {
+const IconButton = ({
+	href = "#",
+	element,
+	count = 0,
+	asButton,
+	onClick,
+}: Props) => {
 	return (
 		<div className="relative">
-			<Link to={href} className="text-2xl lg:text-3xl" target="_blank">
-				{element}
-			</Link>
+			{asButton ? (
+				<button
+					onClick={onClick}
+					className="text-2xl lg:text-3xl active:scale-90 hover:text-primary">
+					{element}
+				</button>
+			) : (
+				<Link
+					to={href}
+					className="text-2xl lg:text-3xl hover:text-primary"
+					target="_blank">
+					{element}
+				</Link>
+			)}
 			{count > 0 && <NoficationCount {...{ count }} />}
 		</div>
 	);

@@ -3,11 +3,13 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import deviceSlice from "./deviceSlice";
 import restaurantSlice from "./restaurantSlice";
 import menuSlice from "./menuSlice";
+import cartSlice from "./cartSlice";
 
 const reducer = combineReducers({
 	device: deviceSlice,
 	restaurants: restaurantSlice,
 	menu: menuSlice,
+	cart: cartSlice,
 });
 
 export const store = configureStore({ reducer });
