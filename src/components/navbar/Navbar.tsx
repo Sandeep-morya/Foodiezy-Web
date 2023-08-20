@@ -19,6 +19,7 @@ import FavouritesContent from "../favourites/FavouritesContent";
 import NotificationsContent from "../notifcations/NotificationsContent";
 import { useAppSelector } from "../../hook/reduxHooks";
 import { setItem } from "../../utils/localStorage";
+import useDebounce from "../../hook/useDebounce";
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -26,6 +27,7 @@ const Navbar = () => {
 	const user = useAppSelector((store) => store.user);
 	const [showCartDrawer, setShowCartDrawer] = useState(false);
 	const cart = useAppSelector((store) => store.cart);
+	const debouncedCart = useDebounce(cart, 1000);
 
 	const toggleCartDrawer = useCallback(
 		() => {
@@ -78,8 +80,9 @@ const Navbar = () => {
 	// console.log({ isScrolled });
 
 	useEffect(() => {
-		setItem("cart", cart);
-	}, [cart]);
+		console.log("sent to db");
+		setItem("cart", debouncedCart);
+	}, [debouncedCart]);
 
 	return (
 		<header
