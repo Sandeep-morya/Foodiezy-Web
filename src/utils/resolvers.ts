@@ -98,7 +98,7 @@ export const GET_RESTAURANT = gql`
 `;
 
 export const REGISTER_USER = gql`
-	mutation RegisterUser(
+	mutation Mutation(
 		$name: String!
 		$email: String!
 		$image: String
@@ -119,7 +119,22 @@ export const REGISTER_USER = gql`
 				email
 				image
 				provider
+				cart {
+					dishName
+					category
+					imageId
+					price
+					count
+					restaurantId
+					restaurantName
+				}
 			}
 		}
+	}
+`;
+
+export const MUTATE_CART = gql`
+	mutation Mutation($cartInput: [CartInput]!) {
+		mutateCart(cartInput: $cartInput)
 	}
 `;

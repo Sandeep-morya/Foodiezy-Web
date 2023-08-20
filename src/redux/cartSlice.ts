@@ -1,13 +1,15 @@
 ﻿import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { CartItem } from "../types";
-import { getItem } from "../utils/localStorage";
 
-const initialState: CartItem[] = getItem("cart") || [];
+const initialState: CartItem[] = [];
 
 const cartSlice = createSlice({
 	name: "cart-slice",
 	initialState,
 	reducers: {
+		initiateCart(_, action: PayloadAction<CartItem[]>) {
+			return action.payload;
+		},
 		addToCart(state, { payload }: PayloadAction<CartItem>) {
 			const dishId = payload.dishId;
 			const cartItem: CartItem = {
@@ -40,5 +42,5 @@ const cartSlice = createSlice({
 		},
 	},
 });
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { initiateCart, addToCart, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

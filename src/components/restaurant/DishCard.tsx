@@ -12,6 +12,7 @@ import { useState, useMemo, useEffect } from "react";
 import Counter from "./Counter";
 import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
 import { addToCart, removeFromCart } from "../../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 interface Card {
 	restaurantId: string;
@@ -22,6 +23,8 @@ const DishCard = ({ info, restaurantId, restaurantName }: Card) => {
 	const dispatch = useAppDispatch();
 	const src = info.imageId ? MD_IMG_LINK + info.imageId : "/sample.png";
 	const cart = useAppSelector((store) => store.cart);
+	const user = useAppSelector((store) => store.user);
+	const navigate = useNavigate();
 
 	const cartItem = useMemo(() => {
 		return cart.find((item) => item.dishId === info.id);
@@ -95,7 +98,11 @@ const DishCard = ({ info, restaurantId, restaurantName }: Card) => {
 						<div className="w-full h-[40px] flex items-center gap-2 text-lightblack">
 							{count === 0 ? (
 								<button
-									onClick={() => setCount(1)}
+									onClick={
+										user.token
+											? () => setCount(1)
+											: () => navigate("/user/login")
+									}
 									className="flex-1 text-center rounded  font-medium  bg-white/30 text-secondary flex h-[35px] items-center justify-center gap-3 active:scale-95">
 									<div className="text-xl">
 										<PiShoppingBag />

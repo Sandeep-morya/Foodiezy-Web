@@ -18,8 +18,10 @@ import CartContent from "../cart/CartContent";
 import FavouritesContent from "../favourites/FavouritesContent";
 import NotificationsContent from "../notifcations/NotificationsContent";
 import { useAppSelector } from "../../hook/reduxHooks";
-import { setItem } from "../../utils/localStorage";
 import useDebounce from "../../hook/useDebounce";
+import { useMutation } from "@apollo/client";
+import { MUTATE_CART } from "../../utils/resolvers";
+import { CartItem } from "../../types";
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -28,20 +30,15 @@ const Navbar = () => {
 	const [showCartDrawer, setShowCartDrawer] = useState(false);
 	const cart = useAppSelector((store) => store.cart);
 	const debouncedCart = useDebounce(cart, 1000);
+	const [mutateCart] = useMutation(MUTATE_CART);
 
-	const toggleCartDrawer = useCallback(
-		() => {
-			// if (user && user.token) {
-			// 	setShowCartDrawer((e) => !e);
-			// } else {
-			// 	navigate("/user/login");
-			// }
+	const toggleCartDrawer = useCallback(() => {
+		if (user && user.token) {
 			setShowCartDrawer((e) => !e);
-		},
-		[
-			/* navigate, user */
-		],
-	);
+		} else {
+			navigate("/user/login");
+		}
+	}, [navigate, user]);
 
 	const [showFavouritesDrawer, setShowFavouritesDrawer] = useState(false);
 	const toggleFavouritesDrawer = useCallback(() => {
@@ -79,10 +76,28 @@ const Navbar = () => {
 	// }, []);
 	// console.log({ isScrolled });
 
+	const MutateCart = useCallback(
+		async (debouncedCart: CartItem[], token: string) => {
+			await mutateCart({
+				variables: { cartInput: debouncedCart },
+				context: {
+					headers: {
+						authorization: `Bearer ${token}`,
+					},
+				},
+			});
+		},
+		[mutateCart],
+	);
+
 	useEffect(() => {
 		console.log("sent to db");
-		setItem("cart", debouncedCart);
-	}, [debouncedCart]);
+		if (user.token) {
+			MutateCart(debouncedCart, user.token);
+		}
+	}, [debouncedCart, user, MutateCart]);
+
+	console.log({ cart, user });
 
 	return (
 		<header

@@ -5,6 +5,7 @@ import { useAppDispatch } from "./reduxHooks";
 import axios from "axios";
 import { initiateUser } from "../redux/userSlice";
 import { TokenResponse } from "@react-oauth/google";
+import { initiateCart } from "../redux/cartSlice";
 
 const useGoogleLoginSuccess = () => {
 	const [registerUser, { loading, error }] = useMutation(REGISTER_USER);
@@ -25,7 +26,12 @@ const useGoogleLoginSuccess = () => {
 				};
 
 				const res = await registerUser({ variables });
-				dispatch(initiateUser(res.data.registerUser));
+				const token = res.data.registerUser.token;
+				const { _id, name, email, image, provider, cart } =
+					res.data.registerUser.about;
+				const about = { _id, name, email, image, provider };
+				dispatch(initiateUser({ token, about }));
+				dispatch(initiateCart(cart));
 			} catch (error) {
 				console.log(error);
 			}
