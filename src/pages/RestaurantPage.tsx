@@ -110,7 +110,11 @@ const RestaurantPage = () => {
 			{loading || isLoading ? (
 				<MenuContentSkeleton />
 			) : (
-				<MenuContent tabIndex={tabIndex} />
+				<MenuContent
+					tabIndex={tabIndex}
+					restaurantId={data.restaurant.restaurantId}
+					restaurantName={data.restaurant.name}
+				/>
 			)}
 		</div>
 	);

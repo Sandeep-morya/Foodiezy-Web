@@ -96,3 +96,30 @@ export const GET_RESTAURANT = gql`
 		}
 	}
 `;
+
+export const REGISTER_USER = gql`
+	mutation RegisterUser(
+		$name: String!
+		$email: String!
+		$image: String
+		$password: String
+		$provider: String
+	) {
+		registerUser(
+			name: $name
+			email: $email
+			image: $image
+			password: $password
+			provider: $provider
+		) {
+			token
+			about {
+				_id
+				name
+				email
+				image
+				provider
+			}
+		}
+	}
+`;

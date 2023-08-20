@@ -1,6 +1,6 @@
 ﻿// import React from "react";
 
-import type { Info } from "../../types";
+import type { CartItem, Info } from "../../types";
 import { MD_IMG_LINK } from "../../utils/links";
 import Pill from "../common/Pill";
 import {
@@ -8,18 +8,55 @@ import {
 	PiHeartStraightDuotone,
 	PiShoppingBag,
 } from "react-icons/pi";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Counter from "./Counter";
+import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
+import { addToCart, removeFromCart } from "../../redux/cartSlice";
 
-const DishCard = (card: Info) => {
-	const src = card.imageId ? MD_IMG_LINK + card.imageId : "/sample.png";
-	const [count, setCount] = useState(0);
+interface Card {
+	restaurantId: string;
+	restaurantName: string;
+	info: Info;
+}
+const DishCard = ({ info, restaurantId, restaurantName }: Card) => {
+	const dispatch = useAppDispatch();
+	const src = info.imageId ? MD_IMG_LINK + info.imageId : "/sample.png";
+	const cart = useAppSelector((store) => store.cart);
+
+	const cartItem = useMemo(() => {
+		return cart.find((item) => item.dishId === info.id);
+	}, [info.id, cart]);
+
+	const [count, setCount] = useState(cartItem?.count || 0);
+
 	const price = useMemo(() => {
-		let value = card.price / 100;
+		const cost = info.price || 10000;
+		let value = cost / 100;
 		value = count === 0 ? value * (count + 1) : value * count;
 		return value.toFixed(2);
-	}, [count, card.price]);
+	}, [count, info.price]);
 
+	useEffect(() => {
+		const cartItem: CartItem = {
+			dishId: info.id,
+			dishName: info.name,
+			category: info.category,
+			imageId: info.imageId,
+			price: info.price || 10000,
+			count,
+			restaurantId,
+			restaurantName,
+		};
+
+		dispatch(count === 0 ? removeFromCart(info.id) : addToCart(cartItem));
+	}, [count, dispatch, restaurantId, restaurantName, info]);
+	useEffect(() => {
+		if (cartItem) {
+			setCount(cartItem.count);
+		} else {
+			setCount(0);
+		}
+	}, [cartItem]);
 	return (
 		<div className="relative dish-card w-full h-[240px] border rounded-lg overflow-hidden group">
 			<div>
@@ -40,16 +77,19 @@ const DishCard = (card: Info) => {
 			<div className="dish-card-overlay absolute bottom-0  left-0 w-full h-[90px] p-3 duration-300 flex flex-col justify-center items-start group-hover:h-full group-hover:justify-start text-secondary transition-all overflow-y-scroll vanish-scroll-bar">
 				<div className="flex flex-col items-start gap-1">
 					<Pill
-						title={card.isVeg ? "Pure Veg" : "Non-Veg"}
-						color={card.isVeg ? "bg-teal-500" : "bg-red-500"}
+						title={info.isVeg ? "Pure Veg" : "Non-Veg"}
+						color={info.isVeg ? "bg-teal-500" : "bg-red-500"}
 					/>
-					<h3 className="text-lg font-medium tracking-wider ">{card.name}</h3>
+					<h3 className="text-lg font-medium tracking-wider ">
+						{/* Pending adding ... at last */}
+						{info.name.substring(0, 35)}
+					</h3>
 				</div>
 
 				<div className=" w-full mt-0.5 flex-col drop-shadow-md hidden group-hover:flex flex-1">
 					{/* <h3 className="font-medium underline">Description</h3> */}
 					<h3 className="text-xl font-bold">₹{price}</h3>
-					<p className="py-1 text-sm tracking-wider">{card.description}</p>
+					<p className="py-1 text-sm tracking-wider">{info.description}</p>
 
 					<div className="flex items-end flex-1 w-full pt-2">
 						<div className="w-full h-[40px] flex items-center gap-2 text-lightblack">
@@ -83,65 +123,3 @@ const DishCard = (card: Info) => {
 };
 
 export default DishCard;
-
-/*
-info: {
-								id: "56705787",
-								name: "Kadhai Paneer Thali",
-								category: "Thalis",
-								description:
-									"Serves 1 | Kadhai Paneer + Dal Fry + 2 Laccha Prantha.",
-								imageId: "f0b67252fbfa092d9617cd7514237455",
-								inStock: 1,
-								isVeg: 1,
-								price: 16500,
-								variants: {},
-								variantsV2: {},
-								addons: [
-									{
-										groupId: "85002202",
-										groupName: "Accompaniments",
-										choices: [
-											{
-												id: "70126609",
-												name: "Mini Kheer",
-												price: 4600,
-												isVeg: 1,
-												isEnabled: 1,
-											},
-											{
-												id: "71893526",
-												name: "Sirka Pyaz",
-												price: 1700,
-												inStock: 1,
-												isVeg: 1,
-												isEnabled: 1,
-											},
-										],
-										maxAddons: -1,
-										maxFreeAddons: -1,
-									},
-								],
-								itemAttribute: {
-									vegClassifier: "VEG",
-									portionSize: "Serves 1",
-								},
-								ribbon: {
-									text: "Bestseller",
-									textColor: "#ffffff",
-									topBackgroundColor: "#d53d4c",
-									bottomBackgroundColor: "#b02331",
-								},
-								showImage: true,
-								itemBadge: {},
-								badgesV2: {},
-								isBestseller: true,
-								ratings: {
-									aggregatedRating: {
-										rating: "4.3",
-										ratingCount: "709 ratings",
-										ratingCountV2: "709",
-									},
-								},
-							}
- */

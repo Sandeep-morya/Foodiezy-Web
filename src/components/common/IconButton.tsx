@@ -22,7 +22,7 @@ const IconButton = ({
 			{asButton ? (
 				<button
 					onClick={onClick}
-					className="text-2xl lg:text-3xl active:scale-90 hover:text-primary">
+					className="w-[32px] h-[32px]text-2xl lg:text-3xl active:scale-90 hover:text-primary">
 					{element}
 				</button>
 			) : (

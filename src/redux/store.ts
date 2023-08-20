@@ -4,8 +4,10 @@ import deviceSlice from "./deviceSlice";
 import restaurantSlice from "./restaurantSlice";
 import menuSlice from "./menuSlice";
 import cartSlice from "./cartSlice";
+import userSlice from "./userSlice";
 
 const reducer = combineReducers({
+	user: userSlice,
 	device: deviceSlice,
 	restaurants: restaurantSlice,
 	menu: menuSlice,

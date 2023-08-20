@@ -1,10 +1,36 @@
 ﻿import { FaGithub } from "react-icons/fa";
 import PrivaryFooter from "../components/auth/PrivaryFooter";
 import SocailButton from "../components/auth/SocailButton";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useAppSelector } from "../hook/reduxHooks";
+import { Navigate } from "react-router-dom";
+import useGoogleLoginSuccess from "../hook/useGoogleLoginSuccess";
 
 const LoginPage = () => {
+	const user = useAppSelector((store) => store.user);
+	const { loading, onSuccess } = useGoogleLoginSuccess();
+	const googleLogin = useGoogleLogin({
+		onSuccess,
+		onError: (error) => console.log(error),
+	});
+
+	if (user.token) {
+		return <Navigate to={`/`} />;
+	}
+
 	return (
 		<div className="relative flex items-center justify-center w-screen h-screen bg-[url('/admin-login-bg.avif')] bg-center bg-cover">
+			{loading && (
+				<div className="backdrop-blur-sm bg-black/50 w-full h-full absolute z-50 flex justify-center items-center">
+					<div className="w-[80px] h-[80px]">
+						<img
+							className="w-full h-full object-contain animate-spin "
+							src="/only-smile.png"
+							alt=""
+						/>
+					</div>
+				</div>
+			)}
 			<div className="container relative p-0 m-auto text-gray-500 md:px-12 xl:px-40">
 				<div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">
 					<div className="bg-[url('/admin-login-bg.avif')] bg-center shadow-[0_0_20px_5px_#000] rounded-xl">
@@ -22,6 +48,7 @@ const LoginPage = () => {
 							</div>
 							<div className="grid mt-16 space-y-4">
 								<SocailButton
+									onClick={googleLogin}
 									icon={
 										<img
 											src="https://tailus.io/sources/blocks/social/preview/images/google.svg"

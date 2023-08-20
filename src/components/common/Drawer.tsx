@@ -44,7 +44,7 @@ const Drawer = ({
 	}, [right, slideEffect, withScrollbar]);
 
 	return (
-		<div className="fixed top-0 left-0 w-screen h-screen z-[500] bg-black/50">
+		<div className="fixed flex top-0 left-0 w-screen h-screen z-[500] bg-black/50">
 			<div
 				className={twMerge(
 					`w-full h-full md:w-[400px] pt-1 px-2 bg-white transition-all ease-out duration-${animationDuration} absolute ${

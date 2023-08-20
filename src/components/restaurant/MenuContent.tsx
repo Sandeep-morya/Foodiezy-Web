@@ -7,8 +7,10 @@ import { useAppSelector } from "../../hook/reduxHooks";
 
 interface Props {
 	tabIndex: number;
+	restaurantId: string;
+	restaurantName: string;
 }
-const MenuContent = ({ tabIndex }: Props) => {
+const MenuContent = ({ tabIndex, restaurantId, restaurantName }: Props) => {
 	const menu = useAppSelector((store) => store.menu);
 	const [query, setQuery] = useState("");
 
@@ -69,7 +71,11 @@ const MenuContent = ({ tabIndex }: Props) => {
 
 			<div className="grid grid-cols-1 gap-3 px-2 mt-2 md:grid-cols-2 md:gap-4 xl:grid-cols-3 2xl:grid-cols-4">
 				{menuList.map(({ card }, index) => (
-					<DishCard key={card.info.id + index} {...card.info} />
+					<DishCard
+						key={card.info.id + index}
+						info={card.info}
+						{...{ restaurantId, restaurantName }}
+					/>
 				))}
 			</div>
 		</div>

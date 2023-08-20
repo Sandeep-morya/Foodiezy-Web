@@ -229,3 +229,36 @@ export interface MenuCard {
 	categories: MenuCard[];
 	itemCards: MenuItem[];
 }
+
+export interface CartDish {
+	dishId: string;
+	dishName: string;
+	imageId: string;
+	price: number;
+	count: number;
+	category: string;
+}
+
+export interface CartItem extends CartDish {
+	restaurantId: string;
+	restaurantName: string;
+}
+
+export interface CartRestaurant {
+	restaurantId: string;
+	restaurantName: string;
+	dishes: CartDish[];
+}
+
+export interface UserData {
+	_id: string;
+	name: string;
+	email: string;
+	image: string;
+	provider: string;
+}
+
+export interface User {
+	token: string | null;
+	about: UserData | null;
+}

@@ -12,28 +12,60 @@ import IconButton from "../common/IconButton";
 import Logo from "../common/Logo";
 import SearchBar from "./SearchBar";
 import { useNavigate } from "react-router-dom";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Drawer from "../common/Drawer";
 import CartContent from "../cart/CartContent";
 import FavouritesContent from "../favourites/FavouritesContent";
 import NotificationsContent from "../notifcations/NotificationsContent";
+import { useAppSelector } from "../../hook/reduxHooks";
+import { setItem } from "../../utils/localStorage";
 
 const Navbar = () => {
 	const navigate = useNavigate();
+
+	const user = useAppSelector((store) => store.user);
 	const [showCartDrawer, setShowCartDrawer] = useState(false);
-	const toggleCartDrawer = useCallback(() => {
-		setShowCartDrawer((e) => !e);
-	}, []);
+	const cart = useAppSelector((store) => store.cart);
+
+	const toggleCartDrawer = useCallback(
+		() => {
+			// if (user && user.token) {
+			// 	setShowCartDrawer((e) => !e);
+			// } else {
+			// 	navigate("/user/login");
+			// }
+			setShowCartDrawer((e) => !e);
+		},
+		[
+			/* navigate, user */
+		],
+	);
 
 	const [showFavouritesDrawer, setShowFavouritesDrawer] = useState(false);
 	const toggleFavouritesDrawer = useCallback(() => {
-		setShowFavouritesDrawer((e) => !e);
-	}, []);
+		if (user && user.token) {
+			setShowFavouritesDrawer((e) => !e);
+		} else {
+			navigate("/user/login");
+		}
+	}, [navigate, user]);
 
 	const [showNotificationsDrawer, setShowNotificationsDrawer] = useState(false);
 	const toggleNotificationsDrawer = useCallback(() => {
-		setShowNotificationsDrawer((e) => !e);
-	}, []);
+		if (user && user.token) {
+			setShowNotificationsDrawer((e) => !e);
+		} else {
+			navigate("/user/login");
+		}
+	}, [navigate, user]);
+
+	const cartPrice = useMemo(() => {
+		const totalPaisa = cart.reduce(
+			(acc, el) => (acc += el.price * el.count),
+			0,
+		);
+		return (totalPaisa / 100).toFixed(1);
+	}, [cart]);
 	// const [isScrolled, setIsScrolled] = useState(false);
 
 	// useEffect(() => {
@@ -45,7 +77,10 @@ const Navbar = () => {
 	// }, []);
 	// console.log({ isScrolled });
 
-	const count = 0;
+	useEffect(() => {
+		setItem("cart", cart);
+	}, [cart]);
+
 	return (
 		<header
 			className={`w-full h-[60px] fixed top-0 z-40 flex justify-between py-2 px-4 items-center lg:h-[80px] md:px-12 lg:px-4 2xl:px-44 bg-white`}>
@@ -61,7 +96,21 @@ const Navbar = () => {
 					asButton
 					element={<PiBell />}
 				/>
-				<IconButton asButton element={<PiUserCircle />} />
+				<IconButton
+					asButton
+					onClick={user.about ? () => {} : () => navigate("/user/login")}
+					element={
+						user.about ? (
+							<img
+								className="w-full h-full rounded-full"
+								src={user.about.image}
+								alt={user.about.name[0]}
+							/>
+						) : (
+							<PiUserCircle />
+						)
+					}
+				/>
 				<IconButton
 					onClick={toggleFavouritesDrawer}
 					asButton
@@ -70,20 +119,25 @@ const Navbar = () => {
 				<div className="flex items-center gap-4 divide-x">
 					<IconButton
 						asButton
-						element={count ? <PiShoppingBag /> : <PiShoppingBagOpenLight />}
+						count={cart.length}
+						element={
+							cart.length > 0 ? <PiShoppingBag /> : <PiShoppingBagOpenLight />
+						}
 						onClick={toggleCartDrawer}
 					/>
 
 					<div className="items-start hidden h-full pl-4 md:grid">
 						<p className="text-xs text-lightblack">Your Bag</p>
-						<h2 className="font-medium">{!count ? "is Empty" : `₹ 789`}</h2>
+						<h2 className="font-medium">
+							{cart.length > 0 ? `₹${cartPrice}` : "is Empty"}
+						</h2>
 					</div>
 				</div>
 			</nav>
 			{showCartDrawer && (
 				<Drawer
-					content={<CartContent />}
-					label="Cart"
+					content={<CartContent {...{ cartPrice }} />}
+					label="Your Bag"
 					right
 					toggleDrawer={toggleCartDrawer}
 					// slideEffect={200}
