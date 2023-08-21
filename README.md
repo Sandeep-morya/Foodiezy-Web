@@ -14,7 +14,7 @@
 
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/Sandeep-morya/Foodiezy-Web?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/Sandeep-morya/Foodiezy-Web?color=56BEB8">
+  </p>
 
   <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/Sandeep-morya/Foodiezy-Web?color=56BEB8" /> -->
 
@@ -24,15 +24,8 @@
 </p>
 
 <h4 align="center">
-	🚧  Foodiezy-Web 🚀 Under construction...  🚧
+	Foodiezy-Web <sub>beta</sub>
 </h4>
-
-`Current Progress`
-
-- LandingPage
-- AdminLogin Ui
-- Error Page
-- Homepage Dishes Section
 
 <hr>
 
@@ -48,25 +41,33 @@
 
 <br>
 
-## :dart: About
-
-Describe your project
-
 ## :sparkles: Features
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+- Browse and search restaurants based on various filters.
+- View detailed restaurant information including menus.
+- Add items to the cart and modify the cart contents
+- User authentication using Google authentication.
+- GraphQL API for efficient data retrieval.
 
 ## :rocket: Technologies
 
-The following tools were used in this project:
+- Frontend: HTML, CSS, Typescript, React.js
+- Backend: Node.js, Express.js, GraphQL, Typescript
+- Database: MongoDB
+- User Authentication: Google OAuth2
+- Other Libraries: Apollo Server (for GraphQL), Mongoose (for MongoDB)
+- more in package.json
 
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+## Future Updates
+
+- Landing Page buttons interaction
+- ChatBot
+- Logout Functionality
+- Updated restaurant Facecard
+- Subtotal Price Break
+- Checkout Functionlity
+- Admin Dashboard
+- Live Order State Updates
 
 ## :white_check_mark: Requirements
 
@@ -85,9 +86,9 @@ $ cd Foodiezy-Web
 $ yarn
 
 # Run the project
-$ yarn start
+$ yarn dev
 
-# The server will initialize in the <http://localhost:3000>
+# The server will initialize in the <http://localhost:5000>
 ```
 
 ## :memo: License
@@ -97,5 +98,7 @@ This project is under license from MIT. For more details, see the [LICENSE](LICE
 Made with :heart: by <a href="https://github.com/Sandeep-morya" target="_blank">Sandeep Morya</a>
 
 &#xa0;
+
+☺ Feel Free to cotanct for api or to report the bugs
 
 <a href="#top">Back to top</a>
