@@ -50,3 +50,24 @@ body {
 .center {
 	@apply flex justify-center items-center;
 }
+.animate-zero {
+	animation: zero 300ms ease-out;
+}
+.animate-zero-reverse {
+	animation: zero 300ms ease-out reverse;
+}
+@keyframes zero {
+	0% {
+		clip-path: circle(5.1% at 100% 0);
+	}
+
+	30% {
+		clip-path: circle(38.6% at 96% 4%);
+	}
+	70% {
+		clip-path: circle(96.3% at 96% 4%);
+	}
+	100% {
+		clip-path: circle(136.4% at 96% 4%);
+	}
+}

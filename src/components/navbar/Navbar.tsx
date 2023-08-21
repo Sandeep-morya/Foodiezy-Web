@@ -15,25 +15,35 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Drawer from "../common/Drawer";
 import CartContent from "../cart/CartContent";
 import FavouritesContent from "../favourites/FavouritesContent";
-import { useAppSelector } from "../../hook/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
 import useDebounce from "../../hook/useDebounce";
-import { useMutation } from "@apollo/client";
-import { MUTATE_CART } from "../../utils/resolvers";
+import { useLazyQuery, useMutation } from "@apollo/client";
+import { GET_USER, MUTATE_CART } from "../../utils/resolvers";
 import { CartItem } from "../../types";
 import LoginModal from "../auth/LoginModal";
+import UserAfterLogin from "../user/UserAfterLogin";
+import { getItem } from "../../utils/localStorage";
+import { initiateUser } from "../../redux/userSlice";
+import { initiateCart } from "../../redux/cartSlice";
 
 const Navbar = () => {
 	const navigate = useNavigate();
+	const id = getItem("current_user_id");
+	const [getUser] = useLazyQuery(GET_USER);
+	const dispatch = useAppDispatch();
 
 	const user = useAppSelector((store) => store.user);
 	const cart = useAppSelector((store) => store.cart);
 	const debouncedCart = useDebounce(cart, 700);
 	const [mutateCart] = useMutation(MUTATE_CART);
 
-	const [showLoginModal, setShowLoginModal] = useState(user.token === null);
+	const [showLoginModal, setShowLoginModal] = useState(!id);
 	const toggleLoginModal = user.token
 		? () => {}
 		: () => setShowLoginModal((e) => !e);
+
+	const [showUserAboutModal, setShowUserAboutModal] = useState(false);
+	const toggleUserAboutModal = () => setShowUserAboutModal((e) => !e);
 
 	const [showCartDrawer, setShowCartDrawer] = useState(false);
 	const toggleCartDrawer = () =>
@@ -80,6 +90,31 @@ const Navbar = () => {
 		}
 	}, [user]);
 
+	useEffect(() => {
+		if (id && !user.token) {
+			getUser({ variables: { id } }).then(({ data }) => {
+				const token = id;
+				const { _id, name, email, image, provider, cart } = data.getUser;
+				const about = { _id, name, email, image, provider };
+				dispatch(initiateUser({ token, about }));
+				dispatch(
+					initiateCart(
+						cart.map((e: CartItem) => ({
+							category: e.category,
+							count: e.count,
+							dishId: e.dishId,
+							dishName: e.dishName,
+							imageId: e.imageId,
+							price: e.price,
+							restaurantId: e.restaurantId,
+							restaurantName: e.restaurantName,
+						})),
+					),
+				);
+			});
+		}
+	}, [id, user.token, getUser, dispatch]);
+
 	return (
 		<header
 			className={`w-full h-[60px] fixed top-0 z-40 flex justify-between py-2 px-4 items-center lg:h-[80px] md:px-12 lg:px-4 2xl:px-44 bg-white`}>
@@ -90,22 +125,28 @@ const Navbar = () => {
 				<SearchBar />
 			</div>
 			<nav className="flex items-center gap-5 xl:gap-8">
-				<IconButton
-					asButton
-					// onClick={user.about ? () => {} : () => navigate("/user/login")}
-					onClick={toggleLoginModal}
-					element={
-						user.about ? (
-							<img
-								className="w-full h-full rounded-full"
-								src={user.about.image}
-								alt={user.about.name[0]}
-							/>
-						) : (
-							<PiUserCircle />
-						)
-					}
-				/>
+				<div className="relative">
+					<IconButton
+						asButton
+						onClick={user.about ? toggleUserAboutModal : toggleLoginModal}
+						element={
+							user.about ? (
+								<img
+									className="w-full h-full rounded-full"
+									src={user.about.image}
+									alt={user.about.name[0]}
+								/>
+							) : (
+								<PiUserCircle />
+							)
+						}
+					/>
+
+					{showUserAboutModal && (
+						<UserAfterLogin toggle={toggleUserAboutModal} />
+					)}
+				</div>
+
 				<IconButton
 					onClick={toggleFavouritesDrawer}
 					asButton

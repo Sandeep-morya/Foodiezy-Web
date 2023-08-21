@@ -140,3 +140,25 @@ export const MUTATE_CART = gql`
 		mutateCart(cartInput: $cartInput, userId: $userId)
 	}
 `;
+
+export const GET_USER = gql`
+	query GetUser($id: ID!) {
+		getUser(id: $id) {
+			_id
+			name
+			email
+			image
+			provider
+			cart {
+				dishId
+				dishName
+				category
+				imageId
+				price
+				count
+				restaurantId
+				restaurantName
+			}
+		}
+	}
+`;

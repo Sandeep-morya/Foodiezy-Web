@@ -17,6 +17,22 @@ const client = new ApolloClient({
 });
 
 const App = () => {
+	// const [loading, setLoading] = useState(false);
+	// const dispatch = useAppDispatch();
+
+	// if (id) {
+	// 	setLoading(true);
+	// 	client
+	// 		.query({
+	// 			query: GET_USER,
+	// 			variables: { id },
+	// 		})
+
+	// 	setLoading(false);
+	// }
+	// if (loading) {
+	// 	return <>Loading...</>;
+	// }
 	return (
 		<GoogleOAuthProvider clientId={VITE_GOOGLE_CLIENT_ID}>
 			<ApolloProvider client={client}>

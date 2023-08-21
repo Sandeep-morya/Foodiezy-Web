@@ -17,7 +17,6 @@ export interface ServiceArea {
 }
 export interface Device {
 	theme: Theme;
-	notfications: string[];
 	serviceArea: ServiceArea | null;
 }
 

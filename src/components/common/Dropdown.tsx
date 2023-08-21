@@ -65,7 +65,7 @@ const Dropdown = <T extends string>({
 				</div>
 			</button>
 			{isOpen && (
-				<ul className="absolute top-12 left-0 w-[180px] md:w-[200px] p-2 bg-white ring-1 ring-black/5 rounded-xl flex flex-col  shadow-md cursor-default">
+				<ul className="absolute animate-zero top-12 left-0 w-[180px] md:w-[200px] p-2 bg-white ring-1 ring-black/5 rounded-xl flex flex-col  shadow-xl cursor-default">
 					{options.map((e, index) => (
 						<li
 							className="flex items-center justify-between p-2 rounded cursor-pointer active:scale-95 hover:bg-black/10"

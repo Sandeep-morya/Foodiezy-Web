@@ -9,7 +9,6 @@ const KEY = "foodiezy-redux-store-local-storage-key";
 
 const initialState: Device = getItem(KEY) || {
 	theme: "light",
-	notfications: [],
 	serviceArea: null,
 };
 
