@@ -18,6 +18,7 @@ interface Props {
 const Restaurants = ({ id }: Props) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [queryParams, setQueryParams] = useState(searchParams.toString());
+	const [modified, setModified] = useState(false);
 
 	const { inView, ref } = useInView();
 	const { ref: target, inView: LastItemInView } = useInView({ threshold: 0.7 });
@@ -35,6 +36,8 @@ const Restaurants = ({ id }: Props) => {
 				});
 				console.log("API called for page:", data.getRestaurants.page);
 				const total = data.getRestaurants.totalCount;
+				const modified = data.getRestaurants.modified;
+				setModified(modified);
 				const restaurants = data.getRestaurants.documents;
 				if (page === 0) {
 					dispatch(initRestorants({ total, restaurants }));
@@ -71,6 +74,7 @@ const Restaurants = ({ id }: Props) => {
 
 			<FilterSortSection
 				atTop={!inView}
+				modified={modified}
 				{...{ total, searchParams, setSearchParams, setQueryParams }}
 			/>
 

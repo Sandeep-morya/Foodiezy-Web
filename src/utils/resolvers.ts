@@ -41,6 +41,7 @@ export const GET_RESTAURANTS = gql`
 			page
 			limit
 			count
+			modified
 			totalCount
 			documents {
 				type

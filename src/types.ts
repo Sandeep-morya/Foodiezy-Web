@@ -141,6 +141,7 @@ export interface Restaurants {
 	limit: number;
 	count: number;
 	totalCount: number;
+	modified: boolean;
 	documents: Restaurant[];
 }
 

@@ -47,7 +47,14 @@ const RestaurantPage = () => {
 	useEffect(() => {
 		if (Array.isArray(menuData) && menuData.length > 0) {
 			const data = [...menuData] as { card: { card: MenuCard } }[];
-			const menu = data.slice(1, -3).map((e) => e.card.card);
+			let index = 0;
+			for (const card of data) {
+				if (card.card.card.title === "Recommended") {
+					break;
+				}
+				index++;
+			}
+			const menu = data.slice(index, -3).map((e) => e.card.card);
 			dispatch(addInitialMenu(menu));
 		}
 	}, [dispatch, menuData]);

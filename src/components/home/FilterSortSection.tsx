@@ -29,6 +29,7 @@ import useThrottle from "../../hook/useThrottle";
 interface Props {
 	atTop: boolean;
 	total: number;
+	modified: boolean;
 	searchParams: URLSearchParams;
 	setSearchParams: SetURLSearchParams;
 	setQueryParams: Dispatch<SetStateAction<string>>;
@@ -36,6 +37,7 @@ interface Props {
 
 const FilterSortSection = ({
 	atTop,
+	modified,
 	searchParams,
 	setSearchParams,
 	setQueryParams,
@@ -219,7 +221,7 @@ const FilterSortSection = ({
 					<button
 						onClick={handleApplyFilter}
 						className="px-4 py-2 text-sm font-medium text-white rounded-full active:scale-95 bg-primary">
-						{searchParamsCount > 1 ? "Apply Filters" : "Apply Filter"}
+						{modified ? "Applied" : "Apply"}
 					</button>
 				</div>
 			)}
