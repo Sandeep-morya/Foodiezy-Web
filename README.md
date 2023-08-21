@@ -6,7 +6,9 @@
 </div>
 
 <h1 align="center">Foodiezy-Web</h1>
-
+The Food App is a platform where users can browse multiple restaurants, view their menus, add items to their cart, and place orders. The app leverages modern web technologies to provide a seamless user experience.
+<br/>
+<br/>
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/Sandeep-morya/Foodiezy-Web?color=56BEB8">
 
