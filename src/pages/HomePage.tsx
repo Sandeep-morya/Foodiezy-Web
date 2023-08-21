@@ -14,6 +14,7 @@ import { setServiceArea } from "../redux/deviceSlice";
 import { initRestorants } from "../redux/restaurantSlice";
 import { GET_SERVICE_AREA_DATA } from "../utils/resolvers";
 import { Navigate } from "react-router-dom";
+import { addInitialMenu } from "../redux/menuSlice";
 
 const Homepage = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);
@@ -33,6 +34,7 @@ const Homepage = () => {
 					collections: data.getServiceAreaData.collections,
 				}),
 			);
+			dispatch(addInitialMenu(null));
 			dispatch(setServiceArea({ _id, name, lat, lng }));
 		}
 	}, [data, dispatch]);

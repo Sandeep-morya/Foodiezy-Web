@@ -22,7 +22,9 @@ const CartItemCard = (card: CartDish) => {
 				</div>
 				<div className="flex h-full flex-col justify-between">
 					<div>
-						<h4 className="text-sm font-medium">{card.dishName}</h4>
+						<h4 className="text-sm font-medium">
+							{card.dishName.substring(0, 48)}
+						</h4>
 						<p className="text-xs text-black/50 font-medium">{card.category}</p>
 					</div>
 					<p className="text-sm">

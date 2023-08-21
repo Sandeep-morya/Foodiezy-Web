@@ -36,8 +36,6 @@ const cartSlice = createSlice({
 			const cartItemIndex = state.findIndex((item) => item.dishId === dishId);
 			if (cartItemIndex !== -1) {
 				return state.filter((cartItem) => cartItem.dishId !== dishId);
-			} else {
-				return [...state];
 			}
 		},
 	},

@@ -6,6 +6,7 @@ import axios from "axios";
 import { initiateUser } from "../redux/userSlice";
 import { TokenResponse } from "@react-oauth/google";
 import { initiateCart } from "../redux/cartSlice";
+import { CartItem } from "../types";
 
 const useGoogleLoginSuccess = () => {
 	const [registerUser, { loading, error }] = useMutation(REGISTER_USER);
@@ -30,8 +31,22 @@ const useGoogleLoginSuccess = () => {
 				const { _id, name, email, image, provider, cart } =
 					res.data.registerUser.about;
 				const about = { _id, name, email, image, provider };
+				console.log(cart.dishId);
 				dispatch(initiateUser({ token, about }));
-				dispatch(initiateCart(cart));
+				dispatch(
+					initiateCart(
+						cart.map((e: CartItem) => ({
+							category: e.category,
+							count: e.count,
+							dishId: e.dishId,
+							dishName: e.dishName,
+							imageId: e.imageId,
+							price: e.price,
+							restaurantId: e.restaurantId,
+							restaurantName: e.restaurantName,
+						})),
+					),
+				);
 			} catch (error) {
 				console.log(error);
 			}

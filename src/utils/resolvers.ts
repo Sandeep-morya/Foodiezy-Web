@@ -120,6 +120,7 @@ export const REGISTER_USER = gql`
 				image
 				provider
 				cart {
+					dishId
 					dishName
 					category
 					imageId
@@ -134,7 +135,7 @@ export const REGISTER_USER = gql`
 `;
 
 export const MUTATE_CART = gql`
-	mutation Mutation($cartInput: [CartInput]!) {
-		mutateCart(cartInput: $cartInput)
+	mutation Mutation($cartInput: [CartInput!]!, $userId: ID!) {
+		mutateCart(cartInput: $cartInput, userId: $userId)
 	}
 `;

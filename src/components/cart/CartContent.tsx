@@ -13,7 +13,6 @@ interface Props {
 const CartContent = ({ cartPrice }: Props) => {
 	const cart = useAppSelector((store) => store.cart);
 	const [data, setData] = useState<CartRestaurant[]>([]);
-	console.log(cart);
 
 	useEffect(() => {
 		const restaurantMap = new Map<string, CartRestaurant>();

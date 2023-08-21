@@ -1,5 +1,4 @@
 import {
-	PiBell,
 	PiHeart,
 	PiShoppingBag,
 	PiShoppingBagOpenLight,
@@ -16,7 +15,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Drawer from "../common/Drawer";
 import CartContent from "../cart/CartContent";
 import FavouritesContent from "../favourites/FavouritesContent";
-import NotificationsContent from "../notifcations/NotificationsContent";
 import { useAppSelector } from "../../hook/reduxHooks";
 import useDebounce from "../../hook/useDebounce";
 import { useMutation } from "@apollo/client";
@@ -27,36 +25,17 @@ const Navbar = () => {
 	const navigate = useNavigate();
 
 	const user = useAppSelector((store) => store.user);
-	const [showCartDrawer, setShowCartDrawer] = useState(false);
 	const cart = useAppSelector((store) => store.cart);
-	const debouncedCart = useDebounce(cart, 1000);
+	const debouncedCart = useDebounce(cart, 700);
 	const [mutateCart] = useMutation(MUTATE_CART);
 
-	const toggleCartDrawer = useCallback(() => {
-		if (user && user.token) {
-			setShowCartDrawer((e) => !e);
-		} else {
-			navigate("/user/login");
-		}
-	}, [navigate, user]);
+	const [showCartDrawer, setShowCartDrawer] = useState(false);
+	const toggleCartDrawer = () =>
+		user.token ? setShowCartDrawer((e) => !e) : navigate("/user/login");
 
 	const [showFavouritesDrawer, setShowFavouritesDrawer] = useState(false);
-	const toggleFavouritesDrawer = useCallback(() => {
-		if (user && user.token) {
-			setShowFavouritesDrawer((e) => !e);
-		} else {
-			navigate("/user/login");
-		}
-	}, [navigate, user]);
-
-	const [showNotificationsDrawer, setShowNotificationsDrawer] = useState(false);
-	const toggleNotificationsDrawer = useCallback(() => {
-		if (user && user.token) {
-			setShowNotificationsDrawer((e) => !e);
-		} else {
-			navigate("/user/login");
-		}
-	}, [navigate, user]);
+	const toggleFavouritesDrawer = () =>
+		user.token ? setShowFavouritesDrawer((e) => !e) : navigate("/user/login");
 
 	const cartPrice = useMemo(() => {
 		const totalPaisa = cart.reduce(
@@ -65,39 +44,25 @@ const Navbar = () => {
 		);
 		return (totalPaisa / 100).toFixed(1);
 	}, [cart]);
-	// const [isScrolled, setIsScrolled] = useState(false);
-
-	// useEffect(() => {
-	// 	const handleScroll = () => {
-	// 		const scrollPosition = window.pageYOffset;
-	// 		setIsScrolled(scrollPosition > 0);
-	// 	};
-	// 	window.onscroll = handleScroll;
-	// }, []);
-	// console.log({ isScrolled });
 
 	const MutateCart = useCallback(
-		async (debouncedCart: CartItem[], token: string) => {
-			await mutateCart({
-				variables: { cartInput: debouncedCart },
-				context: {
-					headers: {
-						authorization: `Bearer ${token}`,
-					},
-				},
-			});
+		async (debouncedCart: CartItem[], userId: string) => {
+			try {
+				await mutateCart({
+					variables: { cartInput: debouncedCart, userId },
+				});
+			} catch (error) {
+				console.log(error);
+			}
 		},
 		[mutateCart],
 	);
 
 	useEffect(() => {
-		console.log("sent to db");
-		if (user.token) {
-			MutateCart(debouncedCart, user.token);
+		if (user.about) {
+			MutateCart(debouncedCart, user.about._id);
 		}
-	}, [debouncedCart, user, MutateCart]);
-
-	console.log({ cart, user });
+	}, [debouncedCart, MutateCart, user.about]);
 
 	return (
 		<header
@@ -109,11 +74,6 @@ const Navbar = () => {
 				<SearchBar />
 			</div>
 			<nav className="flex items-center gap-5 xl:gap-8">
-				<IconButton
-					onClick={toggleNotificationsDrawer}
-					asButton
-					element={<PiBell />}
-				/>
 				<IconButton
 					asButton
 					onClick={user.about ? () => {} : () => navigate("/user/login")}
@@ -170,7 +130,39 @@ const Navbar = () => {
 					// slideEffect={200}
 				/>
 			)}
-			{showNotificationsDrawer && (
+		</header>
+	);
+};
+
+export default Navbar;
+
+// const [isScrolled, setIsScrolled] = useState(false);
+
+// useEffect(() => {
+// 	const handleScroll = () => {
+// 		const scrollPosition = window.pageYOffset;
+// 		setIsScrolled(scrollPosition > 0);
+// 	};
+// 	window.onscroll = handleScroll;
+// }, []);
+// console.log({ isScrolled });
+
+/* <IconButton
+					onClick={toggleNotificationsDrawer}
+					asButton
+					element={<PiBell />}
+				/>
+
+
+					const [showNotificationsDrawer, setShowNotificationsDrawer] = useState(false);
+	const toggleNotificationsDrawer = () =>
+		user.token
+			? setShowNotificationsDrawer((e) => !e)
+			: navigate("/user/login");
+
+
+
+					{showNotificationsDrawer && (
 				<Drawer
 					content={<NotificationsContent />}
 					label="Notifications"
@@ -179,8 +171,5 @@ const Navbar = () => {
 					// slideEffect={200}
 				/>
 			)}
-		</header>
-	);
-};
 
-export default Navbar;
+				*/

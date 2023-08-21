@@ -47,3 +47,6 @@ body {
 .text-shadow {
 	text-shadow: 0 0 10px #0005;
 }
+.center {
+	@apply flex justify-center items-center;
+}
