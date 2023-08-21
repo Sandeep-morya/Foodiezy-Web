@@ -8,7 +8,7 @@ interface Props {
 const SocailButton: FC<Props> = ({ icon, title, onClick }) => {
 	return (
 		<button
-			className="h-12 px-6 transition duration-300 rounded-full bg-secondary/70 group hover:bg-secondary active:scale-95"
+			className="h-12 px-6 transition duration-300 border rounded-full bg-black/5 group hover:bg-black/10 active:scale-95"
 			onClick={onClick}>
 			<div className="relative flex items-center justify-center space-x-4">
 				{icon}

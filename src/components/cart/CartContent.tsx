@@ -57,13 +57,13 @@ const CartContent = ({ cartPrice }: Props) => {
 				))}
 			</div>
 
-			<div className="w-full h-[60px] p-2 bg-white shadow-lg bg-teal absolute bottom-[50px] left-0 flex gap-3 items-center">
-				<p className="text-sm font-medium">
-					SubTotal: <span className="text-2xl">₹{cartPrice}</span>
+			<div className="w-full h-[60px] p-2 bg-white shadow-lg bg-teal absolute bottom-[50px] left-0 flex gap-3  items-center">
+				<p className="text-xs font-medium flex-1">
+					SubTotal: <span className="text-2xl"> ₹{cartPrice}</span>
 				</p>
 				<button className="flex-1 h-full bg-black text-white flex items-center justify-center gap-3 rounded active:scale-95">
 					<MdShoppingCartCheckout />
-					Order
+					Checkout
 				</button>
 			</div>
 		</div>

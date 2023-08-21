@@ -4,7 +4,7 @@ import type { CartItem, Info } from "../../types";
 import { MD_IMG_LINK } from "../../utils/links";
 import Pill from "../common/Pill";
 import {
-	PiChecksBold,
+	PiCheckSquareOffsetDuotone,
 	PiHeartStraightDuotone,
 	PiShoppingBag,
 } from "react-icons/pi";
@@ -13,6 +13,7 @@ import Counter from "./Counter";
 import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
 import { addToCart, removeFromCart } from "../../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
+import NotificationCount from "../common/NotificationCount";
 
 interface Card {
 	restaurantId: string;
@@ -98,11 +99,7 @@ const DishCard = ({ info, restaurantId, restaurantName }: Card) => {
 						<div className="w-full h-[40px] flex items-center gap-2 text-lightblack">
 							{count === 0 ? (
 								<button
-									onClick={
-										user.token
-											? () => setCount(1)
-											: () => navigate("/user/login")
-									}
+									onClick={user.token ? () => setCount(1) : () => navigate("/")}
 									className="flex-1 text-center rounded  font-medium  bg-white/30 text-secondary flex h-[35px] items-center justify-center gap-3 active:scale-95">
 									<div className="text-xl">
 										<PiShoppingBag />
@@ -121,8 +118,11 @@ const DishCard = ({ info, restaurantId, restaurantName }: Card) => {
 			</div>
 
 			{count > 0 && (
-				<div className="absolute top-2 right-2 text-xs bg-black/50 text-secondary rounded-full w-[30px] h-[30px] font-medium flex justify-center items-center gap-1 ring-2 ring-primary">
-					{count} <PiChecksBold />
+				<div className="absolute top-2 right-2 text-3xl text-white text-shadow">
+					<PiCheckSquareOffsetDuotone />
+					<div className="absolute top-1 right-2.5">
+						<NotificationCount count={count} />
+					</div>
 				</div>
 			)}
 		</div>

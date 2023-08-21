@@ -20,6 +20,7 @@ import useDebounce from "../../hook/useDebounce";
 import { useMutation } from "@apollo/client";
 import { MUTATE_CART } from "../../utils/resolvers";
 import { CartItem } from "../../types";
+import LoginModal from "../auth/LoginModal";
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -29,21 +30,30 @@ const Navbar = () => {
 	const debouncedCart = useDebounce(cart, 700);
 	const [mutateCart] = useMutation(MUTATE_CART);
 
+	const [showLoginModal, setShowLoginModal] = useState(user.token === null);
+	const toggleLoginModal = user.token
+		? () => {}
+		: () => setShowLoginModal((e) => !e);
+
 	const [showCartDrawer, setShowCartDrawer] = useState(false);
 	const toggleCartDrawer = () =>
-		user.token ? setShowCartDrawer((e) => !e) : navigate("/user/login");
+		user.token ? setShowCartDrawer((e) => !e) : toggleLoginModal();
 
 	const [showFavouritesDrawer, setShowFavouritesDrawer] = useState(false);
 	const toggleFavouritesDrawer = () =>
-		user.token ? setShowFavouritesDrawer((e) => !e) : navigate("/user/login");
+		user.token ? setShowFavouritesDrawer((e) => !e) : toggleLoginModal();
 
 	const cartPrice = useMemo(() => {
 		const totalPaisa = cart.reduce(
 			(acc, el) => (acc += el.price * el.count),
 			0,
 		);
-		return (totalPaisa / 100).toFixed(1);
+		return (totalPaisa / 100).toFixed();
 	}, [cart]);
+
+	const navigateToHome = () => {
+		navigate("/");
+	};
 
 	const MutateCart = useCallback(
 		async (debouncedCart: CartItem[], userId: string) => {
@@ -64,10 +74,16 @@ const Navbar = () => {
 		}
 	}, [debouncedCart, MutateCart, user.about]);
 
+	useEffect(() => {
+		if (user.token) {
+			setShowLoginModal(false);
+		}
+	}, [user]);
+
 	return (
 		<header
 			className={`w-full h-[60px] fixed top-0 z-40 flex justify-between py-2 px-4 items-center lg:h-[80px] md:px-12 lg:px-4 2xl:px-44 bg-white`}>
-			<div onClick={() => navigate("/")}>
+			<div onClick={navigateToHome}>
 				<Logo />
 			</div>
 			<div className="hidden lg:flex">
@@ -76,7 +92,8 @@ const Navbar = () => {
 			<nav className="flex items-center gap-5 xl:gap-8">
 				<IconButton
 					asButton
-					onClick={user.about ? () => {} : () => navigate("/user/login")}
+					// onClick={user.about ? () => {} : () => navigate("/user/login")}
+					onClick={toggleLoginModal}
 					element={
 						user.about ? (
 							<img
@@ -130,6 +147,7 @@ const Navbar = () => {
 					// slideEffect={200}
 				/>
 			)}
+			{showLoginModal && <LoginModal toggleModal={toggleLoginModal} />}
 		</header>
 	);
 };

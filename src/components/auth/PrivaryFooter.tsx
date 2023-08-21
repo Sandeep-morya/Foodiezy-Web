@@ -1,6 +1,6 @@
 ﻿const PrivaryFooter = () => {
 	return (
-		<div className="mt-32 space-y-4 text-center text-secondary sm:-mb-8">
+		<div className="flex flex-col gap-4 mb-4  text-center text-lightblack ">
 			<p className="text-xs">
 				By proceeding, you agree to our{" "}
 				<a href="#" className="underline">

@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
 import { useQuery } from "@apollo/client";
-
 import Collections from "../components/home/Collections";
 import Footer from "../components/home/Footer";
 import Restaurants from "../components/home/Restaurants";

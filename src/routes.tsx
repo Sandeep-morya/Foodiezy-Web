@@ -5,7 +5,6 @@ import {
 	ErrorPage,
 	LandingPage,
 	HomePage,
-	LoginPage,
 	RestaurantPage,
 } from "./pages";
 import LocationProvider from "./provider/LocationProvider";
@@ -16,7 +15,6 @@ export default function AllRoutes() {
 			<Route path="/" Component={LandingPage} />
 			<Route path="/restaurant/:id" Component={RestaurantPage} />
 			<Route path="/admin/login" element={<AdminLoginPage />} />
-			<Route path="/user/login" element={<LoginPage />} />
 			<Route
 				path="/:serviceAreaName"
 				element={
