@@ -50,7 +50,7 @@ const SearchDrawerContent = ({ serviceAreaId }: Props) => {
 	}, [debouncedQuery, serviceAreaId, handleGetRestaurants]);
 
 	return (
-		<div className="px-2 pb-10 relative w-full h-full overflow-y-scroll small-scroll-bar ">
+		<div className="px-2 pb-20 relative w-full h-full overflow-y-scroll small-scroll-bar ">
 			{loading && (
 				<div className="absolute z-20 top-0 left-0 w-full h-full center">
 					<img
