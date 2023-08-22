@@ -26,14 +26,6 @@ const LandingPage = () => {
 					<div className="scale-100 md:scale-150 md:ml-10">
 						<Logo />
 					</div>
-					<div className="flex items-center h-full gap-1 text-xs md:text-lg">
-						<button className="py-2 font-bold px-7 hover:text-primary backdrop-blur-sm">
-							Login
-						</button>
-						<button className="p-2 font-bold text-white bg-black shadow-md md:px-7">
-							Sign up
-						</button>
-					</div>
 				</div>
 				<div className="w-full p-2">
 					<div className="w-full pt-6 lg:pt-0">

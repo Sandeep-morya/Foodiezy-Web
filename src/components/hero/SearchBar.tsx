@@ -1,15 +1,18 @@
-import { useCallback, useEffect, useState } from 'react';
-import { MdOutlineMyLocation } from 'react-icons/md';
-import { PiMagnifyingGlass } from 'react-icons/pi';
-import { ClipLoader } from 'react-spinners';
+import { useCallback, useEffect, useState } from "react";
+import { MdOutlineMyLocation } from "react-icons/md";
+import { PiMagnifyingGlass } from "react-icons/pi";
 
-import { useAppDispatch } from '../../hook/reduxHooks';
-import useDebounce from '../../hook/useDebounce';
-import { setServiceArea } from '../../redux/deviceSlice';
-import { Coordinates, MapLocations } from '../../types';
-import { cities } from '../../utils/data';
-import { findAddress, findAddressWithCoordinates, geolocationError } from '../../utils/geoLocation';
-import TonedString from './TonedString';
+import { useAppDispatch } from "../../hook/reduxHooks";
+import useDebounce from "../../hook/useDebounce";
+import { setServiceArea } from "../../redux/deviceSlice";
+import { Coordinates, MapLocations } from "../../types";
+import { cities } from "../../utils/data";
+import {
+	findAddress,
+	findAddressWithCoordinates,
+	geolocationError,
+} from "../../utils/geoLocation";
+import TonedString from "./TonedString";
 
 const SearchBar = () => {
 	const [query, setQuery] = useState("");
@@ -120,8 +123,16 @@ const SearchBar = () => {
 			<button
 				disabled={isLoading}
 				onClick={() => getAddress(debouncedQuery)}
-				className="h-full w-[90px] bg-primary text-xs justify-center items-center text-white font-bold uppercase md:w-[180px] md:text-lg">
-				{isLoading ? <ClipLoader color="white" /> : "Find food"}
+				className="h-full w-[90px] bg-primary text-xs flex justify-center items-center text-white font-bold uppercase md:w-[180px] md:text-lg">
+				{isLoading ? (
+					<img
+						className="h-[calc(100%-1.5rem)] aspect-square animate-spin brightness-0 invert"
+						src="/only-smile.png"
+						alt=""
+					/>
+				) : (
+					"Find Food"
+				)}
 			</button>
 		</div>
 	);

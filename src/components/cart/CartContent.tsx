@@ -40,7 +40,7 @@ const CartContent = ({ cartPrice }: Props) => {
 
 	return cart.length > 0 ? (
 		<div className="w-full h-full relative">
-			<div className="w-full h-[calc(100%-100px)] overflow-y-scroll vanish-scroll-bar">
+			<div className="w-full h-[calc(100%-100px)] overflow-y-scroll  small-scroll-bar">
 				{data.map(({ restaurantId, restaurantName, dishes }) => (
 					<div
 						className="my-4 p-2 divide-y"

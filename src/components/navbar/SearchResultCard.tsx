@@ -1,24 +1,18 @@
-import { MdDeliveryDining, MdLocationPin } from "react-icons/md";
+﻿import { MdDeliveryDining, MdLocationPin } from "react-icons/md";
 import { PiPath } from "react-icons/pi";
 
 import { MD_IMG_LINK } from "../../utils/links";
 
 import type { Restaurant } from "../../types";
 import { useNavigate } from "react-router-dom";
-import Pills from "./Pills";
-import Rating from "./Rating";
+import Rating from "../home/Rating";
+import Pills from "../home/Pills";
 
-interface Props extends Restaurant {
-	target: (node?: Element | null | undefined) => void;
-	index: number;
-	page: number;
-}
-
-const RestaurantCard = (data: Props) => {
+const SearchResultCard = (data: Restaurant) => {
 	const navigate = useNavigate();
+
 	return (
 		<div
-			ref={data.index === (data.page + 1) * 20 - 1 ? data.target : null}
 			onClick={() => {
 				navigate(
 					`/restaurant/${data.name.split(" ").join("-")}?id=${
@@ -26,8 +20,8 @@ const RestaurantCard = (data: Props) => {
 					}&restaurantId=${data.restaurantId}`,
 				);
 			}}
-			className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col hover:ring-primary/50">
-			<div className="relative w-[45%] overflow-hidden aspect-[3/4] md:w-full md:aspect-[3/2] transition">
+			className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 hover:ring-primary/50">
+			<div className="relative w-[45%] overflow-hidden aspect-[3/4] transition">
 				{/* Actual Image of Restaurant */}
 				<img
 					loading="lazy"
@@ -43,21 +37,19 @@ const RestaurantCard = (data: Props) => {
 						alt="logo-skeleton-image"
 					/>
 				</div>
-				<div className="absolute hidden top-2 left-2 md:flex">
-					<Pills veg={data.veg} />
-				</div>
-				<div className="absolute flex items-center justify-start px-2 py-0.5 text-xs font-semibold shadow-lg bg-white rounded-tl-full rounded-bl-full uppercase -right-1 bottom-5 md:bottom-10 ">
+
+				<div className="absolute flex items-center justify-start px-2 py-0.5 text-xs font-semibold shadow-lg bg-white rounded-tl-full rounded-bl-full uppercase -right-1 bottom-5">
 					{`₹${data.costForTwo} for Two`}
 				</div>
 			</div>
 			<div className="flex flex-col flex-1 gap-2 p-3 bg-white md:p-2 xl:gap-3 xl:p-3 xl:pt-2">
-				<div className="flex justify-start md:hidden">
+				<div className="flex justify-start">
 					<Pills veg={data.veg} />
 				</div>
 
 				<div className="flex flex-col">
 					<h3 className="font-semibold text-md md:text-lg">
-						{data.name.substring(0, 30)}
+						{data.name?.substring(0, 30)}
 					</h3>
 					<div className="flex items-center justify-between">
 						<div className="flex items-center gap-1">
@@ -66,17 +58,13 @@ const RestaurantCard = (data: Props) => {
 								{data.cuisines.length > 2 && " & more..."}
 							</p>
 						</div>
-
-						<div className="items-center hidden text-green-600 drop-shadow-sm md:flex">
-							<Rating rating={data.rating} votes={data.votesString} />
-						</div>
 					</div>
 				</div>
-				<div className="flex items-center justify-start gap-1 text-green-600 drop-shadow-sm md:hidden">
+				<div className="flex items-center justify-start gap-1 text-green-600 drop-shadow-sm ">
 					<Rating rating={data.rating} votes={data.votesString} />
 				</div>
 
-				<div className="flex flex-col gap-2 md:flex-row md:justify-between">
+				<div className="flex flex-col gap-2">
 					<div className="flex items-center justify-start gap-2 md:gap-1">
 						<MdLocationPin />
 						<p className="text-xs">
@@ -97,19 +85,4 @@ const RestaurantCard = (data: Props) => {
 	);
 };
 
-export default RestaurantCard;
-/*
-<div className="flex mt-2">
-						<div
-							className={`flex justify-start px-2 gap-1 text-white font-medium items-center h-[16px] rounded-full text-xs ${getBackgroundColor(
-								3.5,
-							)}`}>
-							{data.rating}
-							<MdStar />
-							<PiDotOutlineFill />
-							{data.votesString}
-						</div>
-					</div>
- */
-/*
- */
+export default SearchResultCard;

@@ -85,7 +85,7 @@ const FilterSortSection = ({
 	const handleApplyFilter = useCallback(() => {
 		throttle(() => {
 			setQueryParams(searchParams.toString());
-		}, 2000);
+		}, 1000);
 	}, [searchParams, setQueryParams, throttle]);
 
 	// :: For Counting number of filters applied including "sort" ::

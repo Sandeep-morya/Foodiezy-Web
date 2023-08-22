@@ -11,7 +11,7 @@ const CartItemCard = (card: CartDish) => {
 		dispatch(removeFromCart(card.dishId));
 	}, [dispatch, card.dishId]);
 	return (
-		<div className="w-full h-[120px] flex justify-between gap-2 shadow-md">
+		<div className="w-full h-[120px] flex justify-between gap-2 rounded-lg hover:bg-black/5">
 			<div className="h-full flex-1 flex items-center gap-3 p-2">
 				<div className="h-full w-[90px] min-w-[90px] rounded overflow-hidden">
 					<img

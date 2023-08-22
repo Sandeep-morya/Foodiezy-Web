@@ -23,6 +23,16 @@ body {
 .vanish-scroll-bar {
 	scrollbar-width: none;
 }
+.small-scroll-bar {
+	scrollbar-width: 8px;
+}
+.small-scroll-bar::-webkit-scrollbar {
+	width: 8px;
+}
+.small-scroll-bar::-webkit-scrollbar-thumb {
+	background-color: #7ed957; /* Transparent */
+	border-radius: 1rem;
+}
 
 .dish-card-overlay {
 	background: linear-gradient(to top, #0007 60%, transparent);

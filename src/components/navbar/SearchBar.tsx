@@ -51,7 +51,12 @@ const SearchBar = () => {
 				</div>
 				{showSearchDrawer && (
 					<Drawer
-						content={<SearchDrawerContent toggleDrawer={toggleSearchDrawer} />}
+						content={
+							<SearchDrawerContent
+								toggleDrawer={toggleSearchDrawer}
+								serviceAreaId={serviceArea?._id}
+							/>
+						}
 						label={
 							<div>
 								<Logo />
