@@ -62,7 +62,6 @@ The Food App is a platform where users can browse multiple restaurants, view the
 
 ## Future Updates
 
-- Landing Page buttons interaction
 - ChatBot
 - Updated restaurant Facecard
 - Subtotal Price Break
