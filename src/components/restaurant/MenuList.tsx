@@ -1,4 +1,4 @@
-﻿import { Dispatch, SetStateAction } from "react";
+﻿import { Dispatch, SetStateAction, useCallback, MouseEvent } from "react";
 import { useAppSelector } from "../../hook/reduxHooks";
 import { twMerge } from "tailwind-merge";
 
@@ -9,32 +9,44 @@ interface Props {
 }
 
 const MenuList = (props: Props) => {
+	const { tabIndex, setTabIndex, toggleMenu } = props;
+
 	const menus = useAppSelector((store) => store.menu);
+
+	const handleMenuSelect = useCallback(
+		(event: MouseEvent<HTMLDivElement>) => {
+			const clickedElement = event.target as HTMLElement;
+			const target = clickedElement.closest("[data-index]");
+			if (!target) {
+				return; // When Clicked outside an element like "Gap"
+			}
+			const index = target.getAttribute("data-index");
+			if (index) {
+				setTabIndex(+index);
+				toggleMenu();
+			}
+		},
+		[setTabIndex, toggleMenu],
+	);
 
 	if (!menus) {
 		return <>Loading..</>;
 	}
-	console.log({ menus });
+
 	return (
-		<div className="flex flex-col gap-1 pb-20 mt-4">
+		<div onClick={handleMenuSelect} className="flex flex-col gap-1 pb-20 mt-4">
 			{menus.map((data, index) => {
 				const title = data.title;
 				const itemCards = data?.categories
 					? data.categories[0].itemCards
 					: data.itemCards;
-				// if (title === "Breakfast") {
-				// 	itemCards = data.categories[0].itemCards;
-				// }
 				return (
 					<div
 						key={title + index + "list"}
-						onClick={() => {
-							props.setTabIndex(index);
-							props.toggleMenu();
-						}}
+						data-index={index}
 						className={twMerge(
 							"w-full h-[50px] flex items-center justify-between p-4 rounded-lg ",
-							props.tabIndex === index
+							tabIndex === index
 								? "bg-primary text-white font-medium"
 								: "bg-white text-lightblack",
 						)}>

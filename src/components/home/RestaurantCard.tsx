@@ -4,7 +4,7 @@ import { PiPath } from "react-icons/pi";
 import { MD_IMG_LINK } from "../../utils/links";
 
 import type { Restaurant } from "../../types";
-import { useNavigate } from "react-router-dom";
+
 import Pills from "./Pills";
 import Rating from "./Rating";
 
@@ -15,17 +15,12 @@ interface Props extends Restaurant {
 }
 
 const RestaurantCard = (data: Props) => {
-	const navigate = useNavigate();
 	return (
 		<div
 			ref={data.index === (data.page + 1) * 20 - 1 ? data.target : null}
-			onClick={() => {
-				navigate(
-					`/restaurant/${data.name.split(" ").join("-")}?id=${
-						data._id
-					}&restaurantId=${data.restaurantId}`,
-				);
-			}}
+			data-card-id={data._id}
+			data-restaurant-id={data.restaurantId}
+			data-restaurant-name={data.name}
 			className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col hover:ring-primary/50">
 			<div className="relative w-[45%] overflow-hidden aspect-[3/4] md:w-full md:aspect-[3/2] transition">
 				{/* Actual Image of Restaurant */}
@@ -110,6 +105,4 @@ export default RestaurantCard;
 							{data.votesString}
 						</div>
 					</div>
- */
-/*
  */
