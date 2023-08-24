@@ -12,9 +12,7 @@ import LocationProvider from "./provider/LocationProvider";
 export default function AllRoutes() {
 	return (
 		<Routes>
-			<Route path="/" Component={LandingPage} />
-			<Route path="/restaurant/:id" Component={RestaurantPage} />
-			<Route path="/admin/login" element={<AdminLoginPage />} />
+			<Route path="/" element={<LandingPage />} errorElement={<ErrorPage />} />
 			<Route
 				path="/:serviceAreaName"
 				element={
@@ -23,8 +21,18 @@ export default function AllRoutes() {
 					</LocationProvider>
 				}
 			/>
+			<Route
+				path="/restaurant/:id"
+				element={<RestaurantPage />}
+				errorElement={<ErrorPage />}
+			/>
+			<Route
+				path="/admin/login"
+				element={<AdminLoginPage />}
+				errorElement={<ErrorPage />}
+			/>
 
-			<Route path="*" Component={ErrorPage} />
+			<Route path="*" element={<ErrorPage />} />
 		</Routes>
 	);
 }
