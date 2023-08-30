@@ -1,10 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import deviceSlice from "./deviceSlice";
-import restaurantSlice from "./restaurantSlice";
-import menuSlice from "./menuSlice";
-import cartSlice from "./cartSlice";
-import userSlice from "./userSlice";
+import deviceSlice from "./slices/deviceSlice";
+import restaurantSlice from "./slices/restaurantSlice";
+import menuSlice from "./slices/menuSlice";
+import cartSlice from "./slices/cartSlice";
+import userSlice from "./slices/userSlice";
+import chabotSlice from "./slices/chabotSlice";
 
 const reducer = combineReducers({
 	user: userSlice,
@@ -12,6 +13,7 @@ const reducer = combineReducers({
 	restaurants: restaurantSlice,
 	menu: menuSlice,
 	cart: cartSlice,
+	chatbot: chabotSlice,
 });
 
 export const store = configureStore({ reducer });

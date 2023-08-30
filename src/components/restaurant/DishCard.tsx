@@ -11,7 +11,7 @@ import {
 import { useState, useMemo, useEffect } from "react";
 import Counter from "./Counter";
 import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
-import { addToCart, removeFromCart } from "../../redux/cartSlice";
+import { addToCart, removeFromCart } from "../../redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import NotificationCount from "../common/NotificationCount";
 

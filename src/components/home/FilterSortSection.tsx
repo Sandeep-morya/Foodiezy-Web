@@ -14,7 +14,7 @@ import type { SortType } from "../../types";
 import type { SetURLSearchParams } from "react-router-dom";
 
 // :: Local Imports ::
-// import { sortAccording } from "../../redux/restaurantSlice";
+// import { sortAccording } from "../../redux/slices/restaurantSlice";
 import Dropdown from "../common/Dropdown";
 import FilterButton from "./Filters/FilterButton";
 import FilterModal from "./Filters/FilterModal";

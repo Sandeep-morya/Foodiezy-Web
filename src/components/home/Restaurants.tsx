@@ -4,8 +4,11 @@ import { useInView } from "react-intersection-observer";
 import { useLazyQuery } from "@apollo/client";
 
 import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
-import { addRestaurants, initRestorants } from "../../redux/restaurantSlice";
-import { GET_RESTAURANTS } from "../../utils/resolvers";
+import {
+	addRestaurants,
+	initRestorants,
+} from "../../redux/slices/restaurantSlice";
+import { GET_RESTAURANTS } from "../../graphql/resolvers";
 import FilterSortSection from "./FilterSortSection";
 import RestaurantCard from "./RestaurantCard";
 import RestaurantCardSkeletion from "./Skeletons/RestaurantCardSkeletion";

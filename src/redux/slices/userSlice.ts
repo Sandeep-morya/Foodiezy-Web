@@ -1,6 +1,6 @@
 ﻿import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import type { User, UserData } from "../types";
-import { setItem } from "../utils/localStorage";
+import type { User, UserData } from "../../types";
+import { setItem } from "../../utils/localStorage";
 
 const initialState: User = {
 	token: null,
@@ -12,11 +12,14 @@ const userSlice = createSlice({
 	initialState,
 	reducers: {
 		initiateUser(_, action: PayloadAction<User>) {
-			setItem("current_user_id", action.payload.about?._id);
+			setItem("user", {
+				id: action.payload.about?._id,
+				name: action.payload.about?.name,
+			});
 			return action.payload;
 		},
 		addUserData(state, action: PayloadAction<UserData>) {
-			setItem("current_user_id", action.payload._id);
+			setItem("user", { id: action.payload._id, name: action.payload.name });
 			state.about = action.payload;
 		},
 	},

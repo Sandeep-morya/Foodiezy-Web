@@ -5,7 +5,7 @@ import Navbar from "../components/navbar/Navbar";
 const withNavbar = <T extends object>(WrappedComponent: ComponentType<T>) => {
 	const WithNavbar = (props: T) => {
 		return (
-			<div className="w-full">
+			<div className="w-full animate-boom">
 				<Navbar />
 				<div className="w-full pt-[60px] lg:pt-[80px]">
 					<WrappedComponent {...props} />

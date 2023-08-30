@@ -4,7 +4,7 @@ import { PiPackage, PiSignOut, PiUserGear } from "react-icons/pi";
 import type { IconType } from "react-icons";
 import { removeItem } from "../../utils/localStorage";
 import { useNavigate } from "react-router-dom";
-import { setServiceArea } from "../../redux/deviceSlice";
+import { setServiceArea } from "../../redux/slices/deviceSlice";
 
 interface Props {
 	toggle: () => void;

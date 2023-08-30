@@ -4,7 +4,7 @@ import { PiMagnifyingGlass } from "react-icons/pi";
 
 import { useAppDispatch } from "../../hook/reduxHooks";
 import useDebounce from "../../hook/useDebounce";
-import { setServiceArea } from "../../redux/deviceSlice";
+import { setServiceArea } from "../../redux/slices/deviceSlice";
 import { Coordinates, MapLocations } from "../../types";
 import { cities } from "../../utils/data";
 import {

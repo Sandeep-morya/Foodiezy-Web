@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getItem, setItem } from "../utils/localStorage";
+import { getItem, setItem } from "../../utils/localStorage";
 
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { Device, ServiceArea } from "../types";
+import type { Device, ServiceArea } from "../../types";
 
 const KEY = "foodiezy-redux-store-local-storage-key";
 
