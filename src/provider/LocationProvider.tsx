@@ -3,7 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
 import { setServiceArea } from "../redux/slices/deviceSlice";
-import { cities } from "../utils/data";
+import { cities } from "../utils/constants";
 
 const LocationProvider = ({ children }: { children: JSX.Element }) => {
 	const { serviceAreaName } = useParams();

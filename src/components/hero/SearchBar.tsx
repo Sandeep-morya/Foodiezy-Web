@@ -6,7 +6,7 @@ import { useAppDispatch } from "../../hook/reduxHooks";
 import useDebounce from "../../hook/useDebounce";
 import { setServiceArea } from "../../redux/slices/deviceSlice";
 import { Coordinates, MapLocations } from "../../types";
-import { cities } from "../../utils/data";
+import { cities } from "../../utils/constants";
 import {
 	findAddress,
 	findAddressWithCoordinates,

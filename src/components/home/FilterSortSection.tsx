@@ -21,7 +21,7 @@ import FilterModal from "./Filters/FilterModal";
 import ToggleButton from "./Filters/ToggleButton";
 
 // :: Utilities and Custom Hooks Import
-import { dropdownOptions } from "../../utils/data";
+import { dropdownOptions } from "../../utils/constants";
 import { cleanParams } from "../../utils/sorting";
 // import { useAppDispatch } from "../../hook/reduxHooks";
 import useThrottle from "../../hook/useThrottle";

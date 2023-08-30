@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 import { SortType } from "../../../types";
-import { dropdownOptions } from "../../../utils/data";
+import { dropdownOptions } from "../../../utils/constants";
 import { getSortingTitle } from "../../../utils/sorting";
 import RadioButton from "../../common/RadioButton";
 import FilterHeading from "./FilterHeading";

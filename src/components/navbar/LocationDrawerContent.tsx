@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../hook/reduxHooks";
 import { setServiceArea } from "../../redux/slices/deviceSlice";
-import { cities as listCities } from "../../utils/data";
+import { cities as listCities } from "../../utils/constants";
 import Button from "../common/Button";
 import Input from "../common/Input";
 import FilterButton from "../home/Filters/FilterButton";

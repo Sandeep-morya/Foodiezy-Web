@@ -23,7 +23,7 @@ const BotDrawerContent = () => {
 	return (
 		<div className="w-full h-[calc(100%-80px)] flex flex-col gap-2">
 			<div className="flex flex-col gap-2 pr-2 grow overflow-y-scroll small-scroll-bar">
-				{messages.map((message, index) => (
+				{messages.slice(1).map((message, index) => (
 					<div
 						key={v4()}
 						ref={index === messages.length - 2 ? lastMessageRef : null}

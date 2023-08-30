@@ -1,8 +1,14 @@
 ﻿import { createSlice } from "@reduxjs/toolkit";
 import { Message } from "../../types";
+import { systemContent, welcomeContent } from "../../utils/constants";
+
+const messages: Message[] = [
+	{ role: "system", content: systemContent },
+	{ role: "assistant", content: welcomeContent },
+];
 
 const initialState = {
-	messages: [] as Message[],
+	messages,
 };
 
 const chatbotSlice = createSlice({

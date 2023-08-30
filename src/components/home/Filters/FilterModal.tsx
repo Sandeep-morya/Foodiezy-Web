@@ -17,7 +17,7 @@ import {
 	filterTypes,
 	foodTypeArray,
 	ratingArray,
-} from "../../../utils/data";
+} from "../../../utils/constants";
 import Cuisines from "./Cuisines";
 import Filter from "./Filter";
 import Sort from "./Sort";
