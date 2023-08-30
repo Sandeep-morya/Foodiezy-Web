@@ -267,5 +267,6 @@ export type Role = "user" | "assistant" | "system";
 export interface Message {
 	role: Role;
 	content: string;
+	links?: string[];
 }
 export type MessageInput = Message | (() => Message);

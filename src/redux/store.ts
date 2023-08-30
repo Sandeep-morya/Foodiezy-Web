@@ -5,7 +5,7 @@ import restaurantSlice from "./slices/restaurantSlice";
 import menuSlice from "./slices/menuSlice";
 import cartSlice from "./slices/cartSlice";
 import userSlice from "./slices/userSlice";
-import chabotSlice from "./slices/chabotSlice";
+import chabotSlice from "./slices/chatbotSlice";
 
 const reducer = combineReducers({
 	user: userSlice,
