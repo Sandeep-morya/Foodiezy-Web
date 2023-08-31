@@ -4,6 +4,7 @@ import DishCard from "./DishCard";
 import { MdFastfood } from "react-icons/md";
 import { PiMagnifyingGlass } from "react-icons/pi";
 import { useAppSelector } from "../../hook/reduxHooks";
+import MenuContentSkeleton from "./Skeletons/MenuContentSkeleton";
 
 interface Props {
 	tabIndex: number;
@@ -40,9 +41,7 @@ const MenuContent = ({ tabIndex, restaurantId, restaurantName }: Props) => {
 				const list = currentMenu?.categories
 					? currentMenu.categories[0].itemCards
 					: currentMenu.itemCards;
-				// if (currentMenu.title === "Breakfast") {
-				// 	list = currentMenu.categories[0].itemCards;
-				// }
+
 				const itemCards = list.filter((e) =>
 					e.card.info.name.toLowerCase().includes(query.toLowerCase().trim()),
 				);
@@ -52,7 +51,7 @@ const MenuContent = ({ tabIndex, restaurantId, restaurantName }: Props) => {
 	}, [query, currentMenu]);
 
 	if (!currentMenu || !menuList) {
-		return <>Loading...</>;
+		return <MenuContentSkeleton />;
 	}
 	return (
 		<div className="flex flex-col w-full h-auto gap-2 pb-10 menu-content lg:h-full lg:overflow-y-scroll vanish-scroll-bar">

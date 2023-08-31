@@ -1,29 +1,33 @@
 ﻿import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import type { User, UserData } from "../../types";
-import { setItem } from "../../utils/localStorage";
+import { removeItem, setItem } from "../../utils/localStorage";
 
 const initialState: User = {
 	token: null,
 	about: null,
 };
-
+const KEY = "foodiezy-user";
 const userSlice = createSlice({
 	name: "user-slice",
 	initialState,
 	reducers: {
 		initiateUser(_, action: PayloadAction<User>) {
-			setItem("user", {
+			setItem(KEY, {
 				id: action.payload.about?._id,
 				name: action.payload.about?.name,
 			});
 			return action.payload;
 		},
 		addUserData(state, action: PayloadAction<UserData>) {
-			setItem("user", { id: action.payload._id, name: action.payload.name });
+			setItem(KEY, { id: action.payload._id, name: action.payload.name });
 			state.about = action.payload;
+		},
+		logoutUser() {
+			removeItem(KEY);
+			return initialState;
 		},
 	},
 });
 
-export const { initiateUser, addUserData } = userSlice.actions;
+export const { initiateUser, addUserData, logoutUser } = userSlice.actions;
 export default userSlice.reducer;

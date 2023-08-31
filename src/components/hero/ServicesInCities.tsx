@@ -7,7 +7,7 @@ const ServicesInCities = () => {
 	const dispatch = useAppDispatch();
 	const cities = useMemo(() => {
 		const mixedCities =
-			"AhmedabadBangaloreChennaiDelhiGuwahatiHyderabadKolkataLudhianaMumbaiPuneVaranasi&more.";
+			"AhmedabadBengaluruChennaiDelhiGuwahatiHyderabadKolkataLudhianaMumbaiPuneVaranasi&more.";
 		return mixedCities.split(/(?=[A-Z&])/);
 	}, []);
 	return (

@@ -58,7 +58,7 @@ body {
 	}
 }
 
-.text-shadow {
+.char-shadow {
 	text-shadow: 0 0 10px #0005;
 }
 .center {
@@ -106,5 +106,17 @@ body {
 	}
 	100% {
 		clip-path: circle(141.4% at 0 0);
+	}
+}
+.bounce {
+	animation: bounce 1s infinite;
+}
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
 	}
 }

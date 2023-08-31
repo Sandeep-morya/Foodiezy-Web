@@ -1,6 +1,7 @@
 ﻿import { Dispatch, SetStateAction, useCallback, MouseEvent } from "react";
 import { useAppSelector } from "../../hook/reduxHooks";
 import { twMerge } from "tailwind-merge";
+import MenuListSkeleton from "./Skeletons/MenuListSkeleton";
 
 interface Props {
 	tabIndex: number;
@@ -30,7 +31,7 @@ const MenuList = (props: Props) => {
 	);
 
 	if (!menus) {
-		return <>Loading..</>;
+		return <MenuListSkeleton />;
 	}
 
 	return (

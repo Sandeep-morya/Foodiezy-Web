@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getItem, setItem } from "../../utils/localStorage";
+import { getItem, removeItem, setItem } from "../../utils/localStorage";
 
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Device, ServiceArea } from "../../types";
@@ -23,7 +23,12 @@ const deviceSlice = createSlice({
 			state.serviceArea = action.payload;
 			setItem(KEY, state);
 		},
+		clearRecords() {
+			removeItem(KEY);
+			return initialState;
+		},
 	},
 });
-export const { toggleTheme, setServiceArea } = deviceSlice.actions;
+export const { toggleTheme, setServiceArea, clearRecords } =
+	deviceSlice.actions;
 export default deviceSlice.reducer;

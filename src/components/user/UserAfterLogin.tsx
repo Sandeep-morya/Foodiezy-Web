@@ -2,9 +2,8 @@
 import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
 import { PiPackage, PiSignOut, PiUserGear } from "react-icons/pi";
 import type { IconType } from "react-icons";
-import { removeItem } from "../../utils/localStorage";
-import { useNavigate } from "react-router-dom";
-import { setServiceArea } from "../../redux/slices/deviceSlice";
+import { clearRecords } from "../../redux/slices/deviceSlice";
+import { logoutUser } from "../../redux/slices/userSlice";
 
 interface Props {
 	toggle: () => void;
@@ -30,7 +29,6 @@ const ListItem: FC<LiProps> = ({ title, css, Icon, onClick }) => {
 const UserAfterLogin: FC<Props> = ({ toggle }) => {
 	const { about } = useAppSelector((store) => store.user);
 	const modalRef = useRef<HTMLDivElement | null>(null);
-	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 
 	const handleClickOutside = useCallback(
@@ -45,12 +43,11 @@ const UserAfterLogin: FC<Props> = ({ toggle }) => {
 		[toggle],
 	);
 
-	const logout = () => {
-		removeItem("current_user_id");
-		removeItem("foodiezy-redux-store-local-storage-key");
-		dispatch(setServiceArea(null));
-		navigate("/");
-	};
+	const logout = useCallback(() => {
+		dispatch(logoutUser());
+		dispatch(clearRecords());
+		location.assign("/");
+	}, [dispatch]);
 
 	useEffect(() => {
 		document.addEventListener("mousedown", handleClickOutside);

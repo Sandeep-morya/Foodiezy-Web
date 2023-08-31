@@ -133,9 +133,12 @@ const Navbar = () => {
 						element={
 							user.about ? (
 								<img
-									className="w-full h-full rounded-full"
+									className="w-full h-full rounded-full border"
 									src={user.about.image}
-									alt={user.about.name[0]}
+									alt={user.about.name}
+									onError={(e) => {
+										e.currentTarget.src = "/user.png";
+									}}
 								/>
 							) : (
 								<PiUserCircle />

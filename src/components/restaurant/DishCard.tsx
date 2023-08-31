@@ -118,7 +118,7 @@ const DishCard = ({ info, restaurantId, restaurantName }: Card) => {
 			</div>
 
 			{count > 0 && (
-				<div className="absolute top-2 right-2 text-3xl text-white text-shadow">
+				<div className="absolute top-2 right-2 text-3xl text-white char-shadow">
 					<PiCheckSquareOffsetDuotone />
 					<div className="absolute top-1 right-2.5">
 						<NotificationCount count={count} />
