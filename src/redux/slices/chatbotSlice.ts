@@ -2,12 +2,12 @@
 import { Message } from "../../types";
 import { systemContent, welcomeContent } from "../../utils/constants";
 
-const { VITE_API_URL, VITE_OPENAI_KEY } = import.meta.env;
+const { VITE_OPENAI_URL, VITE_OPENAI_KEY } = import.meta.env;
 
 export const askAnandi = createAsyncThunk(
 	"ask-anandi",
 	async (messages: Message[]) => {
-		const response = await fetch(VITE_API_URL, {
+		const response = await fetch(VITE_OPENAI_URL, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
