@@ -1,5 +1,5 @@
 ﻿import { createSlice } from "@reduxjs/toolkit";
-import { MenuCard } from "../types";
+import { MenuCard } from "../../types";
 
 const initialState = null as MenuCard[] | null;
 

@@ -9,11 +9,12 @@ import RestaurantsLoader from "../components/home/Skeletons/RestaurantsLoader";
 import SearchBar from "../components/navbar/SearchBar";
 import withNavbar from "../hocs/withNavbar";
 import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
-import { setServiceArea } from "../redux/deviceSlice";
-import { initRestorants } from "../redux/restaurantSlice";
-import { GET_SERVICE_AREA_DATA } from "../utils/resolvers";
+import { setServiceArea } from "../redux/slices/deviceSlice";
+import { initRestorants } from "../redux/slices/restaurantSlice";
 import { Navigate } from "react-router-dom";
-import { addInitialMenu } from "../redux/menuSlice";
+import { addInitialMenu } from "../redux/slices/menuSlice";
+import { GET_SERVICE_AREA_DATA } from "../graphql/resolvers";
+import Bot from "../components/anandi/Bot";
 
 const Homepage = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);
@@ -61,6 +62,7 @@ const Homepage = () => {
 				)}
 			</div>
 			<Footer />
+			<Bot />
 		</div>
 	);
 };

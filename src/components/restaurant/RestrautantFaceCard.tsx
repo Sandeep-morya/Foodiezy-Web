@@ -18,10 +18,10 @@ const RestrautantFaceCard = (data: Restaurant) => {
 				}}
 				className="absolute inset-0 flex flex-col p-2">
 				<div className="p-2 text-lightblack ">
-					<h1 className="text-xl font-medium uppercase text-shadow">
+					<h1 className="text-xl font-medium uppercase char-shadow">
 						{data.name}
 					</h1>
-					<p className="text-sm font-medium tracking-wide text-shadow">
+					<p className="text-sm font-medium tracking-wide char-shadow">
 						{data.areaName + ", " + data.locality}
 					</p>
 				</div>

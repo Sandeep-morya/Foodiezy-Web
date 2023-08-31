@@ -8,8 +8,8 @@ import { PiMagnifyingGlass } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../hook/reduxHooks";
-import { setServiceArea } from "../../redux/deviceSlice";
-import { cities as listCities } from "../../utils/data";
+import { setServiceArea } from "../../redux/slices/deviceSlice";
+import { cities as listCities } from "../../utils/constants";
 import Button from "../common/Button";
 import Input from "../common/Input";
 import FilterButton from "../home/Filters/FilterButton";

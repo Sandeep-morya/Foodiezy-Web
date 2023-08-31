@@ -14,14 +14,14 @@ import type { SortType } from "../../types";
 import type { SetURLSearchParams } from "react-router-dom";
 
 // :: Local Imports ::
-// import { sortAccording } from "../../redux/restaurantSlice";
+// import { sortAccording } from "../../redux/slices/restaurantSlice";
 import Dropdown from "../common/Dropdown";
 import FilterButton from "./Filters/FilterButton";
 import FilterModal from "./Filters/FilterModal";
 import ToggleButton from "./Filters/ToggleButton";
 
 // :: Utilities and Custom Hooks Import
-import { dropdownOptions } from "../../utils/data";
+import { dropdownOptions } from "../../utils/constants";
 import { cleanParams } from "../../utils/sorting";
 // import { useAppDispatch } from "../../hook/reduxHooks";
 import useThrottle from "../../hook/useThrottle";

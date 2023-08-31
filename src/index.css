@@ -58,11 +58,11 @@ body {
 	}
 }
 
-.text-shadow {
+.char-shadow {
 	text-shadow: 0 0 10px #0005;
 }
 .center {
-	@apply flex justify-center items-center;
+	@apply flex items-center justify-center;
 }
 .animate-zero {
 	animation: zero 300ms ease-out;
@@ -83,5 +83,40 @@ body {
 	}
 	100% {
 		clip-path: circle(136.4% at 96% 4%);
+	}
+}
+
+.animate-boom {
+	animation: boom 0.5s ease-in-out forwards;
+}
+
+@keyframes boom {
+	0% {
+		clip-path: circle(2.9% at 0 0);
+	}
+
+	25% {
+		clip-path: circle(30% at 0 0);
+	}
+	50% {
+		clip-path: circle(60% at 0 0);
+	}
+	75% {
+		clip-path: circle(90% at 0 0);
+	}
+	100% {
+		clip-path: circle(141.4% at 0 0);
+	}
+}
+.bounce {
+	animation: bounce 1s infinite;
+}
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
 	}
 }

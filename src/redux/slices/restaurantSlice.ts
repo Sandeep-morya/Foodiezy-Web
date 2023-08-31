@@ -9,7 +9,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // 	sortByTitle,
 // } from "../utils/sorting";
 
-import type { Restaurant } from "../types";
+import type { Restaurant } from "../../types";
 type InitialState = {
 	total: number;
 	restaurants: Restaurant[];

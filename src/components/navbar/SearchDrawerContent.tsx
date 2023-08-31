@@ -4,7 +4,7 @@ import { PiHamburger, PiMagnifyingGlass } from "react-icons/pi";
 import Input from "../common/Input";
 import { useLazyQuery } from "@apollo/client";
 import useDebounce from "../../hook/useDebounce";
-import { GET_RESTAURANTS } from "../../utils/resolvers";
+import { GET_RESTAURANTS } from "../../graphql/resolvers";
 import { Restaurant } from "../../types";
 import SearchResultCard from "./SearchResultCard";
 import { v4 } from "uuid";
@@ -50,9 +50,9 @@ const SearchDrawerContent = ({ serviceAreaId }: Props) => {
 	}, [debouncedQuery, serviceAreaId, handleGetRestaurants]);
 
 	return (
-		<div className="px-2 pb-24 relative w-full h-full overflow-y-scroll small-scroll-bar ">
+		<div className="relative w-full h-full px-2 pb-24 overflow-y-scroll small-scroll-bar ">
 			{loading && (
-				<div className="absolute z-20 top-0 left-0 w-full h-full center">
+				<div className="absolute top-0 left-0 z-20 w-full h-full center">
 					<img
 						className="w-[60px] animate-spin grayscale"
 						src="/only-smile.png"
@@ -80,11 +80,11 @@ const SearchDrawerContent = ({ serviceAreaId }: Props) => {
 
 			{restaurants.length > 0 && (
 				<div className="mt-2">
-					<p className="py-2 text-black/50 font-medium">
+					<p className="py-2 font-medium text-black/50">
 						Showing {count} of {totalCount} results
 					</p>
 
-					<div className="grid p-2 gap-4">
+					<div className="grid gap-4 p-2">
 						{restaurants.map((restaurant) => (
 							<SearchResultCard key={v4()} {...restaurant} />
 						))}

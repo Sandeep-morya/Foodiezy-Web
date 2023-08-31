@@ -1,7 +1,7 @@
 ﻿import { useCallback } from "react";
 
 import { useAppDispatch } from "../../hook/reduxHooks";
-import { removeFromCart } from "../../redux/cartSlice";
+import { removeFromCart } from "../../redux/slices/cartSlice";
 import type { CartDish } from "../../types";
 import { LOW_IMG_LINK } from "../../utils/links";
 

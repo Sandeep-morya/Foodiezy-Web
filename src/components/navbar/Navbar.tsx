@@ -18,17 +18,20 @@ import FavouritesContent from "../favourites/FavouritesContent";
 import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
 import useDebounce from "../../hook/useDebounce";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { GET_USER, MUTATE_CART } from "../../utils/resolvers";
 import { CartItem } from "../../types";
 import LoginModal from "../auth/LoginModal";
 import UserAfterLogin from "../user/UserAfterLogin";
 import { getItem } from "../../utils/localStorage";
-import { initiateUser } from "../../redux/userSlice";
-import { initiateCart } from "../../redux/cartSlice";
+import { initiateUser } from "../../redux/slices/userSlice";
+import { initiateCart } from "../../redux/slices/cartSlice";
+import { GET_USER, MUTATE_CART } from "../../graphql/resolvers";
 
 const Navbar = () => {
 	const navigate = useNavigate();
-	const id = getItem("current_user_id");
+	const localData = getItem("foodiezy-user") as
+		| { id: string; name: string }
+		| undefined;
+	const id = localData?.id;
 	const [getUser] = useLazyQuery(GET_USER);
 	const dispatch = useAppDispatch();
 
@@ -132,9 +135,12 @@ const Navbar = () => {
 						element={
 							user.about ? (
 								<img
-									className="w-full h-full rounded-full"
+									className="w-full h-full rounded-full border"
 									src={user.about.image}
-									alt={user.about.name[0]}
+									alt={user.about.name}
+									onError={(e) => {
+										e.currentTarget.src = "/user.png";
+									}}
 								/>
 							) : (
 								<PiUserCircle />

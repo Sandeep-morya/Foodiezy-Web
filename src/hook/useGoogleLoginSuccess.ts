@@ -1,11 +1,11 @@
 ﻿import { useMutation } from "@apollo/client";
 import { useCallback } from "react";
-import { REGISTER_USER } from "../utils/resolvers";
+import { REGISTER_USER } from "../graphql/resolvers";
 import { useAppDispatch } from "./reduxHooks";
 import axios from "axios";
-import { initiateUser } from "../redux/userSlice";
+import { initiateUser } from "../redux/slices/userSlice";
 import { TokenResponse } from "@react-oauth/google";
-import { initiateCart } from "../redux/cartSlice";
+import { initiateCart } from "../redux/slices/cartSlice";
 import { CartItem } from "../types";
 
 const useGoogleLoginSuccess = () => {
