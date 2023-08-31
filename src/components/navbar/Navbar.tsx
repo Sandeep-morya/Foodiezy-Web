@@ -28,7 +28,9 @@ import { GET_USER, MUTATE_CART } from "../../graphql/resolvers";
 
 const Navbar = () => {
 	const navigate = useNavigate();
-	const localData = getItem("user") as { id: string; name: string } | undefined;
+	const localData = getItem("foodiezy-user") as
+		| { id: string; name: string }
+		| undefined;
 	const id = localData?.id;
 	const [getUser] = useLazyQuery(GET_USER);
 	const dispatch = useAppDispatch();
