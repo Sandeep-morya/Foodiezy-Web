@@ -1,7 +1,7 @@
 ﻿import { useState, useEffect, useRef, KeyboardEvent } from "react";
 
 import Input from "../common/Input";
-import { PiMicrophone } from "react-icons/pi";
+// import { PiMicrophone } from "react-icons/pi";
 import { MdSend } from "react-icons/md";
 import { twMerge } from "tailwind-merge";
 import { v4 } from "uuid";
@@ -116,7 +116,13 @@ const BotDrawerContent = () => {
 
 			<div onKeyDown={onKeyDown}>
 				<Input
-					leftIcon={<PiMicrophone size={20} />}
+					leftIcon={
+						<img
+							className="w-[20px] aspect-square object-contain brightness-0"
+							src="/only-smile.png"
+							alt="foodiezy-smiley"
+						/>
+					}
 					rightIcon={
 						loading ? (
 							<SyncLoader />
