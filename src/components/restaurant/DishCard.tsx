@@ -1,18 +1,24 @@
-﻿// import React from "react";
+﻿import { useState, useMemo, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-import type { CartItem, Info } from "../../types";
-import { MD_IMG_LINK } from "../../utils/links";
-import Pill from "../common/Pill";
 import {
 	PiCheckSquareOffsetDuotone,
 	PiHeartStraightDuotone,
 	PiShoppingBag,
 } from "react-icons/pi";
-import { useState, useMemo, useEffect } from "react";
-import Counter from "./Counter";
-import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
+
+// :: Type Imports ::
+import type { CartItem, Info } from "../../types";
+
+// :: Redux Imports ::
 import { addToCart, removeFromCart } from "../../redux/slices/cartSlice";
-import { useNavigate } from "react-router-dom";
+// :: Custom Hooks and Utilites Imports ::
+import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
+import { MD_IMG_LINK } from "../../utils/links";
+
+// :: Custom Components ::
+import Pill from "../common/Pill";
+import Counter from "./Counter";
 import NotificationCount from "../common/NotificationCount";
 
 interface Card {

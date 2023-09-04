@@ -5,7 +5,7 @@ import Pill from "../common/Pill";
 
 const RestrautantFaceCard = (data: Restaurant) => {
 	return (
-		<div className="w-full h-[200px] min-h-[200px] relative rounded-lg border overflow-hidden shadow-xl ">
+		<section className="w-full h-[200px] min-h-[200px] relative rounded-lg border overflow-hidden shadow-xl ">
 			<img
 				className="w-[100%] h-[100%] object-cover"
 				src={ORIGINAL_IMG_LINK + data.imageId}
@@ -45,7 +45,7 @@ const RestrautantFaceCard = (data: Restaurant) => {
 					))}
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 };
 

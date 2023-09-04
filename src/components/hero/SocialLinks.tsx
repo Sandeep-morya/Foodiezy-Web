@@ -1,13 +1,13 @@
-import { FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
-import { SiUpwork } from 'react-icons/si';
+import { FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { SiUpwork } from "react-icons/si";
 
-import IconButton from '../common/IconButton';
+import IconButton from "../common/IconButton";
 
 const SocialLinks = () => {
 	return (
-		<div>
-			<h2 className="text-xl uppercase">socail links</h2>
-			<div className="flex gap-3 my-3">
+		<section>
+			<h1 className="text-xl uppercase">socail links</h1>
+			<nav className="flex gap-3 my-3">
 				<IconButton
 					href="https://github.com/Sandeep-morya/"
 					element={<FaGithub title="Github" />}
@@ -28,8 +28,8 @@ const SocialLinks = () => {
 					href="https://api.whatsapp.com/send?phone=919988885304"
 					element={<FaWhatsapp title="WhatsApp" />}
 				/>
-			</div>
-		</div>
+			</nav>
+		</section>
 	);
 };
 

@@ -2,16 +2,23 @@ import { useCallback, useEffect, useState } from "react";
 import { MdOutlineMyLocation } from "react-icons/md";
 import { PiMagnifyingGlass } from "react-icons/pi";
 
+// :: Redux Imports ::
 import { useAppDispatch } from "../../hook/reduxHooks";
 import useDebounce from "../../hook/useDebounce";
 import { setServiceArea } from "../../redux/slices/deviceSlice";
+
+// :: Types Imports ::
 import { Coordinates, MapLocations } from "../../types";
+
+// :: Utility Imports ::
 import { cities } from "../../utils/constants";
 import {
 	findAddress,
 	findAddressWithCoordinates,
 	geolocationError,
 } from "../../utils/geoLocation";
+
+// :: Custom Component Import ::
 import TonedString from "./TonedString";
 
 const SearchBar = () => {
@@ -23,7 +30,7 @@ const SearchBar = () => {
 	const dispatch = useAppDispatch();
 	const debouncedQuery = useDebounce(query.trim());
 
-	const handleUpdateAdddess = useCallback(
+	const handleUpdateAddress = useCallback(
 		async (coordinates: Coordinates) => {
 			try {
 				setIsError(false);
@@ -58,12 +65,12 @@ const SearchBar = () => {
 			navigator.geolocation.getCurrentPosition((position) => {
 				const lat = position.coords.latitude;
 				const lng = position.coords.longitude;
-				handleUpdateAdddess({ lat, lng });
+				handleUpdateAddress({ lat, lng });
 			}, geolocationError);
 		} else {
 			console.log("Geolocation is not supported by this browser.");
 		}
-	}, [handleUpdateAdddess]);
+	}, [handleUpdateAddress]);
 
 	const getAddress = useCallback(async (query: string) => {
 		try {
@@ -82,7 +89,10 @@ const SearchBar = () => {
 			getAddress(debouncedQuery);
 		}
 	}, [debouncedQuery, getAddress]);
-	console.log({ isLoading, isError });
+
+	if (isError) {
+		console.log({ isError });
+	}
 
 	return (
 		<div className="w-full h-[50px] flex mt-10 my-8 md:h-[60px]">
@@ -112,7 +122,7 @@ const SearchBar = () => {
 								<div
 									key={e.place_id}
 									onClick={() =>
-										handleUpdateAdddess({ lat: e.lat, lng: e.lon })
+										handleUpdateAddress({ lat: e.lat, lng: e.lon })
 									}>
 									<TonedString value={e.display_name} query={debouncedQuery} />
 								</div>

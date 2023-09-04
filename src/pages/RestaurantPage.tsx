@@ -1,20 +1,32 @@
-﻿import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
+﻿import { useState, useEffect, useCallback } from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
-import withNavbar from "../hocs/withNavbar";
-import useGetRestaurantData from "../hook/useGetRestaurantData";
-import { useQuery } from "@apollo/client";
-import { useState, useEffect, useCallback } from "react";
-import { GET_RESTAURANT } from "../graphql/resolvers";
-import { twMerge } from "tailwind-merge";
 import { MdKeyboardArrowDown, MdRestaurant } from "react-icons/md";
-import MenuContent from "../components/restaurant/MenuContent";
+import { twMerge } from "tailwind-merge";
+
+// :: Type Imports ::
+import type { MenuCard } from "../types";
+
+// :: Redux Imports ::
 import { addInitialMenu } from "../redux/slices/menuSlice";
-import MenuList from "../components/restaurant/MenuList";
-import { MenuCard } from "../types";
+import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
+
+// :: Apollo Client Imports ::
+import { useQuery } from "@apollo/client";
+import { GET_RESTAURANT } from "../graphql/resolvers";
+
+// :: Custom Hooks ::
+import useGetRestaurantData from "../hook/useGetRestaurantData";
+
+// :: Custom Components ::
 import RestrotantFaceCardSkeleton from "../components/restaurant/Skeletons/RestrotantFaceCardSkeleton";
 import RestrautantFaceCard from "../components/restaurant/RestrautantFaceCard";
 import MenuListSkeleton from "../components/restaurant/Skeletons/MenuListSkeleton";
 import MenuContentSkeleton from "../components/restaurant/Skeletons/MenuContentSkeleton";
+import MenuList from "../components/restaurant/MenuList";
+import MenuContent from "../components/restaurant/MenuContent";
+
+// :: Higher Order Component Import
+import withNavbar from "../hocs/withNavbar";
 
 const RestaurantPage = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);
@@ -72,8 +84,8 @@ const RestaurantPage = () => {
 	}
 
 	return (
-		<div className="flex w-full h-[calc(100vh-60px)] lg:h-[calc(100vh-80px)] flex-col gap-3 p-2 lg:flex-row lg:gap-4 overflow-auto lg:overflow-hidden md:px-10 xl:px-6 2xl:px-44">
-			<div className="w-full h-auto vanish-scroll-bar flex flex-col gap-2 lg:w-[420px] lg:h-full lg:overflow-y-scroll">
+		<main className="flex w-full h-[calc(100vh-60px)] lg:h-[calc(100vh-80px)] flex-col gap-3 p-2 lg:flex-row lg:gap-4 overflow-auto lg:overflow-hidden md:px-10 xl:px-6 2xl:px-44">
+			<article className="w-full h-auto vanish-scroll-bar flex flex-col gap-2 lg:w-[420px] lg:h-full lg:overflow-y-scroll">
 				{/*---:: Card ::---*/}
 				{loading || isLoading ? (
 					<RestrotantFaceCardSkeleton />
@@ -84,7 +96,7 @@ const RestaurantPage = () => {
 				{/* */}
 
 				{/*---:: Menu ::---*/}
-				<div>
+				<section>
 					{/*---:: Menu Heading ::---*/}
 					<div className="flex items-center justify-between mt-6 text-xl font-bold tracking-wider uppercase text-lightblack">
 						<div className="flex items-center gap-2">
@@ -112,8 +124,8 @@ const RestaurantPage = () => {
 							<MenuList {...{ tabIndex, setTabIndex, toggleMenu }} />
 						)}
 					</div>
-				</div>
-			</div>
+				</section>
+			</article>
 			{loading || isLoading ? (
 				<MenuContentSkeleton />
 			) : (
@@ -123,7 +135,7 @@ const RestaurantPage = () => {
 					restaurantName={data.restaurant.name}
 				/>
 			)}
-		</div>
+		</main>
 	);
 };
 

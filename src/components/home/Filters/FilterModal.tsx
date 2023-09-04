@@ -79,9 +79,9 @@ const FilterModal = ({
 
 	return (
 		// :: Outer Overlay ::
-		<div className="fixed top-0 left-0 z-10 flex items-end justify-center w-screen h-screen bg-white/50 backdrop-blur-sm 2xl:md:items-center">
+		<article className="fixed top-0 left-0 z-10 flex items-end justify-center w-screen h-screen bg-white/50 backdrop-blur-sm 2xl:md:items-center vanish-scroll-bar">
 			{/*---:: Modal ::---*/}
-			<div
+			<section
 				className={twMerge(
 					`w-[100%] translate-y-[100%] h-auto bg-secondary shadow-[0_0_10px_#0007] rounded-xl divide-y  lg:w-[60%] lg:scale-75 xl:scale-90 2xl:scale-100 2xl:w-[50%] transition duration-300 scale-100 `,
 					inView && "translate-x-0 translate-y-0",
@@ -219,8 +219,8 @@ const FilterModal = ({
 						</div>
 					</div>
 				)}
-			</div>
-		</div>
+			</section>
+		</article>
 	);
 };
 

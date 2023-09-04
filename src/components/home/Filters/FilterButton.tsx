@@ -15,7 +15,7 @@ const FilterButton: FC<Props> = ({
 	onClick,
 }) => {
 	return (
-		<div
+		<button
 			onClick={onClick}
 			className={`flex justify-start max-w-max items-center gap-2 px-2 py-1.5 border rounded-full  hover:cursor-pointer md:px-3 xl:py-2 hover:shadow ${
 				active && "bg-primary/25"
@@ -29,7 +29,7 @@ const FilterButton: FC<Props> = ({
 			{icon && (
 				<div className="text-sm text-lightblack md:text-base">{icon}</div>
 			)}
-		</div>
+		</button>
 	);
 };
 

@@ -1,3 +1,5 @@
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
 	PiHeart,
 	PiShoppingBag,
@@ -5,26 +7,29 @@ import {
 	PiUserCircle,
 } from "react-icons/pi";
 
-// import { useState, useEffect } from "react";
+// :: Custom Components ::
 import IconButton from "../common/IconButton";
-// import { useAppSelector } from "../../hook/reduxHooks";
 import Logo from "../common/Logo";
-import SearchBar from "./SearchBar";
-import { useNavigate } from "react-router-dom";
-import { useCallback, useEffect, useMemo, useState } from "react";
 import Drawer from "../common/Drawer";
 import CartContent from "../cart/CartContent";
 import FavouritesContent from "../favourites/FavouritesContent";
-import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
-import useDebounce from "../../hook/useDebounce";
-import { useLazyQuery, useMutation } from "@apollo/client";
-import { CartItem } from "../../types";
+import SearchBar from "./SearchBar";
 import LoginModal from "../auth/LoginModal";
 import UserAfterLogin from "../user/UserAfterLogin";
-import { getItem } from "../../utils/localStorage";
+
+// :: Redux Imports ::
+import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
 import { initiateUser } from "../../redux/slices/userSlice";
 import { initiateCart } from "../../redux/slices/cartSlice";
+
+// :: Apollo Client Imports ::
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { GET_USER, MUTATE_CART } from "../../graphql/resolvers";
+
+// :: Custom Hooks and Utilites Imports ::
+import useDebounce from "../../hook/useDebounce";
+import { getItem } from "../../utils/localStorage";
+import { CartItem } from "../../types";
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -40,18 +45,22 @@ const Navbar = () => {
 	const debouncedCart = useDebounce(cart, 700);
 	const [mutateCart] = useMutation(MUTATE_CART);
 
+	// State and toggler for login modal
 	const [showLoginModal, setShowLoginModal] = useState(!id);
 	const toggleLoginModal = user.token
 		? () => {}
 		: () => setShowLoginModal((e) => !e);
 
+	// State and toggler for user about modal
 	const [showUserAboutModal, setShowUserAboutModal] = useState(false);
 	const toggleUserAboutModal = () => setShowUserAboutModal((e) => !e);
 
+	// State and toggler for cart drawer
 	const [showCartDrawer, setShowCartDrawer] = useState(false);
 	const toggleCartDrawer = () =>
 		user.token ? setShowCartDrawer((e) => !e) : toggleLoginModal();
 
+	// State and toggler for favorites drawer
 	const [showFavouritesDrawer, setShowFavouritesDrawer] = useState(false);
 	const toggleFavouritesDrawer = () =>
 		user.token ? setShowFavouritesDrawer((e) => !e) : toggleLoginModal();
@@ -200,41 +209,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// const [isScrolled, setIsScrolled] = useState(false);
-
-// useEffect(() => {
-// 	const handleScroll = () => {
-// 		const scrollPosition = window.pageYOffset;
-// 		setIsScrolled(scrollPosition > 0);
-// 	};
-// 	window.onscroll = handleScroll;
-// }, []);
-// console.log({ isScrolled });
-
-/* <IconButton
-					onClick={toggleNotificationsDrawer}
-					asButton
-					element={<PiBell />}
-				/>
-
-
-					const [showNotificationsDrawer, setShowNotificationsDrawer] = useState(false);
-	const toggleNotificationsDrawer = () =>
-		user.token
-			? setShowNotificationsDrawer((e) => !e)
-			: navigate("/user/login");
-
-
-
-					{showNotificationsDrawer && (
-				<Drawer
-					content={<NotificationsContent />}
-					label="Notifications"
-					right
-					toggleDrawer={toggleNotificationsDrawer}
-					// slideEffect={200}
-				/>
-			)}
-
-				*/

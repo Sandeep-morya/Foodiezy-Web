@@ -1,14 +1,16 @@
-﻿import type { Collection } from "../../types";
-import { useCallback, useRef, useState } from 'react';
-import { PiCaretCircleLeft, PiCaretCircleRight } from 'react-icons/pi';
+﻿import { useCallback, useRef, useState } from "react";
+import { PiCaretCircleLeft, PiCaretCircleRight } from "react-icons/pi";
 
-import CollectionCard from './CollectionCard';
+// :: Types import ::
+import type { Collection } from "../../types";
+
+// :: Custom Components ::
+import CollectionCard from "./CollectionCard";
 
 const Collections = ({ data }: { data: Collection[] }) => {
 	const [showLeftButton, setShowLeftButton] = useState(false);
 	const [showRightButton, setShowRightButton] = useState(true);
-	// const colletion_1 = data.slice(0, 10);
-	// const colletion_2 = data.slice(10, data.length);
+
 	const collectionsRef = useRef<HTMLDivElement>(null);
 
 	const handleScroll = useCallback((left: number) => {
@@ -22,8 +24,8 @@ const Collections = ({ data }: { data: Collection[] }) => {
 	}, []);
 
 	return (
-		<div className="relative w-full mt-2">
-			<div className="flex items-center justify-between px-4">
+		<article className="relative w-full mt-2">
+			<section className="flex items-center justify-between px-4">
 				<h1 className="text-lg font-semibold tracking-wide md:text-xl xl:text-2xl">
 					Eat what you like most
 				</h1>
@@ -52,9 +54,9 @@ const Collections = ({ data }: { data: Collection[] }) => {
 						<PiCaretCircleRight />
 					</div>
 				</div>
-			</div>
+			</section>
 
-			<div
+			<section
 				ref={collectionsRef}
 				className="w-full overflow-x-scroll vanish-scroll-bar snap-x">
 				<div className="grid items-center content-start self-start grid-cols-10 gap-1 w-max lg:gap-x-2 xl:gap-x-9 2xl:gap-x-16">
@@ -62,8 +64,8 @@ const Collections = ({ data }: { data: Collection[] }) => {
 						<CollectionCard key={collection._id} {...collection} />
 					))}
 				</div>
-			</div>
-		</div>
+			</section>
+		</article>
 	);
 };
 

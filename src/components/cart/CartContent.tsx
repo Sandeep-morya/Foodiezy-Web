@@ -1,10 +1,8 @@
-﻿// import React from "react";
-
+﻿import { useEffect, useState } from "react";
 import { MdShoppingCartCheckout, MdTableRestaurant } from "react-icons/md";
-import { CartRestaurant } from "../../types";
-import CartDishes from "./CartDishes";
-import { useEffect, useState } from "react";
+import type { CartRestaurant } from "../../types";
 import { useAppSelector } from "../../hook/reduxHooks";
+import CartDishes from "./CartDishes";
 
 interface Props {
 	cartPrice: string;
@@ -40,7 +38,7 @@ const CartContent = ({ cartPrice }: Props) => {
 
 	return cart.length > 0 ? (
 		<div className="w-full h-full relative">
-			<div className="w-full h-[calc(100%-100px)] overflow-y-scroll  small-scroll-bar">
+			<section className="w-full h-[calc(100%-100px)] overflow-y-scroll  small-scroll-bar">
 				{data.map(({ restaurantId, restaurantName, dishes }) => (
 					<div
 						className="my-4 p-2 divide-y"
@@ -55,9 +53,9 @@ const CartContent = ({ cartPrice }: Props) => {
 						<CartDishes {...{ dishes }} />
 					</div>
 				))}
-			</div>
+			</section>
 
-			<div className="w-full h-[60px] p-2 bg-white shadow-lg bg-teal absolute bottom-[50px] left-0 flex gap-3  items-center">
+			<section className="w-full h-[60px] p-2 bg-white shadow-lg bg-teal absolute bottom-[50px] left-0 flex gap-3  items-center">
 				<p className="text-xs font-medium flex-1">
 					SubTotal: <span className="text-2xl"> ₹{cartPrice}</span>
 				</p>
@@ -65,7 +63,7 @@ const CartContent = ({ cartPrice }: Props) => {
 					<MdShoppingCartCheckout />
 					Checkout
 				</button>
-			</div>
+			</section>
 		</div>
 	) : (
 		<div className="w-full h-full flex justify-center items-center">
