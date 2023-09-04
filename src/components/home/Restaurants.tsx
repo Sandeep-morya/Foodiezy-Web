@@ -1,18 +1,24 @@
-import { useCallback, useEffect, useState, MouseEvent } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 
-import { useLazyQuery } from "@apollo/client";
-
-import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
+// :: Redux Imports ::
 import {
 	addRestaurants,
 	initRestorants,
 } from "../../redux/slices/restaurantSlice";
+
+// :: Apollo Client Imports ::
+import { useLazyQuery } from "@apollo/client";
 import { GET_RESTAURANTS } from "../../graphql/resolvers";
+
+// :: Custom Hooks and Utilites Imports ::
+import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
+
+// :: Custom Components ::
 import FilterSortSection from "./FilterSortSection";
 import RestaurantCard from "./RestaurantCard";
 import RestaurantCardSkeletion from "./Skeletons/RestaurantCardSkeletion";
-import { useNavigate, useSearchParams } from "react-router-dom";
 
 interface Props {
 	id: string;
@@ -22,7 +28,6 @@ const Restaurants = ({ id }: Props) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [queryParams, setQueryParams] = useState(searchParams.toString());
 	const [modified, setModified] = useState(false);
-	const navigate = useNavigate();
 
 	const { inView, ref } = useInView();
 	const { ref: target, inView: LastItemInView } = useInView({ threshold: 0.7 });
@@ -55,30 +60,6 @@ const Restaurants = ({ id }: Props) => {
 		[getRestaurants, id, dispatch, queryParams],
 	);
 
-	// Event Delegation
-	const openRestaurant = useCallback(
-		(event: MouseEvent<HTMLDivElement>) => {
-			const clickedElement = event.target as HTMLElement;
-			const card = clickedElement.closest("[data-card-id]");
-
-			if (!card) {
-				return; // When Clicked outside an element like "Gap"
-			}
-
-			const id = card.getAttribute("data-card-id");
-			const restaurantId = card.getAttribute("data-restaurant-id");
-			const restaurantName = card.getAttribute("data-restaurant-name");
-			if (id && restaurantId && restaurantName) {
-				navigate(
-					`/restaurant/${restaurantName
-						.split(" ")
-						.join("-")}?id=${id}&restaurantId=${restaurantId}`,
-				);
-			}
-		},
-		[navigate],
-	);
-
 	useEffect(() => {
 		handleGetRestaurants(page);
 	}, [page, handleGetRestaurants]);
@@ -93,7 +74,7 @@ const Restaurants = ({ id }: Props) => {
 	}, [LastItemInView, total]);
 
 	return (
-		<div className="flex flex-col px-2 gap-y-2 md:px-4">
+		<article className="flex flex-col px-2 gap-y-2 md:px-4">
 			<h1
 				ref={ref}
 				className="text-lg font-semibold tracking-wide md:text-xl xl:text-2xl">
@@ -107,8 +88,8 @@ const Restaurants = ({ id }: Props) => {
 			/>
 
 			{/*---:: Restaurant Cards ::---*/}
-			<div
-				onClick={openRestaurant}
+			<section
+				aria-labelledby="restaurants"
 				className="grid grid-cols-1 gap-6 px-1 mt-8 transition md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 2xl:gap-8">
 				{restaurants.map((restaurant, index) => (
 					<RestaurantCard
@@ -121,8 +102,8 @@ const Restaurants = ({ id }: Props) => {
 					Array.from({ length: 16 }).map((_, index) => (
 						<RestaurantCardSkeletion key={"restaurants-skeleton" + index} />
 					))}
-			</div>
-		</div>
+			</section>
+		</article>
 	);
 };
 

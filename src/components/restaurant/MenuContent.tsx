@@ -54,8 +54,8 @@ const MenuContent = ({ tabIndex, restaurantId, restaurantName }: Props) => {
 		return <MenuContentSkeleton />;
 	}
 	return (
-		<div className="flex flex-col w-full h-auto gap-2 pb-10 menu-content lg:h-full lg:overflow-y-scroll vanish-scroll-bar">
-			<div className="sticky z-10 flex flex-col p-2 pb-4 bg-white -top-5 md:-top-2 lg:top-0 xl:pt-0 md:flex-row md:gap-10 md:items-center md:justify-between">
+		<article className="flex flex-col w-full h-auto gap-2 pb-10 menu-content lg:h-full lg:overflow-y-scroll vanish-scroll-bar">
+			<section className="sticky z-10 flex flex-col p-2 pb-4 bg-white -top-5 md:-top-2 lg:top-0 xl:pt-0 md:flex-row md:gap-10 md:items-center md:justify-between">
 				<h2 className="mb-1 text-lg font-semibold tracking-wide md:text-xl xl:text-2xl">{`${currentMenu.title} (${menuList.length})`}</h2>
 				<div className="flex-1 max-w-full md:max-w-[300px]">
 					<Input
@@ -66,9 +66,9 @@ const MenuContent = ({ tabIndex, restaurantId, restaurantName }: Props) => {
 						rightIcon={<PiMagnifyingGlass />}
 					/>
 				</div>
-			</div>
+			</section>
 
-			<div className="grid grid-cols-1 gap-3 px-2 mt-2 md:grid-cols-2 md:gap-4 xl:grid-cols-3 2xl:grid-cols-4">
+			<section className="grid grid-cols-1 gap-3 px-2 mt-2 md:grid-cols-2 md:gap-4 xl:grid-cols-3 2xl:grid-cols-4">
 				{menuList.map(({ card }, index) => (
 					<DishCard
 						key={card.info.id + index}
@@ -76,8 +76,8 @@ const MenuContent = ({ tabIndex, restaurantId, restaurantName }: Props) => {
 						{...{ restaurantId, restaurantName }}
 					/>
 				))}
-			</div>
-		</div>
+			</section>
+		</article>
 	);
 };
 

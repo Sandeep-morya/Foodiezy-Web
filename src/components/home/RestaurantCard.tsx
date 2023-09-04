@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
+import { MD_IMG_LINK } from "../../utils/links";
+
+// :: Type Imports ::
+import type { Restaurant } from "../../types";
+
+// :: React Icons ::
 import { MdDeliveryDining, MdLocationPin } from "react-icons/md";
 import { PiPath } from "react-icons/pi";
 
-import { MD_IMG_LINK } from "../../utils/links";
-
-import type { Restaurant } from "../../types";
-
+// :: Custom Components ::
 import Pills from "./Pills";
 import Rating from "./Rating";
 
@@ -16,13 +20,16 @@ interface Props extends Restaurant {
 
 const RestaurantCard = (data: Props) => {
 	return (
-		<div
+		<Link
+			to={`/restaurant/${data.name.split(" ").join("-")}?id=${
+				data._id
+			}&restaurantId=${data.restaurantId}`}
 			ref={data.index === (data.page + 1) * 20 - 1 ? data.target : null}
-			data-card-id={data._id}
-			data-restaurant-id={data.restaurantId}
-			data-restaurant-name={data.name}
+			// data-card-id={data._id}
+			// data-restaurant-id={data.restaurantId}
+			// data-restaurant-name={data.name}
 			className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col hover:ring-primary/50">
-			<div className="relative w-[45%] overflow-hidden aspect-[3/4] md:w-full md:aspect-[3/2] transition">
+			<section className="relative w-[45%] overflow-hidden aspect-[3/4] md:w-full md:aspect-[3/2] transition">
 				{/* Actual Image of Restaurant */}
 				<img
 					loading="lazy"
@@ -44,8 +51,8 @@ const RestaurantCard = (data: Props) => {
 				<div className="absolute flex items-center justify-start px-2 py-0.5 text-xs font-semibold shadow-lg bg-white rounded-tl-full rounded-bl-full uppercase -right-1 bottom-5 md:bottom-10 ">
 					{`₹${data.costForTwo} for Two`}
 				</div>
-			</div>
-			<div className="flex flex-col flex-1 gap-2 p-3 bg-white md:p-2 xl:gap-3 xl:p-3 xl:pt-2">
+			</section>
+			<section className="flex flex-col flex-1 gap-2 p-3 bg-white md:p-2 xl:gap-3 xl:p-3 xl:pt-2">
 				<div className="flex justify-start md:hidden">
 					<Pills veg={data.veg} />
 				</div>
@@ -87,8 +94,8 @@ const RestaurantCard = (data: Props) => {
 						<p className="text-xs">{data.delivery.distance}</p>
 					</div>
 				</div>
-			</div>
-		</div>
+			</section>
+		</Link>
 	);
 };
 

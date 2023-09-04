@@ -27,7 +27,7 @@ const ToggleButton: FC<Props> = ({ title, defaultValue, callback }) => {
 		setChecked(defaultValue);
 	}, [defaultValue]);
 	return (
-		<div
+		<button
 			onClick={() => setChecked((e) => (!e ? true : e))}
 			className={`flex justify-start max-w-max items-center gap-2 px-2 py-1.5 border rounded-full hover:cursor-pointer text-sm text-lightblack 2xl:text-base md:px-3 xl:py-2 hover:shadow ${
 				checked && "bg-primary/25"
@@ -39,7 +39,7 @@ const ToggleButton: FC<Props> = ({ title, defaultValue, callback }) => {
 					<MdClose />
 				</div>
 			)}
-		</div>
+		</button>
 	);
 };
 

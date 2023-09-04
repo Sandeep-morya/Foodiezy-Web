@@ -1,18 +1,19 @@
 ﻿import { useState, useEffect, useRef, KeyboardEvent } from "react";
-
-import Input from "../common/Input";
-// import { PiMicrophone } from "react-icons/pi";
+import { v4 } from "uuid";
 import { MdSend } from "react-icons/md";
 import { twMerge } from "tailwind-merge";
-import { v4 } from "uuid";
-import ListItem from "./ListItem";
 
+// :: Redux Imports ::
 import { useAppDispatch, useAppSelector } from "../../hook/reduxHooks";
 import {
 	addClientMessage,
 	askAnandi,
 	resetMessages,
 } from "../../redux/slices/chatbotSlice";
+
+// :: Custom Components ::
+import Input from "../common/Input";
+import ListItem from "./ListItem";
 import SyncLoader from "./SyncLoader";
 
 const BotDrawerContent = () => {
@@ -62,8 +63,8 @@ const BotDrawerContent = () => {
 	}, [messages, dispatch]);
 
 	return (
-		<div className="w-full h-[calc(100%-80px)] flex flex-col gap-2 p-1">
-			<div className="flex flex-col pr-2 grow overflow-y-scroll small-scroll-bar gap-6 pb-4 pl-1">
+		<article className="w-full h-[calc(100%-80px)] flex flex-col gap-2 p-1">
+			<section className="flex flex-col pr-2 grow overflow-y-scroll small-scroll-bar gap-6 pb-4 pl-1">
 				{messages.slice(1).map(({ content, links, role }, index) => (
 					<div key={v4()} className="flex items-start  gap-2">
 						{role === "user" && (
@@ -101,7 +102,7 @@ const BotDrawerContent = () => {
 						</div>
 					</div>
 				))}
-			</div>
+			</section>
 
 			<ul className="w-full h-[45px] flex items-center gap-2 flex-wrap">
 				<ListItem title={"Need a help!"} />
@@ -114,7 +115,7 @@ const BotDrawerContent = () => {
 				)}
 			</ul>
 
-			<div onKeyDown={onKeyDown}>
+			<section onKeyDown={onKeyDown}>
 				<Input
 					leftIcon={
 						<img
@@ -136,8 +137,8 @@ const BotDrawerContent = () => {
 					value={clientMessage}
 					onChange={(e) => setClientMessage(e.target.value)}
 				/>
-			</div>
-		</div>
+			</section>
+		</article>
 	);
 };
 

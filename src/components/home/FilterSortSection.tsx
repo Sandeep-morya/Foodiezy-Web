@@ -13,18 +13,16 @@ import { LuSettings2 } from "react-icons/lu";
 import type { SortType } from "../../types";
 import type { SetURLSearchParams } from "react-router-dom";
 
+// :: Utilities and Custom Hooks Import
+import { dropdownOptions } from "../../utils/constants";
+import { cleanParams } from "../../utils/sorting";
+import useThrottle from "../../hook/useThrottle";
+
 // :: Local Imports ::
-// import { sortAccording } from "../../redux/slices/restaurantSlice";
 import Dropdown from "../common/Dropdown";
 import FilterButton from "./Filters/FilterButton";
 import FilterModal from "./Filters/FilterModal";
 import ToggleButton from "./Filters/ToggleButton";
-
-// :: Utilities and Custom Hooks Import
-import { dropdownOptions } from "../../utils/constants";
-import { cleanParams } from "../../utils/sorting";
-// import { useAppDispatch } from "../../hook/reduxHooks";
-import useThrottle from "../../hook/useThrottle";
 
 interface Props {
 	atTop: boolean;
@@ -122,17 +120,9 @@ const FilterSortSection = ({
 		expoloreList,
 	]);
 
-	// :: Handling Sorting Functionality ::
-	//useEffect(() => {
-	// :: Sorting Logic written in redux slice ::
-	//if (total > 1) {
-	// :: Dispatching the Action with Paylaod here for Sorting ::
-	// dispatch(sortAccording(selectBoxValue));
-	//}
-	//	}, [selectBoxValue, dispatch, total]);
-
 	return (
-		<div
+		<section
+			aria-aria-labelledby="filterationa and sorting section"
 			className={`sticky z-10 flex w-full justify-between items-center gap-0 px-0 py-3 bg-white top-[50px]  lg:top-[70px] ${
 				atTop && "shadow-[0_8px_6px_-8px_#000]"
 			} transition`}>
@@ -172,7 +162,7 @@ const FilterSortSection = ({
 				)}
 
 				{/*---:: Some Filter Buttons ::---*/}
-				<div className="hidden gap-4 xl:flex">
+				<nav className="hidden gap-4 xl:flex">
 					<ToggleButton
 						title="Ratings 4.0+"
 						defaultValue={ratingList.includes("Ratings 4.0+")}
@@ -197,7 +187,7 @@ const FilterSortSection = ({
 							callback={setCostForTwoList}
 						/>
 					))}
-				</div>
+				</nav>
 
 				{/*---:: Sorting Dropdown Menu ::---*/}
 				<Dropdown
@@ -225,7 +215,7 @@ const FilterSortSection = ({
 					</button>
 				</div>
 			)}
-		</div>
+		</section>
 	);
 };
 

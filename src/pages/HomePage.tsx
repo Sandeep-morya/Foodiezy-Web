@@ -1,20 +1,27 @@
 import { useEffect } from "react";
+import { Navigate } from "react-router-dom";
 
+// :: Apollo Client Imports ::
 import { useQuery } from "@apollo/client";
+import { GET_SERVICE_AREA_DATA } from "../graphql/resolvers";
+
+// :: Redux Imports ::
+import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
+import { setServiceArea } from "../redux/slices/deviceSlice";
+import { initRestorants } from "../redux/slices/restaurantSlice";
+import { addInitialMenu } from "../redux/slices/menuSlice";
+
+// :: Custom Components ::
 import Collections from "../components/home/Collections";
 import Footer from "../components/home/Footer";
 import Restaurants from "../components/home/Restaurants";
 import CollectionsLoader from "../components/home/Skeletons/CollectionsLoader";
 import RestaurantsLoader from "../components/home/Skeletons/RestaurantsLoader";
 import SearchBar from "../components/navbar/SearchBar";
-import withNavbar from "../hocs/withNavbar";
-import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
-import { setServiceArea } from "../redux/slices/deviceSlice";
-import { initRestorants } from "../redux/slices/restaurantSlice";
-import { Navigate } from "react-router-dom";
-import { addInitialMenu } from "../redux/slices/menuSlice";
-import { GET_SERVICE_AREA_DATA } from "../graphql/resolvers";
 import Bot from "../components/anandi/Bot";
+
+// Higher-Order Component
+import withNavbar from "../hocs/withNavbar";
 
 const Homepage = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);
@@ -44,26 +51,32 @@ const Homepage = () => {
 	}
 
 	return (
-		<div className="w-full">
-			<div className="flex flex-col w-full p-1 gap-y-10 md:px-10 lg:px-4 xl:px-0 2xl:px-44 ">
+		<main className="w-full">
+			<article className="flex flex-col w-full p-1 gap-y-10 md:px-10 lg:px-4 xl:px-0 2xl:px-44 ">
 				<div className="block w-full px-2 lg:hidden">
 					<SearchBar />
 				</div>
-				{loading ? (
-					<CollectionsLoader />
-				) : (
-					<Collections data={data.getServiceAreaData.collections} />
-				)}
+				<section role="collections">
+					{loading ? (
+						<CollectionsLoader />
+					) : (
+						<Collections data={data.getServiceAreaData.collections} />
+					)}
+				</section>
+				<section role="restaurants">
+					{loading || !serviceArea?._id ? (
+						<RestaurantsLoader />
+					) : (
+						<Restaurants id={serviceArea._id} />
+					)}
+				</section>
+			</article>
 
-				{loading || !serviceArea?._id ? (
-					<RestaurantsLoader />
-				) : (
-					<Restaurants id={serviceArea._id} />
-				)}
-			</div>
-			<Footer />
 			<Bot />
-		</div>
+			<footer>
+				<Footer />
+			</footer>
+		</main>
 	);
 };
 
