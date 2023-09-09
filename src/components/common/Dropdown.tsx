@@ -10,6 +10,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 import { getSortingTitle } from "../../utils/sorting";
 import RadioButton from "./RadioButton";
+import { v4 } from "uuid";
 
 interface DropdownProps<T> {
 	options: T[];
@@ -66,11 +67,11 @@ const Dropdown = <T extends string>({
 			</button>
 			{isOpen && (
 				<ul className="absolute animate-zero top-12 left-0 w-[180px] md:w-[200px] p-2 bg-white ring-1 ring-black/5 rounded-xl flex flex-col  shadow-xl cursor-default">
-					{options.map((e, index) => (
+					{options.map((e) => (
 						<li
 							className="flex items-center justify-between p-2 rounded cursor-pointer active:scale-95 hover:bg-black/10"
 							onClick={() => handleSelect(e as T)}
-							key={"sort-item" + index}>
+							key={v4()}>
 							<p>{getSortingTitle(e as T)}</p>
 							{!radio && <RadioButton active={value === e} />}
 						</li>

@@ -1,7 +1,8 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction } from "react";
 
-import FilterHeading from './FilterHeading';
-import ListItem from './ListItem';
+import FilterHeading from "./FilterHeading";
+import ListItem from "./ListItem";
+import { v4 } from "uuid";
 
 interface Props {
 	heading: string;
@@ -14,9 +15,9 @@ const Filter: FC<Props> = ({ heading, array, value, setValue }: Props) => {
 	return (
 		<div>
 			<FilterHeading title={heading} />
-			{array.map((title, index) => (
+			{array.map((title) => (
 				<ListItem
-					key={title + index + heading}
+					key={v4()}
 					title={title}
 					callback={setValue}
 					defaultValue={value.includes(title)}

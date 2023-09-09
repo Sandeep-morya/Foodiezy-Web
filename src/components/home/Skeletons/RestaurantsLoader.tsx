@@ -1,4 +1,5 @@
-import RestaurantCardSkeletion from './RestaurantCardSkeletion';
+import { v4 } from "uuid";
+import RestaurantCardSkeletion from "./RestaurantCardSkeletion";
 
 const PillSkeleton = () => {
 	return <div className={"w-[90px] h-[35px] rounded-full bg-black/20"} />;
@@ -23,8 +24,8 @@ const RestaurantsLoader = () => {
 			</div>
 
 			<div className="grid grid-cols-1 gap-6 px-1 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 2xl:gap-8">
-				{Array.from({ length: 16 }).map((_, index) => (
-					<RestaurantCardSkeletion key={"restaurant-card-skeleton" + index} />
+				{Array.from({ length: 16 }).map(() => (
+					<RestaurantCardSkeletion key={v4()} />
 				))}
 			</div>
 		</div>

@@ -27,12 +27,14 @@ const restaurantSlice = createSlice({
 	initialState,
 	reducers: {
 		initRestorants(_, action: PayloadAction<InitialState>) {
-			// setItem("restorants", action.payload.restaurants);
 			return action.payload;
 		},
 		addRestaurants(state, action: PayloadAction<Restaurant[]>) {
-			// setItem("restorants", [...getItem("restorants"), ...action.payload]);
-			state.restaurants = [...state.restaurants, ...action.payload];
+			// const data = action.payload;
+			// const moreRestaurants = data.filter(
+			// 	(e) => !state.restaurants.some((x) => x._id === e._id),
+			// );
+			state.restaurants = state.restaurants.concat(action.payload);
 		},
 		// :: No more using frontend sorting; using sorting from backend ::
 		// sortAccording(state, action: PayloadAction<SortType>) {

@@ -2,6 +2,7 @@
 import { useAppSelector } from "../../hook/reduxHooks";
 import { twMerge } from "tailwind-merge";
 import MenuListSkeleton from "./Skeletons/MenuListSkeleton";
+import { v4 } from "uuid";
 
 interface Props {
 	tabIndex: number;
@@ -19,7 +20,7 @@ const MenuList = (props: Props) => {
 			const clickedElement = event.target as HTMLElement;
 			const target = clickedElement.closest("[data-index]");
 			if (!target) {
-				return; // When Clicked outside an element like "Gap"
+				return;
 			}
 			const index = target.getAttribute("data-index");
 			if (index) {
@@ -43,7 +44,7 @@ const MenuList = (props: Props) => {
 					: data.itemCards;
 				return (
 					<div
-						key={title + index + "list"}
+						key={v4()}
 						data-index={index}
 						className={twMerge(
 							"w-full h-[50px] flex items-center justify-between p-4 rounded-lg ",

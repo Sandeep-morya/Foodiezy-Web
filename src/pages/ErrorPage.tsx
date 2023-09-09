@@ -15,7 +15,6 @@ const ErrorPage = () => {
 			<section className="flex flex-col items-center justify-center gap-5">
 				<div className="grid gap-2 text-center">
 					<h3 className="text-2xl font-bold">Look like you're lost</h3>
-
 					<p className="text-sm">The page you are looking for not avaible!</p>
 				</div>
 

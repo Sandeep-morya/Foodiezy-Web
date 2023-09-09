@@ -21,6 +21,7 @@ import {
 import Cuisines from "./Cuisines";
 import Filter from "./Filter";
 import Sort from "./Sort";
+import { v4 } from "uuid";
 
 interface Props {
 	handleApplyFilter: () => void;
@@ -114,7 +115,7 @@ const FilterModal = ({
 						{/*---:: All types of filer Heading ::---*/}
 						{filterTypes.map((x, index) => (
 							<h2
-								key={x + index}
+								key={v4()}
 								onClick={() => setFilterTitleIndex(index)}
 								className={twMerge(
 									"text-sm font-semibold px-5 py-4 2xl:text-lg",
