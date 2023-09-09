@@ -6,10 +6,16 @@ import {
 } from "react-icons/md";
 import { PiMagnifyingGlass } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
+import { v4 } from "uuid";
 
+// :: Redux Imports ::
 import { useAppDispatch } from "../../hook/reduxHooks";
 import { setServiceArea } from "../../redux/slices/deviceSlice";
+
+// :: Custom Hooks and Utilites Imports ::
 import { cities as listCities } from "../../utils/constants";
+
+// :: Custom Components ::
 import Button from "../common/Button";
 import Input from "../common/Input";
 import FilterButton from "../home/Filters/FilterButton";
@@ -22,9 +28,9 @@ interface Props {
 const RenderCities = ({ cities, handleChangeCity }: Props) => {
 	return (
 		<div className="flex flex-wrap gap-2 mt-5">
-			{cities.map((city, index) => (
+			{cities.map((city) => (
 				<FilterButton
-					key={city + index}
+					key={v4()}
 					onClick={() => handleChangeCity(city)}
 					title={city}
 				/>

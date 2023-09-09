@@ -2,6 +2,7 @@
 import { useMemo } from "react";
 import { useAppDispatch } from "../../hook/reduxHooks";
 import { setServiceArea } from "../../redux/slices/deviceSlice";
+import { v4 } from "uuid";
 
 const ServicesInCities = () => {
 	const dispatch = useAppDispatch();
@@ -15,7 +16,7 @@ const ServicesInCities = () => {
 		<div className="flex flex-wrap gap-2 mt-4">
 			{cities.map((city, index) => (
 				<button
-					key={"cities" + index}
+					key={v4()}
 					aria-label={`Select ${city}`}
 					onClick={() => dispatch(setServiceArea({ name: city }))}
 					className={`text-base cursor-pointer font-bold ${

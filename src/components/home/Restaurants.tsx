@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
+import { v4 } from "uuid";
 
 // :: Redux Imports ::
 import {
@@ -38,12 +39,11 @@ const Restaurants = ({ id }: Props) => {
 
 	const handleGetRestaurants = useCallback(
 		async (page: number) => {
-			console.log({ queryParams });
 			try {
 				const { data } = await getRestaurants({
 					variables: { page, queryParams, serviceAreaId: id },
 				});
-				console.log("API called for page:", data.getRestaurants.page);
+
 				const total = data.getRestaurants.totalCount;
 				const modified = data.getRestaurants.modified;
 				setModified(modified);
@@ -68,7 +68,6 @@ const Restaurants = ({ id }: Props) => {
 
 	useEffect(() => {
 		if (LastItemInView) {
-			console.log({ LastItemInView });
 			setPage((page) => page + 1);
 		}
 	}, [LastItemInView, total]);
@@ -93,14 +92,14 @@ const Restaurants = ({ id }: Props) => {
 				className="grid grid-cols-1 gap-6 px-1 mt-8 transition md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 2xl:gap-8">
 				{restaurants.map((restaurant, index) => (
 					<RestaurantCard
-						key={restaurant._id + index}
+						key={restaurant._id}
 						{...{ target, index, page }}
 						{...restaurant}
 					/>
 				))}
 				{loading &&
-					Array.from({ length: 16 }).map((_, index) => (
-						<RestaurantCardSkeletion key={"restaurants-skeleton" + index} />
+					Array.from({ length: 16 }).map(() => (
+						<RestaurantCardSkeletion key={v4()} />
 					))}
 			</section>
 		</article>

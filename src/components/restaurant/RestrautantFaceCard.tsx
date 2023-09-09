@@ -2,6 +2,7 @@
 import { Restaurant } from "../../types";
 import { MdDeliveryDining, MdStar } from "react-icons/md";
 import Pill from "../common/Pill";
+import { v4 } from "uuid";
 
 const RestrautantFaceCard = (data: Restaurant) => {
 	return (
@@ -40,8 +41,8 @@ const RestrautantFaceCard = (data: Restaurant) => {
 					</div>
 				</div>
 				<div className="flex gap-2 pt-4 my-2 border-t border-dashed border-lightblack">
-					{data.cuisines.map((title: string, index: number) => (
-						<Pill key={title + index} title={title} color="bg-primary" />
+					{data.cuisines.map((title: string) => (
+						<Pill key={v4()} title={title} color="bg-primary" />
 					))}
 				</div>
 			</div>

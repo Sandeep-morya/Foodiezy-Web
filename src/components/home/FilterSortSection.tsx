@@ -122,7 +122,6 @@ const FilterSortSection = ({
 
 	return (
 		<section
-			aria-aria-labelledby="filterationa and sorting section"
 			className={`sticky z-10 flex w-full justify-between items-center gap-0 px-0 py-3 bg-white top-[50px]  lg:top-[70px] ${
 				atTop && "shadow-[0_8px_6px_-8px_#000]"
 			} transition`}>
@@ -179,9 +178,9 @@ const FilterSortSection = ({
 						defaultValue={deliveryInList.includes("Fast Delivery")}
 						callback={setDeliveryInList}
 					/>
-					{["₹300 - ₹500", "Less than ₹300"].map((title, index) => (
+					{["₹300 - ₹500", "Less than ₹300"].map((title) => (
 						<ToggleButton
-							key={title + index}
+							key={title}
 							title={title}
 							defaultValue={costForTwoList.includes(title)}
 							callback={setCostForTwoList}

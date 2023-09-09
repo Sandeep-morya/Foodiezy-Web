@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useCallback, useRef, useState } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 import { getSortingTitle } from "../../utils/sorting";
+import { v4 } from "uuid";
 
 interface Props<T> {
 	value: T;
@@ -24,9 +25,9 @@ const SelectBox = <T extends string>({ value, setValue }: Props<T>) => {
 		[setValue],
 	);
 	return (
-		<div className="absolute top-0 left-0 h-full w-full ">
+		<div className="absolute top-0 left-0 w-full h-full ">
 			<input
-				className="absolute caret-transparent top-0 left-0 w-full h-full z-10 outline-none opacity-0"
+				className="absolute top-0 left-0 z-10 w-full h-full outline-none opacity-0 caret-transparent"
 				onFocus={() => setActive(true)}
 				onBlur={() => setActive(hover || hover2 ? true : false)}
 				ref={inputRef}
@@ -55,11 +56,11 @@ const SelectBox = <T extends string>({ value, setValue }: Props<T>) => {
 						setHover(false);
 					}}
 					className="absolute z-30 top-12 left-0 w-[160px] lg:w-[180px] p-2 bg-white ring-1 ring-black/5 rounded-xl flex flex-col  shadow-md">
-					{["default", "title", "rating", "h2l", "l2h"].map((e, index) => (
+					{["default", "title", "rating", "h2l", "l2h"].map((e) => (
 						<div
-							className="flex p-2 justify-between items-center hover:bg-black/10 rounded"
+							className="flex items-center justify-between p-2 rounded hover:bg-black/10"
 							onClick={() => handleSelect(e as T)}
-							key={"sort-item" + index}>
+							key={v4()}>
 							<p className="text-xs lg:text-sm text-lightblack">
 								{getSortingTitle(e as T)}
 							</p>

@@ -69,9 +69,9 @@ const MenuContent = ({ tabIndex, restaurantId, restaurantName }: Props) => {
 			</section>
 
 			<section className="grid grid-cols-1 gap-3 px-2 mt-2 md:grid-cols-2 md:gap-4 xl:grid-cols-3 2xl:grid-cols-4">
-				{menuList.map(({ card }, index) => (
+				{menuList.map(({ card }) => (
 					<DishCard
-						key={card.info.id + index}
+						key={card.info.id}
 						info={card.info}
 						{...{ restaurantId, restaurantName }}
 					/>

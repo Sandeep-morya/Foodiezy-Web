@@ -1,8 +1,9 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import { useAppSelector } from '../../../hook/reduxHooks';
-import FilterHeading from './FilterHeading';
-import ListItem from './ListItem';
+import { useAppSelector } from "../../../hook/reduxHooks";
+import FilterHeading from "./FilterHeading";
+import ListItem from "./ListItem";
+import { v4 } from "uuid";
 
 interface Props {
 	cuisineList: string[];
@@ -29,9 +30,9 @@ const Cuisines = ({ cuisineList, setCuisineList }: Props) => {
 		<div className="mb-6">
 			<FilterHeading title="Filter By cuisine" />
 
-			{cuisineArray.map((x, index) => (
+			{cuisineArray.map((x) => (
 				<ListItem
-					key={x + index + "cuisine"}
+					key={v4()}
 					title={x}
 					callback={setCuisineList}
 					defaultValue={cuisineList.includes(x)}

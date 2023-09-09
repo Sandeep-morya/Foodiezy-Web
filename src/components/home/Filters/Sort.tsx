@@ -5,6 +5,7 @@ import { dropdownOptions } from "../../../utils/constants";
 import { getSortingTitle } from "../../../utils/sorting";
 import RadioButton from "../../common/RadioButton";
 import FilterHeading from "./FilterHeading";
+import { v4 } from "uuid";
 
 interface Props {
 	selectBoxValue: SortType;
@@ -15,14 +16,14 @@ const Sort = (props: Props) => {
 	return (
 		<div>
 			<FilterHeading title="Sort By" />
-			<ul className="flex w-max flex-col cursor-default">
-				{dropdownOptions.map((e, index) => (
+			<ul className="flex flex-col cursor-default w-max">
+				{dropdownOptions.map((e) => (
 					<li
-						className="flex items-center justify-start gap-3 py-2 px-4 rounded cursor-pointer"
+						className="flex items-center justify-start gap-3 px-4 py-2 rounded cursor-pointer"
 						onClick={() => props.setSelectBoxValue(e)}
-						key={"sort-item" + index}>
+						key={v4()}>
 						<RadioButton active={props.selectBoxValue === e} />
-						<p className="text-lightblack font-medium text-sm lg:text-base ">
+						<p className="text-sm font-medium text-lightblack lg:text-base ">
 							{getSortingTitle(e)}
 						</p>
 					</li>
