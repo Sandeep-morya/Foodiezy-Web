@@ -4,6 +4,7 @@ import PrivaryFooter from "./PrivaryFooter";
 import { MdClose } from "react-icons/md";
 import useGoogleLoginSuccess from "../../hook/useGoogleLoginSuccess";
 import { useGoogleLogin } from "@react-oauth/google";
+import { MouseEvent } from "react";
 
 interface Props {
 	toggleModal: () => void;
@@ -16,8 +17,16 @@ const LoginModal = ({ toggleModal }: Props) => {
 		onError: (error) => console.log(error),
 	});
 
+	const handleClose = (e: MouseEvent<HTMLDivElement>) => {
+		if (e.target === e.currentTarget) {
+			toggleModal();
+		}
+	};
+
 	return (
-		<div className="fixed w-screen h-screen top-0 left-0 z-[1000] bg-black/50 center">
+		<div
+			onClick={handleClose}
+			className="fixed w-screen h-screen top-0 left-0 z-[1000] bg-black/50 center">
 			<div className="relative w-full h-full rounded-lg bg-secondary px-4 py-8 flex flex-col justify-between md:w-[500px] md:h-[650px] md:px-8 shadow-[0_0_10px_#0009] overflow-hidden">
 				<div>
 					<img
@@ -26,7 +35,7 @@ const LoginModal = ({ toggleModal }: Props) => {
 						loading="lazy"
 						alt="tailus logo"
 					/>
-					<h2 className="text-2xl font-bold text-black/30 mt-4">
+					<h2 className="mt-4 text-2xl font-bold text-black/30">
 						Sign in to unlock the <br />
 						best of Foodiezy.
 					</h2>
@@ -66,15 +75,15 @@ const LoginModal = ({ toggleModal }: Props) => {
 				<PrivaryFooter />
 
 				<div
-					className="text-xl transition-all duration-500 bg-secondary rounded-full hover:bg-primary/25 hover:rotate-90 md:text-2xl absolute right-10 top-10"
+					className="absolute text-xl transition-all duration-500 rounded-full bg-secondary hover:bg-primary/25 hover:rotate-90 md:text-2xl right-10 top-10"
 					onClick={toggleModal}>
 					<MdClose />
 				</div>
 				{loading && (
-					<div className="backdrop-blur-sm bg-black/50 w-full h-full absolute z-50 top-0 left-0 flex justify-center items-center">
+					<div className="absolute top-0 left-0 z-50 flex items-center justify-center w-full h-full backdrop-blur-sm bg-black/50">
 						<div className="w-[80px] h-[80px]">
 							<img
-								className="w-full h-full object-contain animate-spin "
+								className="object-contain w-full h-full animate-spin "
 								src="/only-smile.png"
 								alt=""
 							/>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
 	PiHeart,
 	PiShoppingBag,
-	PiShoppingBagOpenLight,
+	PiShoppingBagOpen,
 	PiUserCircle,
 } from "react-icons/pi";
 
@@ -144,7 +144,7 @@ const Navbar = () => {
 						element={
 							user.about ? (
 								<img
-									className="w-full h-full rounded-full border"
+									className="w-full h-full border rounded-full"
 									src={user.about.image}
 									alt={user.about.name}
 									onError={(e) => {
@@ -172,7 +172,7 @@ const Navbar = () => {
 						asButton
 						count={cart.length}
 						element={
-							cart.length > 0 ? <PiShoppingBag /> : <PiShoppingBagOpenLight />
+							cart.length > 0 ? <PiShoppingBag /> : <PiShoppingBagOpen />
 						}
 						onClick={toggleCartDrawer}
 					/>
@@ -188,7 +188,16 @@ const Navbar = () => {
 			{showCartDrawer && (
 				<Drawer
 					content={<CartContent {...{ cartPrice }} />}
-					label="Your Bag"
+					label={
+						<div className="flex items-center gap-2">
+							<IconButton
+								asButton
+								count={cart.length}
+								element={<PiShoppingBagOpen />}
+							/>
+							<h1>Your Bag</h1>
+						</div>
+					}
 					right
 					toggleDrawer={toggleCartDrawer}
 					// slideEffect={200}
