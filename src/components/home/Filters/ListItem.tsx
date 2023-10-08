@@ -22,7 +22,7 @@ const ListItem: FC<Props> = ({ title, defaultValue, callback }) => {
 				return prev.filter((item) => item !== title);
 			}
 		});
-	}, [checked, title, callback]);
+	}, [checked, title,callback]);
 
 	useEffect(() => {
 		setChecked(defaultValue);

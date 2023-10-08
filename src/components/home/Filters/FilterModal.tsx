@@ -77,6 +77,7 @@ const FilterModal = ({
 	useEffect(() => {
 		setInView(true);
 	}, []);
+	console.log("renderd-child");
 
 	return (
 		// :: Outer Overlay ::
@@ -118,7 +119,7 @@ const FilterModal = ({
 								key={v4()}
 								onClick={() => setFilterTitleIndex(index)}
 								className={twMerge(
-									"text-sm font-semibold px-5 py-4 2xl:text-lg",
+									"text-sm font-semibold px-5 py-4 2xl:text-lg cursor-default",
 									index === filterTitleIndex ? "bg-none" : "bg-white",
 									index === filterTitleIndex + 1 && "rounded-tr-xl",
 									index === filterTitleIndex - 1 && "rounded-br-xl",

@@ -120,6 +120,8 @@ const FilterSortSection = ({
 		expoloreList,
 	]);
 
+	console.log("renderd-main")
+
 	return (
 		<section
 			className={`sticky z-10 flex w-full justify-between items-center gap-0 px-0 py-3 bg-white top-[50px]  lg:top-[70px] ${
