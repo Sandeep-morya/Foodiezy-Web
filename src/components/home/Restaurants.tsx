@@ -76,7 +76,7 @@ const Restaurants = ({ id }: Props) => {
 		<article className="flex flex-col px-2 gap-y-2 md:px-4">
 			<h1
 				ref={ref}
-				className="text-lg font-semibold tracking-wide md:text-xl xl:text-2xl">
+				className="text-lg font-semibold tracking-wide md:text-xl xl:text-2xl dark:text-lightwhite">
 				Restaurants near you {`(${total})`}
 			</h1>
 

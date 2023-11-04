@@ -98,7 +98,7 @@ const RestaurantPage = () => {
 				{/*---:: Menu ::---*/}
 				<section>
 					{/*---:: Menu Heading ::---*/}
-					<div className="flex items-center justify-between mt-6 text-xl font-bold tracking-wider uppercase text-lightblack">
+					<div className="flex items-center justify-between mt-6 text-xl font-bold tracking-wider uppercase text-lightblack dark:text-lightwhite">
 						<div className="flex items-center gap-2">
 							<MdRestaurant />
 							<h1>Menu</h1>

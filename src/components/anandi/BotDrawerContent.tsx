@@ -64,11 +64,11 @@ const BotDrawerContent = () => {
 
 	return (
 		<article className="w-full h-[calc(100%-80px)] flex flex-col gap-2 p-1">
-			<section className="flex flex-col pr-2 grow overflow-y-scroll small-scroll-bar gap-6 pb-4 pl-1">
+			<section className="flex flex-col gap-6 pb-4 pl-1 pr-2 overflow-y-scroll grow small-scroll-bar">
 				{messages.slice(1).map(({ content, links, role }, index) => (
-					<div key={v4()} className="flex items-start  gap-2">
+					<div key={v4()} className="flex items-start gap-2">
 						{role === "user" && (
-							<div className="w-[30px] min-w-[30px] h-[30px] bg-secondary  rounded-full overflow-hidden shadow-md shadow-black/50">
+							<div className="w-[30px] min-w-[30px] h-[30px] bg-secondary  rounded-full overflow-hidden shadow-md shadow-black/50 dark:bg-moredark">
 								<img
 									className="w-full h-full"
 									src={about?.image || "/user.png"}
@@ -87,7 +87,7 @@ const BotDrawerContent = () => {
 									? " bg-primary rounded-r-lg rounded-tl-lg px-3  text-secondary char-shadow ml-2 shadow-md shadow-black/20"
 									: "bg-none px-2",
 							)}>
-							<div className="text-sm">
+							<div className="text-sm dark:text-lightwhite">
 								{content.split("\n").map((line) => (
 									<p key={v4()}>{line}</p>
 								))}

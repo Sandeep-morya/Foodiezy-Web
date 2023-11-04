@@ -82,8 +82,8 @@ const LocationDrawerContent = ({
 
 			<RenderCities {...{ cities, handleChangeCity }} />
 			{cities.length === 0 && (
-				<div className="flex flex-col items-center gap-4 p-2">
-					<div className="text-6xl text-lightblack">
+				<div className="flex flex-col items-center gap-4 p-2 dark:text-lightwhite">
+					<div className="text-6xl ">
 						<MdOutlineLocationOff />
 					</div>
 					<div className="text-center">

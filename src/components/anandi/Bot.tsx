@@ -12,7 +12,7 @@ const Bot = () => {
 				onClick={toggleDrawer}
 				className="fixed bottom-6 right-2 w-[40px] h-[40px]  md:right-6 xl:bottom-10 xl:right-10 xl:w-[50px] xl:h-[50px] bg-primary rounded-full shadow-xl shadow-black/25 active:scale-90 center">
 				<img
-					className="w-[90%] h-[90%] object-contain invert mr-1"
+					className="w-[90%] h-[90%] object-contain invert mr-1 dark:opacity-50"
 					src="/bot.png"
 					alt="chatbot-logo"
 				/>

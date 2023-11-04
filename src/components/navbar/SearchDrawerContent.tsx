@@ -60,7 +60,7 @@ const SearchDrawerContent = ({ serviceAreaId }: Props) => {
 					/>
 				</div>
 			)}
-			<div className="sticky top-0 z-10 px-2 py-4 bg-white">
+			<div className="sticky top-0 z-10 px-2 py-4 bg-white dark:bg-dark">
 				<Input
 					leftIcon={
 						// <img
@@ -80,7 +80,7 @@ const SearchDrawerContent = ({ serviceAreaId }: Props) => {
 
 			{restaurants.length > 0 && (
 				<div className="mt-2">
-					<p className="py-2 font-medium text-black/50">
+					<p className="py-2 font-medium text-black/50 dark:text-lightwhite">
 						Showing {count} of {totalCount} results
 					</p>
 

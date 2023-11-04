@@ -27,7 +27,7 @@ const LoginModal = ({ toggleModal }: Props) => {
 		<div
 			onClick={handleClose}
 			className="fixed w-screen h-screen top-0 left-0 z-[1000] bg-black/50 center">
-			<div className="relative w-full h-full rounded-lg bg-secondary px-4 py-8 flex flex-col justify-between md:w-[500px] md:h-[650px] md:px-8 shadow-[0_0_10px_#0009] overflow-hidden">
+			<div className="relative w-full h-full rounded-lg bg-secondary px-4 py-8 flex flex-col justify-between md:w-[500px] md:h-[650px] md:px-8 shadow-[0_0_10px_#0009] overflow-hidden dark:bg-dark">
 				<div>
 					<img
 						src="/logo.svg"
@@ -35,7 +35,7 @@ const LoginModal = ({ toggleModal }: Props) => {
 						loading="lazy"
 						alt="tailus logo"
 					/>
-					<h2 className="mt-4 text-2xl font-bold text-black/30">
+					<h2 className="mt-4 text-2xl font-bold text-black/30 dark:text-lightwhite">
 						Sign in to unlock the <br />
 						best of Foodiezy.
 					</h2>
@@ -75,7 +75,7 @@ const LoginModal = ({ toggleModal }: Props) => {
 				<PrivaryFooter />
 
 				<div
-					className="absolute text-xl transition-all duration-500 rounded-full bg-secondary hover:bg-primary/25 hover:rotate-90 md:text-2xl right-10 top-10"
+					className="absolute text-xl transition-all duration-500 rounded-full bg-secondary hover:bg-primary/25 hover:rotate-90 md:text-2xl right-10 top-10 dark:bg-white/20 "
 					onClick={toggleModal}>
 					<MdClose />
 				</div>

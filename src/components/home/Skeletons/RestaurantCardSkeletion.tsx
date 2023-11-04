@@ -11,8 +11,8 @@ const TextWithIcon = () => {
 
 const RestaurantCardSkeletion = () => {
 	return (
-		<div className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col">
-			<div className="w-[45%] aspect-[3/4] flex justify-center items-center md:w-full md:aspect-[3/2] bg-black/20">
+		<div className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 md:flex-col dark:ring-moredark dark:bg-moredark">
+			<div className="w-[45%] aspect-[3/4] flex justify-center items-center md:w-full md:aspect-[3/2] bg-black/20 dark:bg-white/10">
 				<img
 					className="grayscale h-[30%] aspect-square object-contain"
 					src="/only-smile.png"
@@ -20,7 +20,7 @@ const RestaurantCardSkeletion = () => {
 				/>
 			</div>
 
-			<div className="flex flex-col flex-1 gap-2 p-3 bg-white md:p-2 xl:gap-3 xl:p-3 xl:pt-2">
+			<div className="flex flex-col flex-1 gap-2 p-3 bg-white md:p-2 xl:gap-3 xl:p-3 xl:pt-2 dark:bg-moredark">
 				<div className="flex justify-start gap-2 md:hidden">
 					<div className={"bg-black/30 w-[30px] h-[20px] rounded"} />
 					<div className={"bg-black/30 w-[70px] h-[20px] rounded"} />

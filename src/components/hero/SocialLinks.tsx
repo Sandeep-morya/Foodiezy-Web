@@ -6,7 +6,7 @@ import IconButton from "../common/IconButton";
 const SocialLinks = () => {
 	return (
 		<section>
-			<h1 className="text-xl uppercase">socail links</h1>
+			<h1 className="text-xl uppercase dark:text-lightwhite">socail links</h1>
 			<nav className="flex gap-3 my-3">
 				<IconButton
 					href="https://github.com/Sandeep-morya/"

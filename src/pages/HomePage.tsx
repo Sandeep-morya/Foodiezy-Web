@@ -22,8 +22,10 @@ import Bot from "../components/anandi/Bot";
 
 // Higher-Order Component
 import withNavbar from "../hocs/withNavbar";
+import useTheme from "../hook/useTheme";
 
 const Homepage = () => {
+	const {colorMode} = useTheme()
 	const { serviceArea } = useAppSelector((store) => store.device);
 	const dispatch = useAppDispatch();
 
@@ -59,8 +61,7 @@ const Homepage = () => {
 				<section role="collections">
 					{loading ? (
 						<CollectionsLoader />
-					) : (
-						<Collections data={data.getServiceAreaData.collections} />
+					) : ( colorMode === "light" && <Collections data={data.getServiceAreaData.collections} />
 					)}
 				</section>
 				<section role="restaurants">

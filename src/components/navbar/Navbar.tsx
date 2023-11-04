@@ -30,6 +30,7 @@ import { GET_USER, MUTATE_CART } from "../../graphql/resolvers";
 import useDebounce from "../../hook/useDebounce";
 import { getItem } from "../../utils/localStorage";
 import { CartItem } from "../../types";
+import ThemeToggleButton from "../common/ThemeToggleButton";
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -129,7 +130,7 @@ const Navbar = () => {
 
 	return (
 		<header
-			className={`w-full h-[60px] fixed top-0 z-40 flex justify-between py-2 px-4 items-center lg:h-[80px] md:px-12 lg:px-4 2xl:px-44 bg-white`}>
+			className={`w-full h-[60px] fixed top-0 z-40 flex justify-between py-2 px-4 items-center lg:h-[80px] md:px-12 lg:px-4 2xl:px-44 bg-white  dark:bg-dark`}>
 			<div onClick={navigateToHome}>
 				<Logo />
 			</div>
@@ -137,14 +138,16 @@ const Navbar = () => {
 				<SearchBar />
 			</div>
 			<nav className="flex items-center gap-5 xl:gap-8">
+					<ThemeToggleButton/>
 				<div className="relative">
+					{/* <IconButton element={} /> */}
 					<IconButton
 						asButton
 						onClick={user.about ? toggleUserAboutModal : toggleLoginModal}
 						element={
 							user.about ? (
 								<img
-									className="w-full h-full border rounded-full"
+									className="w-full h-full border rounded-full dark:border-dark"
 									src={user.about.image}
 									alt={user.about.name}
 									onError={(e) => {
@@ -167,7 +170,7 @@ const Navbar = () => {
 					asButton
 					element={<PiHeart />}
 				/>
-				<div className="flex items-center gap-4 divide-x">
+				<div className="flex items-center gap-4 divide-x dark:divide-white/10">
 					<IconButton
 						asButton
 						count={cart.length}
@@ -177,8 +180,8 @@ const Navbar = () => {
 						onClick={toggleCartDrawer}
 					/>
 
-					<div className="items-start hidden h-full pl-4 md:grid">
-						<p className="text-xs text-lightblack">Your Bag</p>
+					<div className="items-start hidden h-full pl-4 md:grid text-lightblack dark:text-lightwhite">
+						<p className="text-xs">Your Bag</p>
 						<h2 className="font-medium">
 							{cart.length > 0 ? `₹${cartPrice}` : "is Empty"}
 						</h2>

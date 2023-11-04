@@ -18,7 +18,7 @@ const ListItem: FC<LiProps> = ({ title, css, Icon, onClick }) => {
 	return (
 		<li
 			onClick={onClick}
-			className={`flex items-center gap-3 p-2 text-sm xl:text-base font-medium rounded active:scale-95 hover:text-secondary ${css}`}>
+			className={`flex items-center gap-3 p-2 text-sm xl:text-base font-medium rounded active:scale-95 dark:text-lightwhite hover:text-secondary ${css}`}>
 			<div className="text-xl">
 				<Icon />
 			</div>
@@ -65,21 +65,21 @@ const UserAfterLogin: FC<Props> = ({ toggle }) => {
 			ref={modalRef}
 			// onMouseLeave={}
 			className={
-				"absolute top-0 right-0 w-[200px] shadow-xl rounded-lg border bg-white/50 backdrop-blur-md p-2 transition-all animate-zero"
+				"absolute top-0 right-0 w-[200px] shadow-xl rounded-lg border bg-white/50 backdrop-blur-md p-2 transition-all animate-zero dark:bg-primary/5 dark:border-moredark"
 			}>
-			<div className="w-full flex items-center gap-4 p-2">
+			<div className="flex items-center w-full gap-4 p-2 ">
 				<img
 					className="w-[40px] aspect-square rounded-full object-cover"
 					src={about.image}
 					alt={about.name}
 				/>
 				<div className="grid gap-0">
-					<h2 className="text-lg xl:text-xl font-semibold tracking-wider">
+					<h2 className="text-lg font-semibold tracking-wider xl:text-xl dark:text-secondary">
 						Hello!
 					</h2>
 				</div>
 			</div>
-			<p className="text-md xl:text-lg font-medium p-2 border-t">
+			<p className="p-2 font-medium border-t text-md xl:text-lg dark:text-primary">
 				{about.name}
 			</p>
 			<ul className="divide-y">
@@ -96,7 +96,7 @@ const UserAfterLogin: FC<Props> = ({ toggle }) => {
 				<ListItem
 					title="Logout"
 					Icon={PiSignOut}
-					css="hover:bg-red-600 text-red-600"
+					css="hover:bg-red-600 text-red-600 dark:text-red-600"
 					onClick={logout}
 				/>
 			</ul>

@@ -3,7 +3,7 @@
 }
 const NotificationCount = ({ count }: Props) => {
 	return (
-		<div className="w-4 text-xs aspect-square bg-primary flex justify-center items-center rounded-full text-white shadow-md absolute -top-1 -right-2">
+		<div className="absolute flex items-center justify-center w-4 text-xs text-white rounded-full shadow-md aspect-square bg-primary -top-1 -right-2 dark:text-dark">
 			{count}
 		</div>
 	);

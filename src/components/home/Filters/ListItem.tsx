@@ -29,7 +29,7 @@ const ListItem: FC<Props> = ({ title, defaultValue, callback }) => {
 	}, [defaultValue]);
 	return (
 		<div
-			className="flex items-center gap-2 px-4 py-3 text-sm font-medium rounded-tl-full rounded-bl-full select-none text-lightblack lg:text-base hover:bg-black/5"
+			className="flex items-center gap-2 px-4 py-3 text-sm font-medium rounded-tl-full rounded-bl-full select-none text-lightblack lg:text-base hover:bg-black/5 dark:text-lightwhite dark:hover:bg-moredark"
 			onClick={() => setChecked(true)}>
 			<CheckBox
 				checked={checked}

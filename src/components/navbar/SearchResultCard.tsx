@@ -20,7 +20,7 @@ const SearchResultCard = (data: Restaurant) => {
 					}&restaurantId=${data.restaurantId}`,
 				);
 			}}
-			className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 hover:ring-primary/50">
+			className="flex flex-row gap-0 overflow-hidden rounded-lg group ring-1 ring-gray-200 hover:ring-primary/50 dark:ring-moredark">
 			<div className="relative w-[45%] overflow-hidden aspect-[3/4] transition">
 				{/* Actual Image of Restaurant */}
 				<img
@@ -38,11 +38,11 @@ const SearchResultCard = (data: Restaurant) => {
 					/>
 				</div>
 
-				<div className="absolute flex items-center justify-start px-2 py-0.5 text-xs font-semibold shadow-lg bg-white rounded-tl-full rounded-bl-full uppercase -right-1 bottom-5">
+				<div className="absolute flex items-center justify-start px-2 py-0.5 text-xs font-semibold shadow-lg bg-white rounded-tl-full rounded-bl-full uppercase -right-1 bottom-5 dark:bg-moredark dark:text-lightwhite">
 					{`₹${data.costForTwo} for Two`}
 				</div>
 			</div>
-			<div className="flex flex-col flex-1 gap-2 p-3 bg-white md:p-2 xl:gap-3 xl:p-3 xl:pt-2">
+			<div className="flex flex-col flex-1 gap-2 p-3 bg-white md:p-2 xl:gap-3 xl:p-3 xl:pt-2 dark:bg-moredark dark:text-lightwhite">
 				<div className="flex justify-start">
 					<Pills veg={data.veg} />
 				</div>
