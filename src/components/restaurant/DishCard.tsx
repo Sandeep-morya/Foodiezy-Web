@@ -68,7 +68,7 @@ const DishCard = ({ info, restaurantId, restaurantName }: Card) => {
 		}
 	}, [cartItem]);
 	return (
-		<div className="relative dish-card w-full h-[240px] border rounded-lg overflow-hidden group">
+		<div className="relative dish-card w-full h-[240px] border rounded-lg overflow-hidden group dark:border-moredark">
 			<div>
 				<div className="absolute inset-0 flex items-center justify-center object-cover -z-10 bg-black/20">
 					<img
@@ -80,7 +80,7 @@ const DishCard = ({ info, restaurantId, restaurantName }: Card) => {
 			</div>
 			<img
 				loading="lazy"
-				className="object-cover w-full h-full transition-all duration-300 scale-100 group-hover:scale-125"
+				className="object-cover w-full h-full transition-all duration-300 scale-100 group-hover:scale-125 dark:opacity-90"
 				src={src}
 				alt=""
 			/>
@@ -124,7 +124,7 @@ const DishCard = ({ info, restaurantId, restaurantName }: Card) => {
 			</div>
 
 			{count > 0 && (
-				<div className="absolute top-2 right-2 text-3xl text-white char-shadow">
+				<div className="absolute text-3xl text-white top-2 right-2 char-shadow">
 					<PiCheckSquareOffsetDuotone />
 					<div className="absolute top-1 right-2.5">
 						<NotificationCount count={count} />

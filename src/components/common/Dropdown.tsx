@@ -53,12 +53,12 @@ const Dropdown = <T extends string>({
 
 	return (
 		<div
-			className="relative text-sm 2xl:text-base text-lightblack"
+			className="relative text-sm 2xl:text-base text-lightblack dark:text-lightwhite dark:bg-dark"
 			ref={dropdownRef}>
 			<button
 				className={`flex justify-start items-center gap-2 px-2 py-[6px]  border rounded-full text-lightblack hover:cursor-pointer md:px-3 md:py-2 hover:shadow transition-all duration-500 ${
 					value !== options[0] && "bg-primary/25"
-				}`}
+				} dark:text-lightwhite dark:bg-moredark dark:border-moredark`}
 				onClick={() => setIsOpen((e) => !e)}>
 				<p>{getSortingTitle(value as T)}</p>
 				<div className={`${isOpen ? "rotate-180" : "rotate-0"} transition-all`}>
@@ -66,7 +66,7 @@ const Dropdown = <T extends string>({
 				</div>
 			</button>
 			{isOpen && (
-				<ul className="absolute animate-zero top-12 left-0 w-[180px] md:w-[200px] p-2 bg-white ring-1 ring-black/5 rounded-xl flex flex-col  shadow-xl cursor-default">
+				<ul className="absolute animate-zero top-12 left-0 w-[180px] md:w-[200px] p-2 bg-white ring-1 ring-black/5 rounded-xl flex flex-col  shadow-xl cursor-default dark:bg-moredark">
 					{options.map((e) => (
 						<li
 							className="flex items-center justify-between p-2 rounded cursor-pointer active:scale-95 hover:bg-black/10"

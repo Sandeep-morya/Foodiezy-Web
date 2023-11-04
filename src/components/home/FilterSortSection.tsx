@@ -126,7 +126,7 @@ const FilterSortSection = ({
 		<section
 			className={`sticky z-10 flex w-full justify-between items-center gap-0 px-0 py-3 bg-white top-[50px]  lg:top-[70px] ${
 				atTop && "shadow-[0_8px_6px_-8px_#000]"
-			} transition`}>
+			} transition dark:bg-dark`}>
 			<div className={"flex flex-1 gap-3 items-center md:gap-4"}>
 				{/*---:: Filter Modal Toggle Button ::---*/}
 				<FilterButton
@@ -203,7 +203,7 @@ const FilterSortSection = ({
 					{/*---:: Clear filter Button ::---*/}
 					<button
 						onClick={handleClearFilters}
-						className="px-4 py-2 text-sm font-medium text-lightblack active:scale-95 hover:bg-secondary">
+						className="px-4 py-2 text-sm font-medium text-lightblack active:scale-95 hover:bg-secondary dark:hover:bg-moredark dark:text-lightwhite">
 						{"Clear Filter"}
 					</button>
 
@@ -211,7 +211,7 @@ const FilterSortSection = ({
 
 					<button
 						onClick={handleApplyFilter}
-						className="px-4 py-2 text-sm font-medium text-white rounded-full active:scale-95 bg-primary">
+						className="px-4 py-2 text-sm font-medium text-white rounded-full active:scale-95 bg-primary dark:text-dark">
 						{modified ? "Applied" : "Apply"}
 					</button>
 				</div>

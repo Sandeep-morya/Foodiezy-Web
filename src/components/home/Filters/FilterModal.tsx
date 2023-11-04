@@ -81,24 +81,24 @@ const FilterModal = ({
 
 	return (
 		// :: Outer Overlay ::
-		<article className="fixed top-0 left-0 z-10 flex items-end justify-center w-screen h-screen bg-white/50 backdrop-blur-sm 2xl:md:items-center vanish-scroll-bar">
+		<article className="fixed top-0 left-0 z-10 flex items-end justify-center w-screen h-screen bg-white/50 backdrop-blur-sm 2xl:md:items-center vanish-scroll-bar dark:bg-black/20">
 			{/*---:: Modal ::---*/}
 			<section
 				className={twMerge(
-					`w-[100%] translate-y-[100%] h-auto bg-secondary shadow-[0_0_10px_#0007] rounded-xl divide-y  lg:w-[60%] lg:scale-75 xl:scale-90 2xl:scale-100 2xl:w-[50%] transition duration-300 scale-100 `,
+					`w-[100%] translate-y-[100%] h-auto bg-secondary shadow-[0_0_10px_#0007] rounded-xl divide-y  lg:w-[60%] lg:scale-75 xl:scale-90 2xl:scale-100 2xl:w-[50%] transition duration-300 scale-100 dark:bg-dark dark:divide-white/5`,
 					inView && "translate-x-0 translate-y-0",
 				)}>
 				{/*---:: Heading Section ::---*/}
 				<div className="flex items-center justify-between p-3">
 					{/*---:: Heading ::---*/}
-					<div className="flex items-center gap-2 text-lg font-bold tracking-wide md:text-xl">
+					<div className="flex items-center gap-2 text-lg font-bold tracking-wide md:text-xl dark:text-lightwhite">
 						<LuSettings2 />
 						<h1>Filters</h1>
 					</div>
 					{/*---:: Close Button ::---*/}
 					<div
 						onClick={handleClose}
-						className="p-1 text-xl transition-all rounded-full text-secondary bg-primary hover:opacity-75 lg:text-2xl active:scale-90">
+						className="p-1 text-xl transition-all rounded-full text-secondary bg-primary hover:opacity-75 lg:text-2xl active:scale-90 dark:text-dark">
 						<MdClose />
 					</div>
 				</div>
@@ -119,8 +119,8 @@ const FilterModal = ({
 								key={v4()}
 								onClick={() => setFilterTitleIndex(index)}
 								className={twMerge(
-									"text-sm font-semibold px-5 py-4 2xl:text-lg cursor-default",
-									index === filterTitleIndex ? "bg-none" : "bg-white",
+									"text-sm font-semibold px-5 py-4 2xl:text-lg cursor-default dark:text-lightwhite",
+									index === filterTitleIndex ? "bg-none" : "bg-white dark:bg-moredark",
 									index === filterTitleIndex + 1 && "rounded-tr-xl",
 									index === filterTitleIndex - 1 && "rounded-br-xl",
 								)}>
@@ -204,7 +204,7 @@ const FilterModal = ({
 							{/*---:: Clear filter Button ::---*/}
 							<button
 								onClick={handleClearFilters}
-								className="px-4 py-2 text-sm font-medium text-lightblack active:scale-95 hover:bg-secondary">
+								className="px-4 py-2 text-sm font-medium text-lightblack active:scale-95 hover:bg-secondary dark:hover:bg-moredark dark:text-lightwhite">
 								{"Clear Filter"}
 							</button>
 
@@ -215,7 +215,7 @@ const FilterModal = ({
 									handleApplyFilter();
 									toggleFilterModal();
 								}}
-								className="px-4 py-2 text-sm font-medium text-white rounded-full active:scale-95 bg-primary">
+								className="px-4 py-2 text-sm font-medium text-white rounded-full active:scale-95 bg-primary dark:text-dark">
 								{searchParamsCount > 1 ? "Apply Filters" : "Apply Filter"}
 							</button>
 						</div>

@@ -49,8 +49,8 @@ const MenuList = (props: Props) => {
 						className={twMerge(
 							"w-full h-[50px] flex items-center justify-between p-4 rounded-lg ",
 							tabIndex === index
-								? "bg-primary text-white font-medium"
-								: "bg-white text-lightblack",
+								? "bg-primary text-white font-medium dark:text-moredark"
+								: "bg-white text-lightblack dark:bg-dark dark:text-lightwhite",
 						)}>
 						<p>{title}</p>
 						<p>{itemCards?.length}</p>

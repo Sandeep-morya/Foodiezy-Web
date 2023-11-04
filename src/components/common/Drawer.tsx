@@ -57,16 +57,16 @@ const Drawer = ({
 				className={twMerge(
 					`w-full h-full md:w-[400px] pt-1 px-2 bg-white transition-all ease-out duration-${animationDuration} absolute ${
 						right ? "-right-[400px]" : "-left-[400px]"
-					}`,
+					} dark:bg-dark`,
 					isDrawerOpen && (right ? "right-0" : "left-0"),
 				)}>
 				<div className="flex items-start justify-between p-2">
-					<h1 className="text-lg font-semibold tracking-wide md:text-xl">
+					<h1 className="text-lg font-semibold tracking-wide md:text-xl dark:text-lightwhite">
 						{label}
 					</h1>
 					<div
 						onClick={handleClose}
-						className="p-1 mr-2 text-xl transition-all bg-white rounded-full hover:bg-primary/25 lg:text-2xl">
+						className="p-1 mr-2 text-xl transition-all bg-white rounded-full hover:bg-primary/25 lg:text-2xl dark:bg-primary dark:text-dark">
 						<MdClose />
 					</div>
 				</div>

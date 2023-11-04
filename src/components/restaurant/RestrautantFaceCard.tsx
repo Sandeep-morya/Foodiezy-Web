@@ -6,7 +6,7 @@ import { v4 } from "uuid";
 
 const RestrautantFaceCard = (data: Restaurant) => {
 	return (
-		<section className="w-full h-[200px] min-h-[200px] relative rounded-lg border overflow-hidden shadow-xl ">
+		<section className="w-full h-[200px] min-h-[200px] relative rounded-lg border overflow-hidden shadow-xl dark:border-moredark">
 			<img
 				className="w-[100%] h-[100%] object-cover"
 				src={ORIGINAL_IMG_LINK + data.imageId}

@@ -23,7 +23,7 @@ const Sort = (props: Props) => {
 						onClick={() => props.setSelectBoxValue(e)}
 						key={v4()}>
 						<RadioButton active={props.selectBoxValue === e} />
-						<p className="text-sm font-medium text-lightblack lg:text-base ">
+						<p className="text-sm font-medium text-lightblack lg:text-base dark:text-lightwhite">
 							{getSortingTitle(e)}
 						</p>
 					</li>

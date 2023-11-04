@@ -11,24 +11,24 @@ const CartItemCard = (card: CartDish) => {
 		dispatch(removeFromCart(card.dishId));
 	}, [dispatch, card.dishId]);
 	return (
-		<div className="w-full h-[120px] flex justify-between gap-2 rounded-lg hover:bg-black/5">
-			<div className="h-full flex-1 flex items-center gap-3 p-2">
+		<div className="w-full h-[120px] flex justify-between gap-2 rounded-lg hover:bg-black/5 dark:bg-moredark dark:text-lightwhite">
+			<div className="flex items-center flex-1 h-full gap-3 p-2">
 				<div className="h-full w-[90px] min-w-[90px] rounded overflow-hidden">
 					<img
-						className="w-full h-full object-cover"
+						className="object-cover w-full h-full"
 						src={LOW_IMG_LINK + card.imageId}
 						alt=""
 					/>
 				</div>
-				<div className="flex h-full flex-col justify-between">
+				<div className="flex flex-col justify-between h-full">
 					<div>
 						<h4 className="text-sm font-medium">
 							{card.dishName.substring(0, 48)}
 						</h4>
-						<p className="text-xs text-black/50 font-medium">{card.category}</p>
+						<p className="text-xs font-medium text-black/50 dark:text-white/20">{card.category}</p>
 					</div>
-					<p className="text-sm">
-						<span className="text-black/50 font-medium">Qty: </span>{" "}
+					<p className="text-sm dark:text-primary">
+						<span className="font-medium text-black/50 dark:text-lightwhite">Qty: </span>
 						{card.count}
 					</p>
 				</div>
@@ -37,7 +37,7 @@ const CartItemCard = (card: CartDish) => {
 				<h4 className="font-medium">
 					₹{((card.price / 100) * card.count).toFixed(2)}
 				</h4>
-				<button onClick={removeItem} className="text-red-500 text-sm">
+				<button onClick={removeItem} className="text-sm text-red-500">
 					Remove
 				</button>
 			</div>

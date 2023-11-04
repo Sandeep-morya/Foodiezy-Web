@@ -22,13 +22,13 @@ const IconButton = ({
 			{asButton ? (
 				<button
 					onClick={onClick}
-					className="w-[24px] aspect-square lg:w-[28px] text-2xl lg:text-3xl active:scale-90 hover:text-primary">
+					className="w-[24px] aspect-square lg:w-[28px] text-2xl lg:text-3xl active:scale-90 hover:text-primary dark:text-lightwhite dark:hover:text-primary">
 					{element}
 				</button>
 			) : (
 				<Link
 					to={href}
-					className="text-2xl lg:text-3xl hover:text-primary"
+					className="text-2xl lg:text-3xl hover:text-primary dark:text-lightwhite"
 					target="_blank">
 					{element}
 				</Link>
