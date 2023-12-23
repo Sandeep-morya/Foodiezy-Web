@@ -4,9 +4,9 @@ const ErrorPage = () => {
 	return (
 		<main className="flex flex-col justify-center w-screen h-screen px-0 py-10 bg-white">
 			<section className="flex flex-col">
-				<h1 className="font-bold text-center text-8xl text-primary">404</h1>
+				<h1 className="font-bold text-center text-8xl text-primary">503</h1>
 				<h2 className="text-2xl font-bold text-center text-lightblack">
-					Not Found
+					Internal Server Error
 				</h2>
 			</section>
 
@@ -14,8 +14,8 @@ const ErrorPage = () => {
 
 			<section className="flex flex-col items-center justify-center gap-5">
 				<div className="grid gap-2 text-center">
-					<h3 className="text-2xl font-bold">Look like you're lost</h3>
-					<p className="text-sm">The page you are looking for not avaible!</p>
+					<h3 className="text-2xl font-bold">Server is under maintainence</h3>
+					<p className="text-sm">The page you are looking for not aviable!</p>
 				</div>
 
 				<Link
