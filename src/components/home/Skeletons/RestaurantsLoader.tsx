@@ -6,7 +6,7 @@ const PillSkeleton = () => {
 };
 const RestaurantsLoader = () => {
 	return (
-		<div className="flex flex-col px-2 gap-y-2 md:px-4 animate-pulse">
+		<div className="flex flex-col px-2 gap-y-2 md:px-4 animate-pulse dark:bg-moredark">
 			<div className="w-[250px] mb-3 h-[20px] bg-black/20 rounded-md md:w-[375px] xl:h-[25px]" />
 			<div
 				className={`sticky z-40 flex justify-start w-full gap-3 px-0 py-4 bg-white top-[50px] md:gap-4 lg:top-[75px]`}>
