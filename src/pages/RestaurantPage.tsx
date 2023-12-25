@@ -7,12 +7,12 @@ import { twMerge } from "tailwind-merge";
 // import type { MenuCard } from "../types";
 
 // :: Redux Imports ::
-// import { addInitialMenu } from "../redux/slices/menuSlice";
-import { /* useAppDispatch, */ useAppSelector } from "../hook/reduxHooks";
+import { addInitialMenu } from "../redux/slices/menuSlice";
+import { useAppDispatch, useAppSelector } from "../hook/reduxHooks";
 
 // :: Apollo Client Imports ::
-import { useQuery } from "@apollo/client";
-import { GET_RESTAURANT, /* GET_RESTAURANTS */ } from "../graphql/resolvers";
+import { useQuery/* useLazyQuery */ } from "@apollo/client";
+import { GET_RESTAURANT /* GET_IMAGE */ } from "../graphql/resolvers";
 
 // :: Custom Hooks ::
 // import useGetRestaurantData from "../hook/useGetRestaurantData";
@@ -27,18 +27,19 @@ import MenuContent from "../components/restaurant/MenuContent";
 
 // :: Higher Order Component Import
 import withNavbar from "../hocs/withNavbar";
+import { dummyData } from "../utils/constants";
 // import { dummyData } from "../utils/constants";
 // import { MenuCard } from "../types";
 
 const RestaurantPage = () => {
 	const { serviceArea } = useAppSelector((store) => store.device);
-	// const { restaurants } = useAppSelector(store => store.restaurants)
+	const { restaurants } = useAppSelector(store => store.restaurants)
 	const [searchParams, setSearchParams] = useSearchParams();
 	const intialTabIndex = searchParams.get("menu")
 		? Number(searchParams.get("menu"))
 		: 0;
 	const [tabIndex, setTabIndex] = useState(intialTabIndex);
-	// const dispatch = useAppDispatch();
+	const dispatch = useAppDispatch();
 	const [showMenu, setShowMenu] = useState(false);
 
 	const toggleMenu = useCallback(() => {
@@ -58,7 +59,17 @@ const RestaurantPage = () => {
 	const { loading, error, data } = useQuery(GET_RESTAURANT, {
 		variables: { id },
 	});
-	// const [get_image, { loading: isLoading }] = useLazyQuery(GET_IMAGE);
+	// 	const [getImage, { loading: isLoading }] = useLazyQuery(GET_IMAGE);
+
+	// 	const handleAdd = async() => {
+	// 		try {
+	// 			const data = await getImage({
+	// 				variables: {serviceAreaId:id,limit:20},
+	// })
+	// 		} catch (error) {
+
+	// 		}
+	// }
 
 	// useEffect(() => {
 	// 	if (Array.isArray(menuData) && menuData.length > 0) {
@@ -79,14 +90,26 @@ const RestaurantPage = () => {
 
 
 	useEffect(() => {
-		// const menu_images = restaurants.map(r => r.imageId)
-		// const data = [...dummyData]
-		// let x = 0;
-		// console.log(menu_images)
-		// for (let i = 0; i < data.length; i++) {
-		// 	for(let j=0;)
-		// }
-	}, [])
+
+		const menu_images = restaurants.map(r => r.imageId)
+		if (menu_images.length > 0) {
+			const data = structuredClone(dummyData)
+			for (const image of menu_images) {
+				for (let i = 0; i < data.length; i++) {
+					for (let j = 0; i < data[i].itemCards.length; i++) {
+						data[i].itemCards[j].card.info.imageId = image
+					}
+				}
+			}
+			dispatch(addInitialMenu(data))
+
+		} else {
+			dispatch(addInitialMenu(dummyData))
+		}
+
+
+
+	}, [dispatch, restaurants])
 
 	useEffect(() => {
 		setSearchParams((prev) => ({ ...prev, id, restaurantId, menu: tabIndex }));

@@ -1,9 +1,7 @@
 ﻿import { createSlice } from "@reduxjs/toolkit";
-// import { MenuCard } from "../../types";
-import { dummyData } from "../../utils/constants";
+import { MenuCard } from "../../types";
 
-// const initialState = null as MenuCard[] | null;
-const initialState = dummyData;
+const initialState = null as MenuCard[] | null;
 
 const menuSlice = createSlice({
 	name: "menu-slice",

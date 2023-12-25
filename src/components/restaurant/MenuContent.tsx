@@ -22,9 +22,9 @@ const MenuContent = ({ tabIndex, restaurantId, restaurantName }: Props) => {
 
 	const [menuList, setMenuList] = useState(() => {
 		if (currentMenu) {
-			return currentMenu?.categories
+			return currentMenu!.itemCards /* currentMenu?.categories
 				? currentMenu.categories[0].itemCards
-				: currentMenu.itemCards;
+				: */ currentMenu!.itemCards;
 			// }
 		} else {
 			return null;
@@ -38,9 +38,9 @@ const MenuContent = ({ tabIndex, restaurantId, restaurantName }: Props) => {
 	useEffect(() => {
 		if (currentMenu) {
 			setMenuList(() => {
-				const list = currentMenu?.categories
+				const list = currentMenu.itemCards/* currentMenu?.categories
 					? currentMenu.categories[0].itemCards
-					: currentMenu.itemCards;
+					: currentMenu.itemCards; */
 
 				const itemCards = list.filter((e) =>
 					e.card.info.name.toLowerCase().includes(query.toLowerCase().trim()),
