@@ -39,9 +39,10 @@ const MenuList = (props: Props) => {
 		<div onClick={handleMenuSelect} className="flex flex-col gap-1 pb-20 mt-4">
 			{menus.map((data, index) => {
 				const title = data.title;
-				const itemCards = data?.categories
-					? data.categories[0].itemCards
-					: data.itemCards;
+				// const itemCards = data?.categories
+				// 	? data.categories[0].itemCards
+				// 	: data.itemCards;
+				const itemCards = data.itemCards
 				return (
 					<div
 						key={v4()}

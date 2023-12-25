@@ -32,9 +32,9 @@ const useGetRestaurantData = (args: Args) => {
 	);
 
 	useEffect(() => {
-		if (lat && lng && restaurantId) {
-			getRestaurantData(lat, lng, restaurantId);
-		}
+		// if (lat && lng && restaurantId) {
+		// 	getRestaurantData(lat, lng, restaurantId);
+		// }
 	}, [restaurantId, lng, lat, getRestaurantData]);
 
 	return [loading, error, data];

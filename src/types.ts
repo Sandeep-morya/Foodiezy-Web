@@ -226,7 +226,7 @@ export interface Ribbon {
 
 export interface MenuCard {
 	title: string;
-	categories: MenuCard[];
+	// categories: MenuCard[];
 	itemCards: MenuItem[];
 }
 
