@@ -71,7 +71,7 @@ const Navbar = () => {
 			(acc, el) => (acc += el.price * el.count),
 			0,
 		);
-		return (totalPaisa / 100).toFixed();
+		return (totalPaisa / 100).toFixed(2);
 	}, [cart]);
 
 	const navigateToHome = () => {
@@ -183,7 +183,7 @@ const Navbar = () => {
 					<div className="items-start hidden h-full pl-4 md:grid text-lightblack dark:text-lightwhite">
 						<p className="text-xs">Your Bag</p>
 						<h2 className="font-medium">
-							{cart.length > 0 ? `₹${cartPrice}` : "is Empty"}
+							{cart.length > 0 ? `$${cartPrice}` : "is Empty"}
 						</h2>
 					</div>
 				</div>

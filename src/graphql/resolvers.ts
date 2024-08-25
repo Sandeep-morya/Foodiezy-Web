@@ -162,3 +162,13 @@ export const GET_USER = gql`
 		}
 	}
 `;
+
+export const GET_IMAGE = gql`
+	query GetRestaurants($serviceAreaId: ID!, $limit: Int) {
+		getRestaurants(serviceAreaId: $serviceAreaId, limit: $limit) {
+			documents {
+				imageId
+			}
+		}
+	}
+`;

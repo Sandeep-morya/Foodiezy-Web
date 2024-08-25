@@ -98,7 +98,7 @@ const DishCard = ({ info, restaurantId, restaurantName }: Card) => {
 
 				<div className=" w-full mt-0.5 flex-col drop-shadow-md hidden group-hover:flex flex-1">
 					{/* <h3 className="font-medium underline">Description</h3> */}
-					<h3 className="text-xl font-bold">₹{price}</h3>
+					<h3 className="text-xl font-bold">${price}</h3>
 					<p className="py-1 text-sm tracking-wider">{info.description}</p>
 
 					<div className="flex items-end flex-1 w-full pt-2">
