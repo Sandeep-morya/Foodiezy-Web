@@ -1,27 +1,12 @@
 import { MenuCard, SortType } from "../types";
 
-export const dropdownOptions: SortType[] = [
-	"default",
-	"title",
-	"rating",
-	"h2l",
-	"l2h",
-	"delivery",
-];
+export const dropdownOptions: SortType[] = ["default", "title", "rating", "h2l", "l2h", "delivery"];
 
-export const filterTypes = [
-	"Veg/Non-Veg",
-	"Cuisines",
-	"Delivery Time",
-	"Rating",
-	"Cost for two",
-	"Explore",
-	"Sort",
-];
+export const filterTypes = ["Veg/Non-Veg", "Cuisines", "Delivery Time", "Rating", "Cost for two", "Explore", "Sort"];
 export const foodTypeArray = ["Pure Veg", "Non-Veg"];
 export const deliveryArray = ["Fast Delivery"];
 export const ratingArray = ["Ratings 4.5+", "Ratings 4.0+", "Ratings 3.5+"];
-export const costArray = ["₹300 - ₹500", "Greater than ₹500", "Less than ₹300"];
+export const costArray = ["$300 - $500", "Greater than $500", "Less than $300"];
 export const exploreArray = ["New on Foodiezy"];
 
 export const cities = [
@@ -217,8 +202,7 @@ export const dummyData: MenuCard[] = [
 						id: "5",
 						name: "Classic Caesar Salad",
 						category: "Salad",
-						description:
-							"Fresh romaine lettuce, croutons, and Parmesan cheese with Caesar dressing",
+						description: "Fresh romaine lettuce, croutons, and Parmesan cheese with Caesar dressing",
 						imageId: "0984acc0ed7b914206dbbcb90297becc", // Image ID
 						inStock: 30,
 						isVeg: 1,
@@ -252,8 +236,7 @@ export const dummyData: MenuCard[] = [
 						id: "6",
 						name: "BBQ Chicken Wings",
 						category: "Appetizer",
-						description:
-							"Spicy BBQ chicken wings with a side of ranch dressing",
+						description: "Spicy BBQ chicken wings with a side of ranch dressing",
 						imageId: "e53c16608abfe684e4a254690abdb81c", // Image ID
 						inStock: 22,
 						isVeg: 0,
@@ -287,8 +270,7 @@ export const dummyData: MenuCard[] = [
 						id: "7",
 						name: "Mushroom Risotto",
 						category: "Risotto",
-						description:
-							"Creamy mushroom risotto with Arborio rice and Parmesan",
+						description: "Creamy mushroom risotto with Arborio rice and Parmesan",
 						imageId: "sxkkygjqz7e8mad1qnvw", // Image ID
 						inStock: 17,
 						isVeg: 1,
@@ -356,8 +338,7 @@ export const dummyData: MenuCard[] = [
 						id: "9",
 						name: "Veggie Burger",
 						category: "Burger",
-						description:
-							"Delicious veggie burger with lettuce, tomato, and special sauce",
+						description: "Delicious veggie burger with lettuce, tomato, and special sauce",
 						imageId: "e33e1d3ba7d6b2bb0d45e1001b731fcf", // Image ID
 						inStock: 20,
 						isVeg: 1,
@@ -391,8 +372,7 @@ export const dummyData: MenuCard[] = [
 						id: "10",
 						name: "Seafood Paella",
 						category: "Seafood",
-						description:
-							"Traditional Spanish paella with a mix of seafood and saffron rice",
+						description: "Traditional Spanish paella with a mix of seafood and saffron rice",
 						imageId: "bautca2ngwed43f7zzy0", // Image ID
 						inStock: 15,
 						isVeg: 0,
@@ -426,8 +406,7 @@ export const dummyData: MenuCard[] = [
 						id: "11",
 						name: "Spinach and Feta Stuffed Chicken",
 						category: "Chicken",
-						description:
-							"Tender chicken breast stuffed with spinach and feta cheese",
+						description: "Tender chicken breast stuffed with spinach and feta cheese",
 						imageId: "d2e143528aae033ea59d6d0572375d31", // Image ID
 						inStock: 18,
 						isVeg: 0,
@@ -461,8 +440,7 @@ export const dummyData: MenuCard[] = [
 						id: "12",
 						name: "Caprese Panini",
 						category: "Sandwich",
-						description:
-							"Grilled panini with fresh tomatoes, mozzarella, and basil pesto",
+						description: "Grilled panini with fresh tomatoes, mozzarella, and basil pesto",
 						imageId: "pft1dcdx8udfepmcnuty", // Image ID
 						inStock: 22,
 						isVeg: 1,

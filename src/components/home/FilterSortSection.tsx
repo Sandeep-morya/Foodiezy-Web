@@ -180,7 +180,7 @@ const FilterSortSection = ({
 						defaultValue={deliveryInList.includes("Fast Delivery")}
 						callback={setDeliveryInList}
 					/>
-					{["₹300 - ₹500", "Less than ₹300"].map((title) => (
+					{["$300 - $500", "Less than $300"].map((title) => (
 						<ToggleButton
 							key={title}
 							title={title}

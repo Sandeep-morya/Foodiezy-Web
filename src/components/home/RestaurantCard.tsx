@@ -49,7 +49,7 @@ const RestaurantCard = (data: Props) => {
 					<Pills veg={data.veg} />
 				</div>
 				<div className="absolute flex items-center justify-start px-2 py-0.5 text-xs font-semibold shadow-lg bg-white rounded-tl-full rounded-bl-full uppercase -right-1 bottom-5 md:bottom-10 dark:bg-dark dark:text-lightwhite ">
-					{`₹${data.costForTwo} for Two`}
+					{`$${data.costForTwo} for Two`}
 				</div>
 			</section>
 			<section className="flex flex-col flex-1 gap-2 p-3 bg-white md:p-2 xl:gap-3 xl:p-3 xl:pt-2 dark:bg-moredark dark:text-lightwhite">

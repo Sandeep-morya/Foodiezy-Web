@@ -35,7 +35,7 @@ const CartItemCard = (card: CartDish) => {
 			</div>
 			<div className="w-[20%] h-full flex flex-col justify-between items-center p-2">
 				<h4 className="font-medium">
-					₹{((card.price / 100) * card.count).toFixed(2)}
+					${((card.price / 100) * card.count).toFixed(2)}
 				</h4>
 				<button onClick={removeItem} className="text-sm text-red-500">
 					Remove
